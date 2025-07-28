@@ -154,7 +154,17 @@
   :bind
   ([remap describe-key] . devil-describe-key)
   :config
-  (global-devil-mode))
+  (global-devil-mode)
+  (define-key devil-mode-map (kbd ";") #'devil)
+  (add-to-list 'devil-special-keys `("; ;" . ,(devil-key-executor ";")))
+  (add-to-list 'devil-special-keys `("; SPC" . ,(devil-key-executor "; SPC")))
+  (setq devil-translations '((", z" . "C-")
+			     ("; z" . "M-")
+			     (", ," . ",")
+			     ("; ;" . ";")
+			     ("; SPC" . "; SPC")
+			     ("," . "C-")
+			     (";" . "M-"))))
 
 ;; Automatically added things
 (custom-set-variables
