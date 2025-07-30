@@ -5,7 +5,7 @@
 ;; What is installed:
 ;; - use-package
 ;; - ef-themes
-;; - fussy
+;; - orderless
 ;; - corfu
 ;; - corfu-terminal
 ;; - magit
@@ -41,12 +41,10 @@
   :ensure t
   :config (load-theme 'ef-melissa-light t))
 
-;; Install fuzzy search
-(use-package fussy
+;; Install orderless (better search candidates)
+(use-package orderless
   :ensure t
-  ;; :defer t ; Do not defer because it will not be load otherwise 
-  :config
-  (fussy-setup))
+  :custom (completion-styles '(orderless)))
 
 ;; Setup vertical display of completion (juste native stuff)
 ;; 1) because vetico + fussy freeze Emacs when using tramp
