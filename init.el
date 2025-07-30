@@ -155,6 +155,7 @@
   (add-to-list 'devil-special-keys `("; SPC" . ,(devil-key-executor "; SPC")))
   (assoc-delete-all "%k %k" devil-special-keys)
   (setq devil-translations '((", z" . "C-")
+			     (", , ," . "C-M-")
 			     (", ," . "M-")
 			     ("," . "C-")
 			     )))
