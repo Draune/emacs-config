@@ -48,6 +48,7 @@
 (add-hook 'eww-mode-hook (lambda () (display-line-numbers-mode 0)))
 (add-hook 'eat-mode-hook (lambda () (display-line-numbers-mode 0)))
 (add-hook 'eshell-mode-hook (lambda () (display-line-numbers-mode 0)))
+(add-hook 'dired-mode-hook (lambda () (display-line-numbers-mode 0)))
 
 ;; Here are all the package intallations and setups
 
