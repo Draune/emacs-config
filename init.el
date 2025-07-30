@@ -7,7 +7,6 @@
 ;; - ef-themes
 ;; - orderless
 ;; - corfu
-;; - corfu-terminal
 ;; - magit
 ;; - dashboard
 ;; - speed-type
@@ -101,11 +100,6 @@
 	corfu-quit-no-match 'separator ;; or t
 	corfu-auto-delay  0.1) 
   )
-
-;; Install corfu-terminal
-(use-package corfu-terminal
-  :ensure t
-  :config (corfu-terminal-mode +1))
 
 ;; Install magit
 (use-package magit
