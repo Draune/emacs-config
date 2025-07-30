@@ -145,24 +145,20 @@
   (devil-all-keys-repeatable t)
   (devil-highlight-repeatable t)
   (devil-repeatable-keys '(("%k p" "%k n" "%k b" "%k f" "%k a" "%k e")
-                           ("%k m n" "%k m p")
-                           ("%k m b" "%k m f" "%k m a" "%k m e")
-                           ("%k m m f" "%k m m b" "%k m m a" "%k m m e"
-                            "%k m m n" "%k m m p" "%k m m u" "%k m m d")))
+                           ("%k %k b" "%k %k f" "%k %k a" "%k %k e")))
   :bind
   ([remap describe-key] . devil-describe-key)
   :config
   (global-devil-mode)
-  (define-key devil-mode-map (kbd ";") #'devil)
-  (add-to-list 'devil-special-keys `("; ;" . ,(devil-key-executor ";")))
+  (global-set-key (kbd "C-,") 'global-devil-mode)
+  ;; I don't really know why but if I don't do this line before calling assoc-delete-all
+  ;; it will not do it
   (add-to-list 'devil-special-keys `("; SPC" . ,(devil-key-executor "; SPC")))
+  (assoc-delete-all "%k %k" devil-special-keys)
   (setq devil-translations '((", z" . "C-")
-			     ("; z" . "M-")
-			     (", ," . ",")
-			     ("; ;" . ";")
-			     ("; SPC" . "; SPC")
+			     (", ," . "M-")
 			     ("," . "C-")
-			     (";" . "M-"))))
+			     )))
 
 ;; Automatically added things
 (custom-set-variables
