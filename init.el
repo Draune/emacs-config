@@ -19,6 +19,7 @@
 ;; - Use fido-mode and icomplete-vertical-mode (native functions) to get an equivalence of vertico
 ;; - Configuration of which-key
 ;; - Display line numbers
+;; - Highlight current line
 
 ;; Add Melpa archives (from the geting started page of the MELPA website)
 (require 'package)
@@ -48,6 +49,9 @@
 (add-hook 'eat-mode-hook (lambda () (display-line-numbers-mode 0)))
 (add-hook 'eshell-mode-hook (lambda () (display-line-numbers-mode 0)))
 (add-hook 'dired-mode-hook (lambda () (display-line-numbers-mode 0)))
+
+;; Highlight the cursor line
+(global-hl-line-mode)
 
 ;; Here are all the package intallations and setups
 
