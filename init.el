@@ -1,6 +1,3 @@
-;; TODO:
-;; -
-
 ;; What is installed:
 ;; - use-package
 ;; - ef-themes
@@ -154,7 +151,8 @@
   (global-devil-mode)
   (global-set-key (kbd "C-,") 'global-devil-mode)
   ;; I don't really know why but if I don't do this line before calling assoc-delete-all
-  ;; it will not do it
+  ;; it will not do it. I use asoc-delete-all to delete the devil special key "%k %k" (", ,")
+  ;; so ", ," will be translated to "M-".
   (add-to-list 'devil-special-keys `("; SPC" . ,(devil-key-executor "; SPC")))
   (assoc-delete-all "%k %k" devil-special-keys)
   (setq devil-translations '((", z" . "C-")
