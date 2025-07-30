@@ -1,6 +1,5 @@
 ;; TODO:
-;; - Function to open a file or dired over ssh (see https://andreyor.st/posts/2023-10-27-you-dont-need-a-terminal-emulator/)
-;; - Move the config from .emacs to .emacs.d/init.el
+;; -
 
 ;; What is installed:
 ;; - use-package
