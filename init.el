@@ -69,7 +69,7 @@
 ;; Install orderless (better search candidates)
 (use-package orderless
   :ensure t
-  :custom (completion-styles '(orderless)))
+  :custom (completion-styles '(orderless-flex)))
 
 ;; Install corfu (autocompletion)
 (use-package corfu
