@@ -1,7 +1,6 @@
 ;; What is installed:
 ;; - use-package
 ;; - ef-themes
-;; - orderless
 ;; - corfu
 ;; - magit
 ;; - dashboard
@@ -16,6 +15,7 @@
 ;; - Configuration of which-key
 ;; - Display line numbers
 ;; - Highlight current line
+;; - Better completion
 
 ;; Add Melpa archives (from the geting started page of the MELPA website)
 (require 'package)
@@ -49,6 +49,10 @@
 ;; Highlight the cursor line
 (global-hl-line-mode)
 
+;; Better completion (lines found in Vertico github pages)
+(setq completion-styles '(basic substring partial-completion flex))
+(setq completion-ignore-case t)
+
 ;; Here are all the package intallations and setups
 
 ;; Setup use-package from reddit https://www.reddit.com/r/emacs/g2m2rg/a_guide_to_configure_emacs (anser from magicalmurray)
@@ -61,11 +65,6 @@
 (use-package ef-themes
   :ensure t
   :config (load-theme 'ef-melissa-light t))
-
-;; Install orderless (better search candidates)
-(use-package orderless
-  :ensure t
-  :custom (completion-styles '(orderless-flex)))
 
 ;; Install corfu (autocompletion)
 (use-package corfu
