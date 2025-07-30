@@ -25,26 +25,12 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
-;; Setup use-package from reddit https://www.reddit.com/r/emacs/g2m2rg/a_guide_to_configure_emacs (anser from magicalmurray)
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(eval-when-compile (require 'use-package))
+;; Here is all the configs directly linked to configuring emacs defaults
 
 ;; Disable bad GUI from Emacs
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
-
-;; Install and use ef-themes
-(use-package ef-themes
-  :ensure t
-  :config (load-theme 'ef-melissa-light t))
-
-;; Install orderless (better search candidates)
-(use-package orderless
-  :ensure t
-  :custom (completion-styles '(orderless)))
 
 ;; Setup vertical display of completion (juste native stuff)
 ;; 1) because vetico + fussy freeze Emacs when using tramp
@@ -56,6 +42,30 @@
 ;; Setup which-key (key cheatsheet that is displayed during key sequences)
 (which-key-mode)
 (which-key-setup-minibuffer)
+
+;; Display line numbers
+(global-display-line-numbers-mode 1)
+(add-hook 'eww-mode-hook (lambda () (display-line-numbers-mode 0)))
+(add-hook 'eat-mode-hook (lambda () (display-line-numbers-mode 0)))
+(add-hook 'eshell-mode-hook (lambda () (display-line-numbers-mode 0)))
+
+;; Here are all the package intallations and setups
+
+;; Setup use-package from reddit https://www.reddit.com/r/emacs/g2m2rg/a_guide_to_configure_emacs (anser from magicalmurray)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-when-compile (require 'use-package))
+
+;; Install and use ef-themes
+(use-package ef-themes
+  :ensure t
+  :config (load-theme 'ef-melissa-light t))
+
+;; Install orderless (better search candidates)
+(use-package orderless
+  :ensure t
+  :custom (completion-styles '(orderless)))
 
 ;; Install corfu (autocompletion)
 (use-package corfu
@@ -95,12 +105,6 @@
 (use-package corfu-terminal
   :ensure t
   :config (corfu-terminal-mode +1))
-
-;; Display line numbers
-(global-display-line-numbers-mode 1)
-(add-hook 'eww-mode-hook (lambda () (display-line-numbers-mode 0)))
-(add-hook 'eat-mode-hook (lambda () (display-line-numbers-mode 0)))
-(add-hook 'eshell-mode-hook (lambda () (display-line-numbers-mode 0)))
 
 ;; Install magit
 (use-package magit
