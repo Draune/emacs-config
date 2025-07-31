@@ -7,6 +7,7 @@
 ;; - speed-type
 ;; - eat
 ;; - devil
+;; - treesit-auto
 
 ;; What other thing there is:
 ;; - Use of Melpa archives
@@ -15,7 +16,9 @@
 ;; - Configuration of which-key
 ;; - Display line numbers
 ;; - Highlight current line
+;; - Disable cursor blinking
 ;; - Better completion
+;; - Setup eglot
 
 ;; Add Melpa archives (from the geting started page of the MELPA website)
 (require 'package)
@@ -49,9 +52,22 @@
 ;; Highlight the cursor line
 (global-hl-line-mode)
 
+;; Disable cursor blinking
+(blink-cursor-mode -1)
+
 ;; Better completion (lines found in Vertico github pages)
 (setq completion-styles '(basic substring partial-completion flex))
 (setq completion-ignore-case t)
+
+;; Setup eglot
+(add-hook 'c-ts-mode-hook 'eglot-ensure)
+(add-hook 'c++-ts-mode-hook 'eglot-ensure)
+(add-hook 'rust-ts-mode-hook 'eglot-ensure)
+(add-hook 'go-ts-mode-hook 'eglot-ensure)
+(add-hook 'bash-ts-mode-hook 'eglot-ensure)
+(add-hook 'python-ts-mode-hook 'eglot-ensure)
+(add-hook 'js-ts-mode-hook 'eglot-ensure)
+(add-hook 'cmake-ts-mode-hook 'eglot-ensure)
 
 ;; Here are all the package intallations and setups
 
@@ -97,7 +113,8 @@
   ;; Enable auto completion and configure quitting
   (setq corfu-auto t
 	corfu-quit-no-match 'separator ;; or t
-	corfu-auto-delay  0.1) 
+	corfu-auto-prefix 1
+	corfu-auto-delay  0) 
   )
 
 ;; Install magit
@@ -160,6 +177,16 @@
 			     ("," . "C-")
 			     )))
 
+;; Install treesit-auto (automatically install and setup everything for
+;; treesit.el, even langage grammars)
+(use-package treesit-auto
+  :ensure
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
 ;; Automatically added things
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -176,3 +203,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
