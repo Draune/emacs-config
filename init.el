@@ -168,10 +168,11 @@
   (global-set-key (kbd "C-,") 'global-devil-mode)
   ;; I don't really know why but if I don't do this line before calling assoc-delete-all
   ;; it will not do it. I use asoc-delete-all to delete the devil special key "%k %k" (", ,")
-  ;; so ", ," will be translated to "M-".
-  (add-to-list 'devil-special-keys `("; SPC" . ,(devil-key-executor "; SPC")))
+  ;; so ", ," will be translated to "M-". Plus this line is usefull to mark things
+  (add-to-list 'devil-special-keys `(", , SPC" . ,(devil-key-executor "C-SPC")))
   (assoc-delete-all "%k %k" devil-special-keys)
   (setq devil-translations '((", z" . "C-")
+			     (", , z" . "M-")
 			     (", , ," . "C-M-")
 			     (", ," . "M-")
 			     ("," . "C-")
