@@ -19,6 +19,7 @@
 ;; - Disable cursor blinking
 ;; - Better completion
 ;; - Setup eglot
+;; - My keybindings
 
 ;; Add Melpa archives (from the geting started page of the MELPA website)
 (require 'package)
@@ -37,8 +38,6 @@
 ;; 3) consult seems to much comparing to what I need (and seems like complicated to configure)
 (fido-mode)
 (icomplete-vertical-mode)
-;; Here because by default TAB calls the completion help (which is deactivated in the next lines but I don't want it to be useless)
-(bind-key "TAB" 'icomplete-fido-ret icomplete-fido-mode-map)
 ;; Disble the displaying of *Completions* since I use icomplete
 (setq completion-auto-help nil)
 
@@ -72,6 +71,13 @@
 (add-hook 'python-ts-mode-hook 'eglot-ensure)
 (add-hook 'js-ts-mode-hook 'eglot-ensure)
 (add-hook 'cmake-ts-mode-hook 'eglot-ensure)
+
+;; My keybindings
+;; Here because by default TAB calls the completion help (which I deactivated but I don't want it to be useless)
+(bind-key "TAB" 'icomplete-fido-ret icomplete-fido-mode-map)
+;; Use C-p and C-n for the command history when using M-&
+(bind-key "C-p" 'previous-line-or-history-element minibuffer-local-shell-command-map)
+(bind-key "C-n" 'next-line-or-history-element minibuffer-local-shell-command-map)
 
 ;; Here are all the package intallations and setups
 
