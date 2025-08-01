@@ -73,8 +73,14 @@
 (add-hook 'cmake-ts-mode-hook 'eglot-ensure)
 
 ;; My keybindings
-;; Here because by default TAB calls the completion help (which I deactivated but I don't want it to be useless)
-(bind-key "TAB" 'icomplete-fido-ret icomplete-fido-mode-map)
+;; Global keybindings:
+;; I'll try to always use C-M- since with devil it is translated from ", , ," by devil
+(bind-key "C-M-<return>" 'eshell)
+(bind-key "C-M-m" 'magit)
+
+;; Local keybindings:
+;; Here because by default TAB calls the default completion help (which I deactivated but I don't want it to be useless)
+(bind-key "<tab>" 'icomplete-fido-ret icomplete-fido-mode-map)
 ;; Use C-p and C-n for the command history when using M-&
 (bind-key "C-p" 'previous-line-or-history-element minibuffer-local-shell-command-map)
 (bind-key "C-n" 'next-line-or-history-element minibuffer-local-shell-command-map)
