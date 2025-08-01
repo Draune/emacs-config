@@ -37,6 +37,10 @@
 ;; 3) consult seems to much comparing to what I need (and seems like complicated to configure)
 (fido-mode)
 (icomplete-vertical-mode)
+;; Here because by default TAB calls the completion help (which is deactivated in the next lines but I don't want it to be useless)
+(bind-key "TAB" 'icomplete-fido-ret icomplete-fido-mode-map)
+;; Disble the displaying of *Completions* since I use icomplete
+(setq completion-auto-help nil)
 
 ;; Setup which-key (key cheatsheet that is displayed during key sequences)
 (which-key-mode)
