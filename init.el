@@ -17,6 +17,7 @@
 ;; - Display line numbers
 ;; - Highlight current line
 ;; - Disable cursor blinking
+;; - Increase font size
 ;; - Better completion
 ;; - Setup eglot
 ;; - My keybindings
@@ -57,6 +58,9 @@
 
 ;; Disable cursor blinking
 (blink-cursor-mode -1)
+
+;; Increase font size
+(set-face-attribute 'default nil :height 130)
 
 ;; Better completion (lines found in Vertico github pages)
 (setq completion-styles '(basic substring partial-completion flex))
