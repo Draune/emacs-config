@@ -80,12 +80,16 @@
 ;; Global keybindings:
 (bind-key "M-e" 'eshell)
 (bind-key "M-m" 'magit)
+
 (bind-key "M-n" 'next-buffer)
-(bind-key "M-o" 'other-window)
 (bind-key "M-k" 'kill-current-buffer)
-(bind-key "M-s" 'split-window-right)
-(bind-key "M-h" 'split-window-below)
-(bind-key "M-d" 'delete-window)
+
+(bind-key "M-o" 'other-window)
+(bind-key "M-\"" 'split-window-right)
+(bind-key "M-é" 'split-window-below)
+(bind-key "M-à" 'delete-window)
+
+(bind-key "C-k" 'kill-whole-line)
 
 ;; Local keybindings:
 ;; Here because by default TAB calls the default completion help (which I deactivated but I don't want it to be useless)
