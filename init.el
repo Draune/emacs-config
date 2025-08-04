@@ -191,7 +191,7 @@
   :ensure t
   :demand t
   :custom
-  (devil-exit-key ".")
+  (devil-exit-key ";")
   (devil-all-keys-repeatable t)
   (devil-highlight-repeatable t)
   (devil-repeatable-keys '(("%k p" "%k n" "%k b" "%k f" "%k a" "%k e")
