@@ -81,14 +81,20 @@
 (bind-key "M-e" 'eshell)
 (bind-key "M-m" 'magit)
 
+;; + devil repeatable keys
 (bind-key "M-n" 'next-buffer)
 (bind-key "M-k" 'kill-current-buffer)
-
 (bind-key "M-o" 'other-window)
 (bind-key "M-\"" 'split-window-right)
 (bind-key "M-é" 'split-window-below)
 (bind-key "M-à" 'delete-window)
 
+(bind-key "M-s" 'save-buffer)
+(bind-key "M-f" 'find-file)
+(bind-key "M-b" 'switch-to-buffer)
+(bind-key "M-d" 'dired)
+
+;; better functions fo default keybindings
 (bind-key "C-k" 'kill-whole-line)
 
 ;; Local keybindings:
@@ -189,7 +195,7 @@
   (devil-all-keys-repeatable t)
   (devil-highlight-repeatable t)
   (devil-repeatable-keys '(("%k p" "%k n" "%k b" "%k f" "%k a" "%k e")
-                           ("%k %k b" "%k %k f" "%k %k a" "%k %k e")))
+			   ("%k %k n" "%k %k k" "%k %k o" "%k %k é" "%k %k \"" "%k %k à"))) ;; repeatable keys for window and buffer management
   :bind
   ([remap describe-key] . devil-describe-key)
   :config
