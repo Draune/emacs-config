@@ -181,7 +181,10 @@
   (devil-all-keys-repeatable t)
   (devil-highlight-repeatable t)
   (devil-repeatable-keys '(("%k p" "%k n" "%k b" "%k f" "%k a" "%k e")
-			   ("%k %k n" "%k %k k" "%k %k o" "%k %k é" "%k %k \"" "%k %k à"))) ;; repeatable keys for window and buffer management
+			   ;; repeatable keys for window and buffer management and find-file and dired
+			   ;; I went a little crazy here but since most of the time actions on buffers
+			   ;; and windows are followed by other commands like "C-n" I believe it's ok
+			   ("%k %k n" "%k %k k" "%k %k o" "%k %k é" "%k %k \"" "%k %k à" "%k %k s" "%k %k f" "%k %k d" "%k %k b"))) 
   :bind
   ([remap describe-key] . devil-describe-key)
   :config
