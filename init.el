@@ -100,6 +100,10 @@
 (bind-key "C-k" 'kill-whole-line)
 (bind-key "C-v" (lambda () (interactive) (next-line 10)))
 (bind-key "M-v" (lambda () (interactive) (previous-line 10)))
+(bind-key "C-o" (lambda () (interactive)
+       (call-interactively 'move-beginning-of-line)
+       (call-interactively 'open-line)
+       (call-interactively 'indent-for-tab-command)))
 
 ;; Local keybindings:
 ;; Here because by default TAB calls the default completion help (which I deactivated but I don't want it to be useless)
