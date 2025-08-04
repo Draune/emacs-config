@@ -78,9 +78,14 @@
 
 ;; My keybindings
 ;; Global keybindings:
-;; I'll try to always use C-M- since with devil it is translated from ", , ," by devil
-(bind-key "C-M-<return>" 'eshell)
-(bind-key "C-M-m" 'magit)
+(bind-key "M-e" 'eshell)
+(bind-key "M-m" 'magit)
+(bind-key "M-n" 'next-buffer)
+(bind-key "M-o" 'other-window)
+(bind-key "M-k" 'kill-current-buffer)
+(bind-key "M-s" 'split-window-right)
+(bind-key "M-h" 'split-window-below)
+(bind-key "M-d" 'delete-window)
 
 ;; Local keybindings:
 ;; Here because by default TAB calls the default completion help (which I deactivated but I don't want it to be useless)
