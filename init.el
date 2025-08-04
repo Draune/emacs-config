@@ -3,7 +3,6 @@
 ;; - ef-themes
 ;; - corfu
 ;; - magit
-;; - speed-type
 ;; - eat
 ;; - devil
 ;; - treesit-auto
@@ -157,11 +156,6 @@
 
 ;; Install magit
 (use-package magit
-  :ensure t
-  :defer t)
-
-;; Install speed-type
-(use-package speed-type
   :ensure t
   :defer t)
 
