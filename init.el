@@ -10,6 +10,7 @@
 
 ;; What other thing there is:
 ;; - Use of Melpa archives
+;; - Disable the splash screen
 ;; - Disable bad GUI elements
 ;; - Use fido-mode and icomplete-vertical-mode (native functions) to get an equivalence of vertico
 ;; - Configuration of which-key
@@ -26,6 +27,9 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 ;; Here is all the configs directly linked to configuring emacs defaults
+
+;; Disable the splash screen
+(setq inhibit-startup-screen t)
 
 ;; Disable bad GUI from Emacs
 (menu-bar-mode -1)
