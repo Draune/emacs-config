@@ -3,7 +3,6 @@
 ;; - ef-themes
 ;; - corfu
 ;; - magit
-;; - dashboard
 ;; - speed-type
 ;; - eat
 ;; - devil
@@ -156,19 +155,6 @@
 (use-package magit
   :ensure t
   :defer t)
-
-;; Install dashboard
-(use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook)
-  (setq dashboard-startup-banner 4)
-  (setq dashboard-center-content t)
-  (setq dashboard-vertically-center-content t)
-  (setq dashboard-items '
-	((recents   . 5)
-	 (projects  . 5)))
-  )
 
 ;; Install speed-type
 (use-package speed-type
