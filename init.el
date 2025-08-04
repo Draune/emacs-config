@@ -98,6 +98,8 @@
 
 ;; better functions fo default keybindings
 (bind-key "C-k" 'kill-whole-line)
+(bind-key "C-v" (lambda () (interactive) (next-line 10)))
+(bind-key "M-v" (lambda () (interactive) (previous-line 10)))
 
 ;; Local keybindings:
 ;; Here because by default TAB calls the default completion help (which I deactivated but I don't want it to be useless)
