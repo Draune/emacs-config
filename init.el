@@ -181,7 +181,8 @@
   :ensure t
   :demand t
   :custom
-  (devil-exit-key ";")
+  ;; Don't use keys that are usefull when repeated (for exemple ";" for comments)
+  (devil-exit-key ".")
   (devil-all-keys-repeatable t)
   (devil-highlight-repeatable t)
   (devil-repeatable-keys '(("%k p" "%k n" "%k b" "%k f" "%k a" "%k e")
