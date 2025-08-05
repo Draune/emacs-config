@@ -11,6 +11,7 @@
 ;; - Use of Melpa archives
 ;; - Disable the splash screen
 ;; - Disable bad GUI elements
+;; - Customize startup *scratch* buffer
 ;; - Use fido-mode and icomplete-vertical-mode (native functions) to get an equivalence of vertico
 ;; - Configuration of which-key
 ;; - Display line numbers
@@ -34,6 +35,15 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
+
+;; Customize startup showing version of Emacs and init time
+(defun my-scratch-init () (interactive)
+       (switch-to-buffer "*scratch*")
+       (end-of-buffer)
+       (insert (format ";; %s\n" (emacs-version)))
+       (insert (format ";; Init time: %s\n" (emacs-init-time)))
+       )
+(add-hook 'after-init-hook 'my-scratch-init)
 
 ;; Setup vertical display of completion (juste native stuff)
 ;; 1) because vetico + fussy freeze Emacs when using tramp
