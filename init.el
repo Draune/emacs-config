@@ -110,6 +110,7 @@
 ;; Global keybindings:
 (bind-key "M-e" 'eshell)
 (bind-key "M-m" 'magit)
+(bind-key "M-;" 'comment-line)
 
 ;; + devil repeatable keys
 (bind-key "M-n" 'next-buffer)
