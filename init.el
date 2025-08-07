@@ -6,6 +6,7 @@
 ;; - eat
 ;; - devil
 ;; - treesit-auto
+;; - f
 
 ;; What other thing there is:
 ;; - Use of Melpa archives
@@ -40,22 +41,8 @@
 (defun my-scratch-init () (interactive)
        (switch-to-buffer "*scratch*")
        (end-of-buffer)
-       (insert
-";;\t\t ⠀⠀⢠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-;;\t\t ⠀⠀⠆⣯⠢⡀⠀⠀⠀⠀⠀⢀⠄⢪⣿⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-;;\t\t ⠀⢸⢨⣾⢀⠨⠆⠀⠀⠀⠮⡀⠀⡿⣕⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-;;\t\t ⠀⠸⡼⠃⠐⠂⠀⠀⠀⠀⠀⠀⠀⠻⡏⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-;;\t\t ⠀⡰⡡⣂⡐⢄⠀⠀⠀⡠⠄⠠⢄⠀⠑⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-;;\t\t ⢀⠓⠐⠿⠇⢈⠀⠀⠎⠀⣿⡷⠀⢡⠀⢰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-;;\t\t ⢸⠠⣀⠀⢀⠜⠀⠈⡄⠀⠀⠀⠀⡘⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-;;\t\t ⢸⡍⠀⠀⡀⢀⡖⠀⠈⠐⠒⠒⠈⠄⣀⣌⠀⠀⠀⢀⣤⠤⠐⠢⢄⠀⠀
-;;\t\t ⠀⠑⢄⠀⠀⠀⠀⠉⠈⠀⠀⠀⠀⡰⠚⠠⠄⢠⠞⢁⡤⠀⠒⠠⡄⠱⠀
-;;\t\t ⠀⠀⠀⠁⠂⡤⣄⣀⠤⣤⡤⠐⢊⡠⢄⠀⣠⢃⠜⠁⠀⠀⠀⠀⢸⠦⣇
-;;\t\t ⠀⠀⠀⣠⣾⣷⣺⣗⣾⣿⣿⣶⡁⠀⠀⢒⢁⠎⠀⠀⠀⠀⠀⠀⠸⠷⠇
-;;\t\t ⠀⠰⣾⣿⢡⣿⣿⣿⣯⢱⣾⡟⢋⡆⠀⠀⢇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-;;\t\t ⠀⠀⠀⠁⢸⣿⣟⣽⣝⣷⡹⣿⡅⠀⠀⡠⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-;;\t\t ⠀⠀⠀⠀⠀⠙⢾⡴⣸⡋⢳⡘⣋⠔⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-;;\t\t ⠀⠀⠀⠀⠙⢿⣾⣿⠟⠁⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n\n")
+       (insert (f-read "~/.emacs.d/banner.txt"))
+       (insert "\n\n")
        (insert (format ";; %s\n" (emacs-version)))
        (insert (format ";; Init time: \t%s\n" (emacs-init-time)))
        (insert (format ";; Started at: \t%s\n" (format-time-string "%T %a %d/%m/%Y")))
@@ -248,6 +235,9 @@
   :config
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
+
+;; Install f (file library, used for the banner)
+(use-package f :ensure t)
 
 ;; Automatically added things
 (custom-set-variables
