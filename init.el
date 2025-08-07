@@ -113,6 +113,7 @@
 
 ;; + devil repeatable keys
 (bind-key "M-n" 'next-buffer)
+(bind-key "M-p" 'previous-buffer)
 (bind-key "M-k" 'kill-current-buffer)
 (bind-key "M-o" 'other-window)
 (bind-key "M-\"" 'split-window-right)
@@ -217,7 +218,7 @@
 			   ;; repeatable keys for window and buffer management and find-file and dired
 			   ;; I went a little crazy here but since most of the time actions on buffers
 			   ;; and windows are followed by other commands like "C-n" I believe it's ok
-			   ("%k %k n" "%k %k k" "%k %k o" "%k %k é" "%k %k \"" "%k %k à" "%k %k s" "%k %k f" "%k %k d" "%k %k b"))) 
+			   ("%k %k n" "%k %k p""%k %k k" "%k %k o" "%k %k é" "%k %k \"" "%k %k à" "%k %k s" "%k %k f" "%k %k d" "%k %k b"))) 
   :bind
   ([remap describe-key] . devil-describe-key)
   :config
