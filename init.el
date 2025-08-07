@@ -138,9 +138,11 @@
 ;; Local keybindings:
 ;; Here because by default TAB calls the default completion help (which I deactivated but I don't want it to be useless)
 (bind-key "<tab>" 'icomplete-fido-ret icomplete-fido-mode-map)
-;; Use C-p and C-n for the command history when using M-&
-(bind-key "C-p" 'previous-line-or-history-element minibuffer-local-shell-command-map)
-(bind-key "C-n" 'next-line-or-history-element minibuffer-local-shell-command-map)
+;; Use M-p and M-n for the command history when using M-&
+;; Already binded but (I don't really know why) if I don't declare it
+;; there is a bug when repeated
+(bind-key "M-p" 'previous-line-or-history-element minibuffer-local-shell-command-map)
+(bind-key "M-n" 'next-line-or-history-element minibuffer-local-shell-command-map)
 
 ;; Here are all the package intallations and setups
 
