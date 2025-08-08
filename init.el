@@ -2,6 +2,7 @@
 ;; - use-package
 ;; - ef-themes
 ;; - corfu
+;; - corfu-terminal
 ;; - magit
 ;; - eat
 ;; - devil
@@ -178,6 +179,11 @@
 	corfu-auto-prefix 1
 	corfu-auto-delay  0) 
   )
+
+;; Install corfu-terminal
+(use-package corfu-terminal
+  :ensure t
+  :config (corfu-terminal-mode +1))
 
 ;; Install magit
 (use-package magit
