@@ -178,12 +178,16 @@
 	corfu-quit-no-match 'separator ;; or t
 	corfu-auto-prefix 1
 	corfu-auto-delay  0) 
+  (setq corfu-bar-width 1)
   )
 
 ;; Install corfu-terminal
 (use-package corfu-terminal
   :ensure t
-  :config (corfu-terminal-mode +1))
+  :config
+  (corfu-terminal-mode t)
+  (setq corfu-terminal-disable-on-gui nil)
+  )
 
 ;; Install magit
 (use-package magit
