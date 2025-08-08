@@ -1,6 +1,7 @@
 ;; What is installed:
 ;; - use-package
 ;; - ef-themes
+;; - corfu
 ;; - magit
 ;; - eat
 ;; - devil
@@ -12,8 +13,7 @@
 ;; - Disable the splash screen
 ;; - Disable bad GUI elements
 ;; - Customize startup *scratch* buffer
-;; - Use icomplete-vertical-mode (native functions) to get an equivalence of vertico
-;; - Use of icomplete-in-buffer to get an equivalence of corfu/company
+;; - Use fido-mode and icomplete-vertical-mode (native functions) to get an equivalence of vertico
 ;; - Configuration of which-key
 ;; - Display line numbers
 ;; - Highlight current line
@@ -50,31 +50,14 @@
        )
 (add-hook 'after-init-hook 'my-scratch-init)
 
-;; Setup vertical display of completion in buffer AND minibuffer (juste native stuff)
+;; Setup vertical display of completion (juste native stuff)
 ;; 1) because vetico + fussy freeze Emacs when using tramp
 ;; 2) because ido-vertical-mode don't do it for commands
 ;; 3) consult seems to much comparing to what I need (and seems like complicated to configure)
-;; 4) because it also replace auto-completion packages like corfu and company without adding any packages
-;; 5) like that I have the same sorting in minibuffer or in buffer completion at point
-(use-package icomplete
-  :bind (:map icomplete-minibuffer-map
-              ("C-n" . icomplete-forward-completions)
-              ("C-p" . icomplete-backward-completions)
-              ("RET" . icomplete-force-complete-and-exit)
-	      ("TAB" . icomplete-force-complete))
-  :hook
-  (after-init . (lambda ()
-                  (icomplete-mode t)
-                  (icomplete-vertical-mode t)
-                  ))
-  :config
-  (setq tab-always-indent 'complete)  ;; Starts completion with TAB
-  (setq icomplete-hide-common-prefix nil)
-  (setq icomplete-prospects-height 5)
-  (setq icomplete-in-buffer t)
-;; Disable the displaying of *Completions* since I use icomplete
-  (advice-add 'completion-at-point
-              :after #'minibuffer-hide-completions))
+(fido-mode)
+(icomplete-vertical-mode)
+;; Disble the displaying of *Completions* since I use icomplete
+(setq completion-auto-help nil)
 
 ;; Setup which-key (key cheatsheet that is displayed during key sequences)
 (which-key-mode)
@@ -140,6 +123,8 @@
        (call-interactively 'indent-for-tab-command)))
 
 ;; Local keybindings:
+;; Here because by default TAB calls the default completion help (which I deactivated but I don't want it to be useless)
+(bind-key "<tab>" 'icomplete-fido-ret icomplete-fido-mode-map)
 ;; Use M-p and M-n for the command history when using M-&
 ;; Already binded but (I don't really know why) if I don't declare it
 ;; there is a bug when repeated
@@ -158,6 +143,41 @@
 (use-package ef-themes
   :ensure t
   :config (load-theme 'ef-melissa-light t))
+
+;; Install corfu (autocompletion)
+(use-package corfu
+  :ensure t
+  :defer t
+  ;; Optional customizations
+  :custom
+  ;; (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+  (corfu-preview-current nil)    ;; Disable current candidate preview
+  ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
+  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+
+  ;; Enable Corfu only for certain modes. See also `global-corfu-modes'.
+  ;; :hook ((prog-mode . corfu-mode)
+  ;;        (shell-mode . corfu-mode)
+  ;;        (eshell-mode . corfu-mode))
+
+  :init
+
+  ;; Recommended: Enable Corfu globally.  Recommended since many modes provide
+  ;; Capfs and Dabbrev can be used globally (M-/).  See also the customization
+  ;; variable `global-corfu-modes' to exclude certain modes.
+  (global-corfu-mode)
+
+  ;; Enable optional extension modes:
+  (corfu-history-mode)
+  ;; (corfu-popupinfo-mode)
+  ;; Enable auto completion and configure quitting
+  (setq corfu-auto t
+	corfu-quit-no-match 'separator ;; or t
+	corfu-auto-prefix 1
+	corfu-auto-delay  0) 
+  )
 
 ;; Install magit
 (use-package magit
