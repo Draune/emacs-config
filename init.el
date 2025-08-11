@@ -20,6 +20,7 @@
 ;; - Highlight current line
 ;; - Disable cursor blinking
 ;; - Increase font size
+;; - Delete marked region when editing
 ;; - Better completion
 ;; - Setup eglot
 ;; - My keybindings
@@ -79,6 +80,9 @@
 
 ;; Increase font size
 (set-face-attribute 'default nil :height 130)
+
+;; Delete marked region when editing (which is not activated by default)
+(delete-selection-mode 1)
 
 ;; Better completion (lines found in Vertico github pages)
 (setq completion-styles '(basic substring partial-completion flex))
