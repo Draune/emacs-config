@@ -35,9 +35,11 @@
 (setq inhibit-startup-screen t)
 
 ;; Disable bad GUI from Emacs
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
+(when (display-graphic-p)
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  )
 
 ;; Customize startup showing version of Emacs and init time
 (defun my-scratch-init () (interactive)
