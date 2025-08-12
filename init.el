@@ -105,6 +105,8 @@
 (bind-key "M-e" 'eshell)
 (bind-key "M-m" 'magit)
 (bind-key "M-;" 'comment-line)
+(bind-key "M-a" 'beginning-of-buffer)
+(bind-key "M-z" 'end-of-buffer)
 
 ;; + devil repeatable keys
 (bind-key "M-n" 'next-buffer)
@@ -239,9 +241,7 @@
   ;; so ", ," will be translated to "M-". Plus this line is usefull to mark things
   (add-to-list 'devil-special-keys `(", , SPC" . ,(devil-key-executor "C-SPC")))
   (assoc-delete-all "%k %k" devil-special-keys)
-  (setq devil-translations '((", z" . "C-")
-			     (", , z" . "M-")
-			     (", , ," . "C-M-")
+  (setq devil-translations '((", , ," . "C-M-")
 			     (", ," . "M-")
 			     ("," . "C-")
 			     )))
