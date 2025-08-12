@@ -103,11 +103,11 @@
 
 ;; My keybindings
 ;; Global keybindings:
-(bind-key "M-e" 'eshell)
-(bind-key "M-m" 'magit)
+(bind-key "M-RET" 'eshell)
+(bind-key "M-g" 'magit)
 (bind-key "M-;" 'comment-line)
 (bind-key "M-a" 'beginning-of-buffer)
-(bind-key "M-z" 'end-of-buffer)
+(bind-key "M-e" 'end-of-buffer)
 
 ;; + devil repeatable keys
 (bind-key "M-n" 'next-buffer)
