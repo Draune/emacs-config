@@ -51,6 +51,7 @@
        (insert (format ";; Init time: \t%s\n" (emacs-init-time)))
        (insert (format ";; Started at: \t%s\n" (format-time-string "%T %a %d/%m/%Y")))
        (insert "\n")
+       (beginning-of-buffer)
        )
 (add-hook 'after-init-hook 'my-scratch-init)
 
