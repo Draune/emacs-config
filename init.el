@@ -111,9 +111,13 @@
 (bind-key "M-p" 'previous-buffer)
 (bind-key "M-k" 'kill-current-buffer)
 (bind-key "M-o" 'other-window)
+;; Doublons here for better experience with Azerty keyboards 
 (bind-key "M-\"" 'split-window-right)
+(bind-key "M-3" 'split-window-right)
 (bind-key "M-é" 'split-window-below)
+(bind-key "M-2" 'split-window-below)
 (bind-key "M-à" 'delete-window)
+(bind-key "M-0" 'delete-window)
 
 (bind-key "M-s" 'save-buffer)
 (bind-key "M-f" 'find-file)
@@ -224,7 +228,7 @@
 			   ;; repeatable keys for window and buffer management and find-file and dired
 			   ;; I went a little crazy here but since most of the time actions on buffers
 			   ;; and windows are followed by other commands like "C-n" I believe it's ok
-			   ("%k %k n" "%k %k p""%k %k k" "%k %k o" "%k %k é" "%k %k \"" "%k %k à" "%k %k s" "%k %k f" "%k %k d" "%k %k b"))) 
+			   ("%k %k n" "%k %k p""%k %k k" "%k %k o" "%k %k é" "%k %k \"" "%k %k à" "%k %k s" "%k %k f" "%k %k d" "%k %k b" "%k %k 0" "%k %k 2" "%k %k 3"))) 
   :bind
   ([remap describe-key] . devil-describe-key)
   :config
