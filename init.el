@@ -108,16 +108,7 @@
 (bind-key "M-;" 'comment-line)
 (bind-key "M-a" 'beginning-of-buffer)
 (bind-key "M-e" 'end-of-buffer)
-
-;; marking bindings, first is mark word, second is mark line
-;; for shortcut C-m because otherwise it will changes what RET does too
-(when (display-graphic-p)
-  (define-key input-decode-map (kbd "C-m") (kbd "H-m")))
-(bind-key "H-m" (lambda () (interactive)
-		  (call-interactively 'forward-sexp)
-		  (call-interactively 'backward-sexp)
-		  (call-interactively 'set-mark-command)
-		  (call-interactively 'forward-sexp)))
+;; mark line
 (bind-key "M-m" (lambda () (interactive)
 		  (call-interactively 'move-beginning-of-line)
 		  (call-interactively 'set-mark-command)
@@ -256,8 +247,6 @@
   ;; it will not do it. I use asoc-delete-all to delete the devil special key "%k %k" (", ,")
   ;; so ", ," will be translated to "M-". Plus this line is usefull to mark things
   (add-to-list 'devil-special-keys `(", , SPC" . ,(devil-key-executor "C-SPC")))
-  ;; for shortcut C-m because otherwise it will changes what RET does too
-  (add-to-list 'devil-special-keys `(", m" . ,(devil-key-executor "H-m")))
   (assoc-delete-all "%k %k" devil-special-keys)
   (setq devil-translations '((", , ," . "C-M-")
 			     (", ," . "M-")
