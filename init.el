@@ -109,6 +109,19 @@
 (bind-key "M-a" 'beginning-of-buffer)
 (bind-key "M-e" 'end-of-buffer)
 
+;; marking bindings, first is mark word, second is mark line
+;; "RET" is here because changing "C-m" changes it too
+(bind-key "RET" 'newline-and-indent)
+(bind-key "C-m" (lambda () (interactive)
+		  (call-interactively 'backward-sexp)
+		  (call-interactively 'set-mark-command)
+		  (call-interactively 'forward-sexp)))
+(bind-key "M-m" (lambda () (interactive)
+		  (call-interactively 'move-beginning-of-line)
+		  (call-interactively 'set-mark-command)
+		  (call-interactively 'next-line)
+		  (call-interactively 'move-beginning-of-line)))
+
 ;; + devil repeatable keys
 (bind-key "M-n" 'next-buffer)
 (bind-key "M-p" 'previous-buffer)
