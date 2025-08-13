@@ -111,7 +111,8 @@
 
 ;; marking bindings, first is mark word, second is mark line
 ;; for shortcut C-m because otherwise it will changes what RET does too
-(define-key input-decode-map (kbd "C-m") (kbd "H-m"))
+(when (display-graphic-p)
+  (define-key input-decode-map (kbd "C-m") (kbd "H-m")))
 (bind-key "H-m" (lambda () (interactive)
 		  (call-interactively 'forward-sexp)
 		  (call-interactively 'backward-sexp)
