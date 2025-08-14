@@ -8,6 +8,7 @@
 ;; - devil
 ;; - treesit-auto
 ;; - f
+;; - elfeed
 
 ;; What other thing there is:
 ;; - Use of Melpa archives
@@ -16,7 +17,6 @@
 ;; - Customize startup *scratch* buffer
 ;; - Use fido-mode and icomplete-vertical-mode (native functions) to get an equivalence of vertico
 ;; - Configuration of which-key
-;; - Display line numbers
 ;; - Highlight current line
 ;; - Disable cursor blinking
 ;; - Increase font size
@@ -96,29 +96,19 @@
 
 ;; My keybindings
 ;; Global keybindings:
-(bind-key "M-RET" 'eshell)
-(bind-key "M-g" 'magit)
-(bind-key "M-;" 'comment-line)
-(bind-key "M-a" 'beginning-of-buffer)
-(bind-key "M-e" 'end-of-buffer)
+(bind-key "C-c e" 'eshell)
+(bind-key "C-c m" 'magit)
+(bind-key "C-c f" 'elfeed)
+(bind-key "C-c w" 'eww)
 
 ;; + devil repeatable keys
-(bind-key "M-n" 'next-buffer)
-(bind-key "M-p" 'previous-buffer)
-(bind-key "M-k" 'kill-current-buffer)
-(bind-key "M-o" 'other-window)
+(bind-key "C-c n" 'next-buffer)
+(bind-key "C-c p" 'previous-buffer)
+(bind-key "C-c k" 'kill-current-buffer)
 ;; Doublons here for better experience with Azerty keyboards 
-(bind-key "M-\"" 'split-window-right)
-(bind-key "M-3" 'split-window-right)
-(bind-key "M-é" 'split-window-below)
-(bind-key "M-2" 'split-window-below)
-(bind-key "M-à" 'delete-window)
-(bind-key "M-0" 'delete-window)
-
-(bind-key "M-s" 'save-buffer)
-(bind-key "M-f" 'find-file)
-(bind-key "M-b" 'switch-to-buffer)
-(bind-key "M-d" 'dired)
+(bind-key "C-x \"" 'split-window-right)
+(bind-key "C-x é" 'split-window-below)
+(bind-key "C-x à" 'delete-window)
 
 ;; better functions fo default keybindings
 (bind-key "C-k" 'kill-whole-line)
@@ -128,6 +118,8 @@
        (call-interactively 'move-beginning-of-line)
        (call-interactively 'open-line)
        (call-interactively 'indent-for-tab-command)))
+(bind-key "M-a" 'beginning-of-buffer)
+(bind-key "M-e" 'end-of-buffer)
 
 ;; Local keybindings:
 ;; Here because by default TAB calls the default completion help (which I deactivated but I don't want it to be useless)
@@ -224,7 +216,7 @@
 			   ;; repeatable keys for window and buffer management and find-file and dired
 			   ;; I went a little crazy here but since most of the time actions on buffers
 			   ;; and windows are followed by other commands like "C-n" I believe it's ok
-			   ("%k %k n" "%k %k p""%k %k k" "%k %k o" "%k %k é" "%k %k \"" "%k %k à" "%k %k s" "%k %k f" "%k %k d" "%k %k b" "%k %k 0" "%k %k 2" "%k %k 3"))) 
+			   ("%k c n" "%k c p""%k c k" "%k x o" "%k x é" "%k x \"" "%k x à" "%k x %k f" "%k x d" "%k x b" "%k x 0" "%k x 2" "%k x 3"))) 
   :bind
   ([remap describe-key] . devil-describe-key)
   :config
@@ -252,6 +244,9 @@
 
 ;; Install f (file library, used for the banner)
 (use-package f :ensure t)
+
+;; Install elfeed (RSS reader ~ reader for web feeds like reddit, arxiv,...)
+(use-package elfeed :ensure t)
 
 ;; Automatically added things
 (custom-set-variables
