@@ -101,12 +101,6 @@
 (bind-key "M-;" 'comment-line)
 (bind-key "M-a" 'beginning-of-buffer)
 (bind-key "M-e" 'end-of-buffer)
-;; mark line
-(bind-key "M-m" (lambda () (interactive)
-		  (call-interactively 'move-beginning-of-line)
-		  (call-interactively 'set-mark-command)
-		  (call-interactively 'next-line)
-		  (call-interactively 'move-beginning-of-line)))
 
 ;; + devil repeatable keys
 (bind-key "M-n" 'next-buffer)
