@@ -68,13 +68,6 @@
 (which-key-mode)
 (which-key-setup-minibuffer)
 
-;; Display line numbers
-(global-display-line-numbers-mode 1)
-(add-hook 'eww-mode-hook (lambda () (display-line-numbers-mode 0)))
-(add-hook 'eat-mode-hook (lambda () (display-line-numbers-mode 0)))
-(add-hook 'eshell-mode-hook (lambda () (display-line-numbers-mode 0)))
-(add-hook 'dired-mode-hook (lambda () (display-line-numbers-mode 0)))
-
 ;; Highlight the cursor line
 (global-hl-line-mode)
 
