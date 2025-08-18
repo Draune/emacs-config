@@ -14,6 +14,7 @@
 ;; - Use of Melpa archives
 ;; - Disable the splash screen
 ;; - Disable bad GUI elements
+;; - Enable global-visual-line-mode
 ;; - Customize startup *scratch* buffer
 ;; - Use fido-mode and icomplete-vertical-mode (native functions) to get an equivalence of vertico
 ;; - Configuration of which-key
@@ -40,6 +41,9 @@
   (scroll-bar-mode -1)
   (tool-bar-mode -1)
   )
+
+;; Enable global-visual-line-mode (words aren't cut in half at the end of line)
+(global-visual-line-mode)
 
 ;; Customize startup showing version of Emacs and init time
 (defun my-scratch-init () (interactive)
