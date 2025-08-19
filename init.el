@@ -104,6 +104,7 @@
 (bind-key "C-c m" 'magit)
 (bind-key "C-c f" 'elfeed)
 (bind-key "C-c w" 'eww)
+(bind-key "C-c t" 'google-translate-buffer)
 
 ;; + devil repeatable keys
 (bind-key "C-c n" 'next-buffer)
@@ -252,6 +253,9 @@
 ;; Install elfeed (RSS reader ~ reader for web feeds like reddit, arxiv,...)
 (use-package elfeed :ensure t)
 
+;; Install google-translate
+(use-package google-translate :ensure t)
+
 ;; Automatically added things
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -260,7 +264,9 @@
  ;; If there is more than one, they won't work right.
  '(auth-source-save-behavior nil)
  '(elfeed-feeds '("https://www.reddit.com/r/emacs.rss"))
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(corfu-terminal devil eat ef-themes elfeed f google-translate magit
+		    treesit-auto))
  '(package-vc-selected-packages
    '((devil :url "https://github.com/fbrosda/devil" :branch "dev"))))
 (custom-set-faces
