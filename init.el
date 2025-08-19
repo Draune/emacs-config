@@ -101,7 +101,6 @@
 ;; My keybindings
 ;; Global keybindings:
 (bind-key "C-c e" 'eshell)
-(bind-key "C-c m" 'magit)
 (bind-key "C-c f" 'elfeed)
 (bind-key "C-c w" 'eww)
 (bind-key "C-c t" 'google-translate-buffer)
