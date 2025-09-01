@@ -46,6 +46,18 @@
 (global-visual-line-mode)
 
 ;; Customize startup showing version of Emacs and init time
+(defun emacs-ppid ()
+  "Retourne le PID (string) du processus parent d’Emacs."  
+  (string-trim
+   (shell-command-to-string
+    (format "ps -o ppid= -p %d" (emacs-pid)))))
+
+(defun emacs-parent-name ()
+  "Retourne le nom du processus parent d’Emacs (Linux uniquement)."
+  (string-trim
+   (shell-command-to-string
+    (format "ps -o comm= -p %s" (emacs-ppid)))))
+
 (defun my-scratch-init () (interactive)
        (switch-to-buffer "*scratch*")
        (end-of-buffer)
@@ -53,6 +65,8 @@
        (insert "\n\n")
        (insert (format ";; %s\n" (emacs-version)))
        (insert (format ";; Init time: \t%s\n" (emacs-init-time)))
+       (if (eq system-type 'gnu/linux)
+	   (insert (format ";; Started by: \t%s\n" (emacs-parent-name))))
        (insert (format ";; Started at: \t%s\n" (format-time-string "%T %a %d/%m/%Y")))
        (insert "\n")
        (beginning-of-buffer)
