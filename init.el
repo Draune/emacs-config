@@ -275,6 +275,32 @@
 ;; Install google-translate
 (use-package google-translate :ensure t)
 
+(if (equal (emacs-parent-name) "xinit")
+    (use-package exwm
+      :ensure t
+      :config
+      (setq exwm-workspace-number 4)
+      ;; Make class name the buffer name.
+      (add-hook 'exwm-update-class-hook
+		(lambda () (exwm-workspace-rename-buffer exwm-class-name)))
+      ;; Global keybindings.
+      (setq exwm-input-global-keys
+	    `(([?\s-r] . exwm-reset) ;; s-r: Reset (to line-mode).
+              ([?\s-w] . exwm-workspace-switch) ;; s-w: Switch workspace.
+              ([?\s-&] . (lambda (cmd) ;; s-&: Launch application.
+			   (interactive (list (read-shell-command "$ ")))
+			   (start-process-shell-command cmd nil cmd)))
+              ;; s-N: Switch to certain workspace.
+              ,@(mapcar (lambda (i)
+			  `(,(kbd (format "s-%d" i)) .
+			    (lambda ()
+                              (interactive)
+                              (exwm-workspace-switch-create ,i))))
+			(number-sequence 0 9))))
+      ;; Enable EXWM
+      (exwm-wm-mode)
+      ))
+
 ;; Automatically added things
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
