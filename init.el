@@ -23,6 +23,7 @@
 ;; - Disable cursor blinking
 ;; - Increase font size
 ;; - Delete marked region when editing
+;; - Move elsewhere backups and auto-saves
 ;; - Better completion
 ;; - Setup eglot
 ;; - My keybindings
@@ -98,6 +99,12 @@
 
 ;; Delete marked region when editing (which is not activated by default)
 (delete-selection-mode 1)
+
+;; Move elsewhere backups and auto-saves
+(setq backup-directory-alist `(("." . "~/.emacs.d/backups")))
+(setq backup-by-copying t)
+(setq auto-save-file-name-transforms `((".*" "~/.emacs.d/auto-saves/" t)))
+(setq create-lockfiles nil)
 
 ;; Better completion (lines found in Vertico github pages)
 (setq completion-styles '(basic substring partial-completion flex))
