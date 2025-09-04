@@ -102,6 +102,10 @@
 (delete-selection-mode 1)
 
 ;; Move elsewhere backups and auto-saves
+(if (eq (file-directory-p "~/.emacs.d/backups") nil)
+    (make-directory "~/.emacs.d/backups"))
+(if (eq (file-directory-p "~/.emacs.d/auto-saves") nil)
+    (make-directory "~/.emacs.d/auto-saves"))
 (setq backup-directory-alist `(("." . "~/.emacs.d/backups")))
 (setq backup-by-copying t)
 (setq auto-save-file-name-transforms `((".*" "~/.emacs.d/auto-saves/" t)))
