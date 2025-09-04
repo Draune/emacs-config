@@ -9,6 +9,7 @@
 ;; - treesit-auto
 ;; - f
 ;; - elfeed
+;; - exwm (just if Emacs was called by xinit)
 
 ;; What other thing there is:
 ;; - Use of Melpa archives
@@ -275,6 +276,7 @@
 ;; Install google-translate
 (use-package google-translate :ensure t)
 
+;; Install exwm (just if Emacs was called by xinit)
 (if (equal (emacs-parent-name) "xinit")
     (use-package exwm
       :ensure t
