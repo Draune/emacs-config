@@ -10,6 +10,7 @@
 ;; - f
 ;; - elfeed
 ;; - exwm (just if Emacs was called by xinit)
+;; - async
 
 ;; What other thing there is:
 ;; - Use of Melpa archives
@@ -309,6 +310,12 @@
       ;; Enable EXWM
       (exwm-wm-mode)
       ))
+
+;; Install async (for dired-async)
+;; TODO: async compression
+(use-package async
+  :ensure t
+  :config (dired-async-mode 1))
 
 ;; Automatically added things
 (custom-set-variables
