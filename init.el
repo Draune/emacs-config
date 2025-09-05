@@ -140,6 +140,7 @@
 (bind-key "C-x \"" 'split-window-right)
 (bind-key "C-x é" 'split-window-below)
 (bind-key "C-x à" 'delete-window)
+(bind-key "C-x &" 'delete-other-windows)
 
 ;; better functions fo default keybindings
 (bind-key "C-k" 'kill-whole-line)
@@ -247,7 +248,7 @@
 			   ;; repeatable keys for window and buffer management and find-file and dired
 			   ;; I went a little crazy here but since most of the time actions on buffers
 			   ;; and windows are followed by other commands like "C-n" I believe it's ok
-			   ("%k c n" "%k c p""%k c k" "%k x o" "%k x é" "%k x \"" "%k x à" "%k x %k f" "%k x d" "%k x b" "%k x 0" "%k x 2" "%k x 3"))) 
+			   ("%k c n" "%k c p""%k c k" "%k x o" "%k x &" "%k x é" "%k x \"" "%k x à" "%k x %k f" "%k x d" "%k x b" "%k x 0" "%k x 1" "%k x 2" "%k x 3"))) 
   :bind
   ([remap describe-key] . devil-describe-key)
   :config
