@@ -6,7 +6,6 @@
 ;; - magit
 ;; - eat
 ;; - devil
-;; - treesit-auto
 ;; - f
 ;; - elfeed
 ;; - exwm (just if Emacs was called by xinit)
@@ -26,7 +25,6 @@
 ;; - Delete marked region when editing
 ;; - Move elsewhere backups and auto-saves
 ;; - Better completion
-;; - Setup eglot
 ;; - My keybindings
 
 ;; Add Melpa archives (from the geting started page of the MELPA website)
@@ -114,16 +112,6 @@
 ;; Better completion (lines found in Vertico github pages)
 (setq completion-styles '(basic substring partial-completion flex))
 (setq completion-ignore-case t)
-
-;; Setup eglot
-(add-hook 'c-ts-mode-hook 'eglot-ensure)
-(add-hook 'c++-ts-mode-hook 'eglot-ensure)
-(add-hook 'rust-ts-mode-hook 'eglot-ensure)
-(add-hook 'go-ts-mode-hook 'eglot-ensure)
-(add-hook 'bash-ts-mode-hook 'eglot-ensure)
-(add-hook 'python-ts-mode-hook 'eglot-ensure)
-(add-hook 'js-ts-mode-hook 'eglot-ensure)
-(add-hook 'cmake-ts-mode-hook 'eglot-ensure)
 
 ;; My keybindings
 ;; Global keybindings:
@@ -263,16 +251,6 @@
 			     (", ," . "M-")
 			     ("," . "C-")
 			     )))
-
-;; Install treesit-auto (automatically install and setup everything for
-;; treesit.el, even langage grammars)
-(use-package treesit-auto
-  :ensure
-  :custom
-  (treesit-auto-install 'prompt)
-  :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode))
 
 ;; Install f (file library, used for the banner)
 (use-package f :ensure t)
