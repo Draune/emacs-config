@@ -10,6 +10,7 @@
 ;; - elfeed
 ;; - exwm (just if Emacs was called by xinit)
 ;; - async
+;; - lemon
 
 ;; What other thing there is:
 ;; - Use of Melpa archives
@@ -299,6 +300,27 @@
 (use-package async
   :ensure t
   :config (dired-async-mode 1))
+
+;; Install lemon (system monitor in echo area)
+(use-package lemon
+  :ensure t
+  :vc (:url "https://codeberg.org/emacs-weirdware/lemon.git"
+	    :rev :newest)
+  :config
+  (setq lemon-delay 0.2)
+  (setq lemon-update-interval 2)
+  ;; to display graphics
+  (setq lemon-sparkline-use-xpm 1)
+  (setq lemon-monitors
+	'(((lemon-time :display-opts '(:format "%H:%M"))
+	  (lemon-battery)
+	  (lemon-cpu-linux :display-opts '(:sparkline (:type gridded)))
+	  (lemon-memory-linux :display-opts '(:sparkline (:type gridded)))
+	  (lemon-linux-network-rx :display-opts '(:sparkline (:type gridded)))
+	  (lemon-linux-network-tx :display-opts '(:sparkline (:type gridded)))
+	  )))
+
+  (lemon-mode 1))
 
 ;; Automatically added things
 (custom-set-variables
