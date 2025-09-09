@@ -1,3 +1,13 @@
+;; TODO list:
+;; - async all dired task:
+;;     - Copy
+;;     - Move
+;;     - Delete
+;;     - Compress
+;; - complete all exwm settings
+;; - use gpg for passwd management
+;; - install gnus mail client
+
 ;; What is installed:
 ;; - use-package
 ;; - ef-themes
@@ -320,7 +330,6 @@
   )
 
 ;; Install async (for dired-async)
-;; TODO: async compression
 (use-package async
   :ensure t
   :config (dired-async-mode 1))
