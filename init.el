@@ -42,6 +42,25 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
+;; Load configs
+
+;; Utilities functions
+
+(defun emacs-ppid ()
+  "Retourne le PID (string) du processus parent d’Emacs."  
+  (string-trim
+   (shell-command-to-string
+    (format "ps -o ppid= -p %d" (emacs-pid)))))
+
+(defun emacs-parent-name ()
+  "Retourne le nom du processus parent d’Emacs (Linux uniquement)."
+  (string-trim
+   (shell-command-to-string
+    (format "ps -o comm= -p %s" (emacs-ppid)))))
+
+;; exwm and lemon configs (will only be load if Emacs was launched by xinit)
+(load-file "~/.emacs.d/wm.el")
+
 ;; Here is all the configs directly linked to configuring emacs defaults
 
 ;; Disable the splash screen
@@ -283,57 +302,6 @@
 
 ;; Install google-translate
 (use-package google-translate :ensure t)
-
-;; Install exwm (just if Emacs was called by xinit)
-(if (equal (emacs-parent-name) "xinit")
-    (progn
-      (use-package exwm
-	     :ensure t
-	     :config
-	     (setq exwm-workspace-number 4)
-	     ;; Make class name the buffer name.
-	     (add-hook 'exwm-update-class-hook
-		       (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
-	     ;; Global keybindings.
-	     (setq exwm-input-global-keys
-		   `(([?\s-r] . exwm-reset) ;; s-r: Reset (to line-mode).
-		     ([?\s-w] . exwm-workspace-switch) ;; s-w: Switch workspace.
-		     ([?\s-&] . (lambda (cmd) ;; s-&: Launch application.
-				  (interactive (list (read-shell-command "$ ")))
-				  (start-process-shell-command cmd nil cmd)))
-		     ;; s-N: Switch to certain workspace.
-		     ,@(mapcar (lambda (i)
-				 `(,(kbd (format "s-%d" i)) .
-				   (lambda ()
-				     (interactive)
-				     (exwm-workspace-switch-create ,i))))
-			       (number-sequence 0 9))))
-	     ;; Enable EXWM
-	     (exwm-wm-mode)
-	     )
-	   
-	   ;; Install lemon (system monitor in echo area)
-	   (use-package lemon
-	     :ensure t
-	     :vc (:url "https://codeberg.org/emacs-weirdware/lemon.git"
-		       :rev :newest)
-	     :config
-	     (setq lemon-delay 0.2)
-	     (setq lemon-update-interval 2)
-	     ;; to display graphics
-	     (setq lemon-sparkline-use-xpm 1)
-	     (setq lemon-monitors
-		   '(((lemon-time :display-opts '(:format "%H:%M"))
-		      (lemon-battery)
-		      (lemon-cpu-linux :display-opts '(:sparkline (:type gridded)))
-		      (lemon-memory-linux :display-opts '(:sparkline (:type gridded)))
-		      (lemon-linux-network-rx :display-opts '(:sparkline (:type gridded)))
-		      (lemon-linux-network-tx :display-opts '(:sparkline (:type gridded)))
-		      )))
-
-	     (lemon-mode 1))
-	   )
-  )
 
 ;; Install async (for dired-async)
 (use-package async
