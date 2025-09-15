@@ -46,8 +46,6 @@
 
 ;; Utilities functions
 (load-file "~/.emacs.d/util.el")
-;; exwm and lemon configs (will only be load if Emacs was launched by xinit)
-(load-file "~/.emacs.d/wm.el")
 
 ;; Here is all the configs directly linked to configuring emacs defaults
 
@@ -289,6 +287,9 @@
 (use-package async
   :ensure t
   :config (dired-async-mode 1))
+
+;; exwm and lemon configs (will only be load if Emacs was launched by xinit), it needs to be loaded at the end
+(load-file "~/.emacs.d/wm.el")
 
 ;; Automatically added things
 (custom-set-variables
