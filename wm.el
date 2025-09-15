@@ -46,5 +46,12 @@
 		      )))
 
 	     (lemon-mode 1))
+	   
+	   ;; Screenshots
+	   (if (executable-find "maim")
+	       (progn
+		 (bind-key "<print>" (lambda () (interactive) (shell-command (format-time-string "maim '/home/louis/Pictures/%F_%X.png'"))))
+		 (bind-key "C-<print>" (lambda () (interactive) (shell-command (format-time-string "maim -s '/home/louis/Pictures/%F_%X.png'"))))
+		 ))
 	   )
   )
