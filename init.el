@@ -58,16 +58,12 @@
 (load-file "~/.emacs.d/defaults.el")
 ;; Auto-complete (Corfu)
 (load-file "~/.emacs.d/auto-complete.el")
-;; Key bindings
-(load-file "~/.emacs.d/key.el")
-
-;; Install async (for dired-async)
-(use-package async
-  :ensure t
-  :config (dired-async-mode 1))
-
+;; Use of async to have a better user experience
+(load-file "~/.emacs.d/async.el")
 ;; exwm and lemon configs (will only be load if Emacs was launched by xinit), it needs to be loaded at the end
 (load-file "~/.emacs.d/wm.el")
+;; Key bindings (at the end for the which-key setup)
+(load-file "~/.emacs.d/key.el")
 
 ;; Automatically added things
 (custom-set-variables
