@@ -53,6 +53,9 @@
 ;; Utilities functions
 (load-file "~/.emacs.d/util.el")
 
+;; Tools
+(load-file "~/.emacs.d/tools.el")
+
 ;; Key bindings
 (load-file "~/.emacs.d/key.el")
 
@@ -94,6 +97,8 @@
 (icomplete-vertical-mode)
 ;; Disble the displaying of *Completions* since I use icomplete
 (setq completion-auto-help nil)
+;; Here because by default TAB calls the default completion help (which I deactivated but I don't want it to be useless)
+(bind-key "<tab>" 'icomplete-fido-ret icomplete-fido-mode-map)
 
 ;; Highlight the cursor line
 (global-hl-line-mode)
@@ -120,12 +125,6 @@
 ;; Better completion (lines found in Vertico github pages)
 (setq completion-styles '(basic substring partial-completion flex))
 (setq completion-ignore-case t)
-
-;; Local keybindings:
-;; Here because by default TAB calls the default completion help (which I deactivated but I don't want it to be useless)
-(bind-key "<tab>" 'icomplete-fido-ret icomplete-fido-mode-map)
-
-;; Here are all the package intallations and setups
 
 ;; Install and use ef-themes
 (use-package ef-themes
@@ -175,31 +174,6 @@
   (corfu-terminal-mode t)
   (setq corfu-terminal-disable-on-gui nil)
   )
-
-;; Install magit
-(use-package magit
-  :ensure t
-  :defer t)
-
-;; Install eat (and use eshell in it)
-(use-package eat
-  :ensure t
-  :defer t
-  :init ; with this, when eshell is launched, it will be emulated in eat
-  (add-hook 'eshell-load-hook #'eat-eshell-mode)
-  )
-
-;; Install elfeed (RSS reader ~ reader for web feeds like reddit, arxiv,...)
-(use-package elfeed :ensure t)
-
-(setq elfeed-feeds
-      '(
-        ("https://www.reddit.com/r/emacs.rss" emacs)
-	("https://securite.developpez.com/rss" securite-developpez)
-        ))
-
-;; Install google-translate
-(use-package google-translate :ensure t)
 
 ;; Install async (for dired-async)
 (use-package async
