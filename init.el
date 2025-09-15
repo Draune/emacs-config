@@ -273,9 +273,6 @@
 			     ("," . "C-")
 			     )))
 
-;; Install f (file library, used for the banner)
-(use-package f :ensure t)
-
 ;; Install elfeed (RSS reader ~ reader for web feeds like reddit, arxiv,...)
 (use-package elfeed :ensure t)
 
