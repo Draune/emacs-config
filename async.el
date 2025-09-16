@@ -3,13 +3,4 @@
 ;; Install async (for dired-async)
 (use-package async
   :ensure t
-  ;; :config (dired-async-mode 1)
-  )
-
-(defun async-dired-do-copy () (interactive)
-       (async-start
-	(call-interactively 'dired-do-copy)
-	(message "async-dured-do-copy ended")
-	))
-
-(bind-key "C" 'async-dired-do-copy dired-mode-map)
+  :config (dired-async-mode 1))
