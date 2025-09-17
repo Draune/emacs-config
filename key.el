@@ -52,8 +52,8 @@
 
 ;; better functions fo default keybindings
 (bind-key "C-k" 'kill-whole-line)
-(bind-key "C-v" (lambda () (interactive) (next-line 10)))
-(bind-key "M-v" (lambda () (interactive) (previous-line 10)))
+(bind-key "M-n" (lambda () (interactive) (next-line 10)))
+(bind-key "M-p" (lambda () (interactive) (previous-line 10)))
 (bind-key "C-o" (lambda () (interactive)
        (call-interactively 'move-beginning-of-line)
        (call-interactively 'open-line)
