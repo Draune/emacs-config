@@ -69,3 +69,10 @@
 (use-package ef-themes
   :ensure t
   :config (load-theme 'ef-melissa-light t))
+
+;; Install rainbow-limeters 
+(use-package rainbow-delimiters
+  :ensure t
+  :defer t
+  )
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)

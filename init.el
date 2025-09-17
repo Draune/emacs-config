@@ -21,6 +21,7 @@
 ;; - exwm (just if Emacs was called by xinit)
 ;; - lemon
 ;; - async
+;; - rainbow-delimiters
 
 ;; What other thing there is:
 ;; - Use of Melpa archives
