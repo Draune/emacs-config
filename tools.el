@@ -14,7 +14,7 @@
   )
 
 ;; Install elfeed (RSS reader ~ reader for web feeds like reddit, arxiv,...)
-(use-package elfeed :ensure t)
+(use-package elfeed :ensure t :defer t)
 
 (setq elfeed-feeds
       '(
@@ -23,4 +23,4 @@
         ))
 
 ;; Install google-translate
-(use-package google-translate :ensure t)
+(use-package google-translate :ensure t :defer t)
