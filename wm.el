@@ -24,6 +24,22 @@
 			       (number-sequence 0 9))))
 	     ;; To use devil when working with X windows
 	     (push ?, exwm-input-prefix-keys)
+	     ;; To get Emacs bindings inside X windows (don't works with devil)
+	     (setq exwm-input-simulation-keys
+		   '(([?\C-b] . [left])
+		     ([?\C-f] . [right])
+		     ([?\C-p] . [up])
+		     ([?\C-n] . [down])
+		     ([?\C-a] . [home])
+		     ([?\C-e] . [end])
+		     ([?\M-v] . [prior])
+		     ([?\C-v] . [next])
+		     ([?\C-d] . [delete])
+		     ([?\C-k] . [S-end delete])
+		     ([?\C-w] . [?\C-x])
+		     ([?\M-w] . [?\C-c])
+		     ([?\C-y] . [?\C-v])
+		     ([?\M-d] . [C-delete])))
 	     ;; Enable EXWM
 	     (exwm-wm-mode)
 	     )
