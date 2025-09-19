@@ -22,6 +22,8 @@
 				     (interactive)
 				     (exwm-workspace-switch-create ,i))))
 			       (number-sequence 0 9))))
+	     ;; To use devil when working with X windows
+	     (push ?, exwm-input-prefix-keys)
 	     ;; Enable EXWM
 	     (exwm-wm-mode)
 	     )
