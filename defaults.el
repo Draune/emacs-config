@@ -65,6 +65,9 @@
 (setq completion-styles '(basic substring partial-completion flex))
 (setq completion-ignore-case t)
 
+;; Deactivate the bell sounds
+(setq ring-bell-function 'ignore)
+
 ;; Install and use ef-themes
 (use-package ef-themes
   :ensure t
