@@ -73,7 +73,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auth-source-save-behavior nil)
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(async corfu-terminal devil eat ef-themes elfeed exwm f
+	   google-translate lemon magit rainbow-delimiters theme-magic))
  '(package-vc-selected-packages
    '((devil :url "https://github.com/fbrosda/devil" :branch "dev"))))
 (custom-set-faces

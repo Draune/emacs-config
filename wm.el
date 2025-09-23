@@ -67,5 +67,22 @@
 		 (bind-key "<print>" (lambda () (interactive) (shell-command (format-time-string "maim '/home/louis/Pictures/%F_%X.png'"))))
 		 (bind-key "C-<print>" (lambda () (interactive) (shell-command (format-time-string "maim -s '/home/louis/Pictures/%F_%X.png'"))))
 		 ))
-	   )
-  )
+	   
+	   (if (executable-find "xrandr")
+	       (progn
+		 (setq brightness 1.0)
+		 (defun brightness_add (to_add)
+		   "Add brightness, take account of the current brightness (no more than 1.0 or less than 0.0)"
+		   (setq final_brightness (+ brightness to_add))
+		   (if (and (<= final_brightness 1.0) (>= final_brightness 0.0))
+		       (progn
+			 (shell-command (format "xrandr --output eDP-1 --brightness %f" final_brightness))
+			 (setq brightness final_brightness)
+		     ))
+		   )
+		 (bind-key "<XF86MonBrightnessDown>" (lambda () (interactive) (brightness_add -0.05)))
+		 (bind-key "<XF86MonBrightnessUp>" (lambda () (interactive) (brightness_add 0.05)))
+		 ))
+  ))
+
+
