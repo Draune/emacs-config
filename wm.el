@@ -82,6 +82,24 @@
 		 (bind-key "<XF86MonBrightnessDown>" (lambda () (interactive) (brightness_add -0.05)))
 		 (bind-key "<XF86MonBrightnessUp>" (lambda () (interactive) (brightness_add 0.05)))
 		 ))
+	   (if (executable-find "xtrlock")
+	       (progn
+		 (setq zone-programs [zone-pgm-whack-chars])  
+		 (defun lock-screen ()
+		   "Lock screen using (zone) and xtrlock
+ calls M-x zone on all frames and runs xtrlock"
+		   (interactive)
+		   (delete-other-windows)
+		   (switch-to-buffer "*scratch*")
+		   (save-excursion
+					;(shell-command "xtrlock &")
+		     (set-process-sentinel
+		      (start-process "xtrlock" nil "xtrlock")
+		      '(lambda (process event)
+			 (zone-leave-me-alone)))
+		     (zone-when-idle 1)))
+		 (bind-key "C-c l" 'lock-screen)
+		 ))
   ))
 
 
