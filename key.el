@@ -14,7 +14,7 @@
 			   ;; repeatable keys for window and buffer management and find-file and dired
 			   ;; I went a little crazy here but since most of the time actions on buffers
 			   ;; and windows are followed by other commands like "C-n" I believe it's ok
-			   ("%k c n" "%k c p""%k c k" "%k x o" "%k x &" "%k x é" "%k x \"" "%k x à" "%k x %k f" "%k x d" "%k x b" "%k x 0" "%k x 1" "%k x 2" "%k x 3")
+			   ("%k c k" "%k x o" "%k x &" "%k x é" "%k x \"" "%k x à" "%k x %k f" "%k x d" "%k x b" "%k x 0" "%k x 1" "%k x 2" "%k x 3")
 			   ;; repeatable keys for movement M- keybindings
 			   ("%k %k n" "%k %k p" "%k %k f" "%k %k b")))
   
@@ -41,8 +41,6 @@
 (bind-key "C-c t" 'google-translate-buffer)
 
 ;; + devil repeatable keys
-(bind-key "C-c n" 'next-buffer)
-(bind-key "C-c p" 'previous-buffer)
 (bind-key "C-c k" 'kill-current-buffer)
 ;; Doublons here for better experience with Azerty keyboards 
 (bind-key "C-x \"" 'split-window-right)
