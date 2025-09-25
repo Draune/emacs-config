@@ -84,6 +84,7 @@
 		 ))
 	   (if (executable-find "xtrlock")
 	       (progn
+		 (require 'zone)
 		 (setq zone-programs [zone-pgm-whack-chars])  
 		 (defun lock-screen ()
 		   "Lock screen using (zone) and xtrlock
