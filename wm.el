@@ -30,7 +30,8 @@
 		     ([?\C-w] . [?\C-x])
 		     ([?\M-w] . [?\C-c])
 		     ([?\C-y] . [?\C-v])
-		     ([?\M-d] . [C-delete])))
+		     ([?\M-d] . [C-delete])
+		     ([?\;] . [?,])))
 	     ;; Lauch app
 	     (bind-key "C-c r" 'exwm-reset)
 	     (bind-key "C-c a" (lambda (cmd)
