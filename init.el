@@ -51,6 +51,8 @@
 (load-file "~/.emacs.d/wm.el")
 ;; Key bindings (at the end for the which-key setup)
 (load-file "~/.emacs.d/key.el")
+;; LSP, etc.
+(load-file "~/.emacs.d/prog.el")
 
 ;; Automatically added things
 (custom-set-variables
@@ -61,10 +63,11 @@
  '(auth-source-save-behavior nil)
  '(package-selected-packages
    '(async corfu-terminal devil doom-themes eat ef-themes elfeed exwm f
-	   google-translate lemon magit orderless rainbow-delimiters
-	   vertico))
+	   google-translate lemon lsp-bridge magit markdown-mode
+	   orderless rainbow-delimiters vertico vterm yasnippet))
  '(package-vc-selected-packages
-   '((devil :url "https://github.com/fbrosda/devil" :branch "dev"))))
+   '((lsp-bridge :url "https://github.com/manateelazycat/lsp-bridge")
+     (devil :url "https://github.com/fbrosda/devil" :branch "dev"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
