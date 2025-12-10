@@ -82,6 +82,12 @@
   (completion-category-defaults nil) ;; Disable defaults, use our settings
   (completion-pcm-leading-wildcard t)) ;; Emacs 31: partial-completion behaves like substring
 
+(use-package vertico-posframe
+  :ensure t
+  :config
+  (vertico-posframe-mode 1)
+  )
+
 ;; Deactivate the bell sounds
 (setq ring-bell-function 'ignore)
 
