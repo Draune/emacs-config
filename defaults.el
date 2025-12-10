@@ -28,17 +28,6 @@
        )
 (add-hook 'after-init-hook 'my-scratch-init)
 
-;; Setup vertical display of completion (juste native stuff)
-;; 1) because vetico + fussy freeze Emacs when using tramp
-;; 2) because ido-vertical-mode don't do it for commands
-;; 3) consult seems to much comparing to what I need (and seems like complicated to configure)
-(fido-mode)
-(icomplete-vertical-mode)
-;; Disble the displaying of *Completions* since I use icomplete
-(setq completion-auto-help nil)
-;; Here because by default TAB calls the default completion help (which I deactivated but I don't want it to be useless)
-(bind-key "<tab>" 'icomplete-fido-ret icomplete-fido-mode-map)
-
 ;; Highlight the cursor line
 (global-hl-line-mode)
 
@@ -61,19 +50,48 @@
 (setq auto-save-file-name-transforms `((".*" "~/.emacs.d/auto-saves/" t)))
 (setq create-lockfiles nil)
 
-;; Better completion (lines found in Vertico github pages)
-(setq completion-styles '(basic substring partial-completion flex))
 (setq completion-ignore-case t)
+(context-menu-mode t)
+
+;; Install Vertico for mini-buffer vertical autocompletion
+(use-package vertico
+  :ensure t
+  ;; :custom
+  ;; (vertico-scroll-margin 0) ;; Different scroll margin
+  ;; (vertico-count 20) ;; Show more candidates
+  ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
+  ;; (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+  :init
+  (vertico-mode))
+
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :ensure t
+  :init
+  (savehist-mode))
+
+;; Install orderless (config from vertico's github
+(use-package orderless
+  :ensure t
+  :custom
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch))
+  ;; (orderless-component-separator #'orderless-escapable-split-on-space)
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles partial-completion))))
+  (completion-category-defaults nil) ;; Disable defaults, use our settings
+  (completion-pcm-leading-wildcard t)) ;; Emacs 31: partial-completion behaves like substring
 
 ;; Deactivate the bell sounds
 (setq ring-bell-function 'ignore)
 
-;; Install and use ef-themes
-(use-package ef-themes
+(use-package doom-themes
   :ensure t
-  :defer t
+  :config
+  (load-theme 'doom-outrun-electric t)
+  ;; chang hline color for something brighter because I don't see it otherwise
+  (set-face-background 'hl-line "#612559")
   )
-(add-hook 'after-init-hook (lambda () (load-theme 'ef-melissa-light t)))
 
 ;; Install rainbow-limeters 
 (use-package rainbow-delimiters

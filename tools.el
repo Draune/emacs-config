@@ -13,14 +13,5 @@
   (add-hook 'eshell-load-hook #'eat-eshell-mode)
   )
 
-;; Install elfeed (RSS reader ~ reader for web feeds like reddit, arxiv,...)
-(use-package elfeed :ensure t :defer t)
-
-(setq elfeed-feeds
-      '(
-        ("https://www.reddit.com/r/emacs.rss" emacs)
-	("https://securite.developpez.com/rss" securite-developpez)
-        ))
-
 ;; Install google-translate
 (use-package google-translate :ensure t :defer t)

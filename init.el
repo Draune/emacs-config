@@ -1,26 +1,16 @@
-;; TODO list:
-;; - async all dired task:
-;;     - Copy
-;;     - Move
-;;     - Delete
-;;     - Compress
-;; - complete all exwm settings
-;; - use gpg for passwd management
-;; - install gnus mail client
-
 ;; What is installed:
 ;; - use-package
-;; - ef-themes
+;; - vertico
+;; - orderless
+;; - savehist
+;; - doom-themes
 ;; - corfu
-;; - corfu-terminal
 ;; - magit
 ;; - eat
 ;; - devil
 ;; - f
-;; - elfeed
-;; - exwm (just if Emacs was called by xinit)
+;; - exwm (just if Emacs was called by xinit/custom script/display manager)
 ;; - lemon
-;; - async
 ;; - rainbow-delimiters
 
 ;; What other thing there is:
@@ -29,14 +19,12 @@
 ;; - Disable bad GUI elements
 ;; - Enable global-visual-line-mode
 ;; - Customize startup *scratch* buffer
-;; - Use fido-mode and icomplete-vertical-mode (native functions) to get an equivalence of vertico
 ;; - Configuration of which-key
 ;; - Highlight current line
 ;; - Disable cursor blinking
 ;; - Increase font size
 ;; - Delete marked region when editing
 ;; - Move elsewhere backups and auto-saves
-;; - Better completion
 ;; - My keybindings
 
 ;; Add Melpa archives (from the geting started page of the MELPA website)
@@ -59,8 +47,6 @@
 (load-file "~/.emacs.d/defaults.el")
 ;; Auto-complete (Corfu)
 (load-file "~/.emacs.d/auto-complete.el")
-;; Use of async to have a better user experience
-(load-file "~/.emacs.d/async.el")
 ;; exwm and lemon configs (will only be load if Emacs was launched by xinit), it needs to be loaded at the end
 (load-file "~/.emacs.d/wm.el")
 ;; Key bindings (at the end for the which-key setup)
@@ -73,7 +59,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auth-source-save-behavior nil)
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(async corfu-terminal devil doom-themes eat ef-themes elfeed exwm f
+	   google-translate lemon magit orderless rainbow-delimiters
+	   vertico))
  '(package-vc-selected-packages
    '((devil :url "https://github.com/fbrosda/devil" :branch "dev"))))
 (custom-set-faces
@@ -81,5 +70,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(lemon-battery-charging-face ((t (:foreground "#ee27eb"))))
+ '(lemon-battery-full-face ((t (:foreground "#ee27eb"))))
+ '(lemon-battery-low-face ((t (:background "#ee27eb"))))
+ '(lemon-battery-medium-face ((t (:foreground "#ffd400"))))
+ '(lemon-time-face ((t (:foreground "#bd00ff")))))
 

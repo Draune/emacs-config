@@ -34,10 +34,3 @@
   (setq corfu-bar-width 1)
   )
 
-;; Install corfu-terminal
-(use-package corfu-terminal
-  :ensure t
-  :config
-  (corfu-terminal-mode t)
-  (setq corfu-terminal-disable-on-gui nil)
-  )

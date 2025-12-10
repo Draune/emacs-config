@@ -36,7 +36,6 @@
 ;; My keybindings
 ;; Global keybindings:
 (bind-key "C-c e" 'eshell)
-(bind-key "C-c f" 'elfeed)
 (bind-key "C-c w" 'eww)
 (bind-key "C-c t" 'google-translate-buffer)
 
@@ -65,5 +64,9 @@
 (bind-key "M-n" 'next-line-or-history-element minibuffer-local-shell-command-map)
 
 ;; Setup which-key (key cheatsheet that is displayed during key sequences)
-(which-key-mode)
-(which-key-setup-minibuffer)
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode)
+  (which-key-setup-minibuffer)
+  )
