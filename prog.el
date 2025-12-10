@@ -53,14 +53,13 @@
 	corfu-auto-delay  0) 
   (setq corfu-bar-width 1)
 
-  (add-hook 'eshell-mode-hook (lambda ()
-                              (setq-local corfu-auto nil)
-                              (corfu-mode)))
+  ;; So corfu will not be activated when vertico is active or when emacs is asking for password
   (setq global-corfu-minibuffer
       (lambda ()
         (not (or (bound-and-true-p mct--active)
                  (bound-and-true-p vertico--input)
                  (eq (current-local-map) read-passwd-map)))))
+  ;; workaround to get corfu to be inactive in prog-mode while still being active everywhere else
   (add-hook 'prog-mode-hook
           (lambda ()
             (setq-local corfu-auto nil)))
