@@ -36,6 +36,7 @@
 ;; My keybindings
 ;; Global keybindings:
 (bind-key "C-c e" 'eshell)
+(bind-key "C-c v" 'vterm)
 (bind-key "C-c w" 'eww)
 (bind-key "C-c t" 'google-translate-buffer)
 

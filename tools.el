@@ -15,3 +15,8 @@
 
 ;; Install google-translate
 (use-package google-translate :ensure t :defer t)
+
+(use-package vterm
+  :ensure t
+  :defer t
+  )
