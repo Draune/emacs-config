@@ -45,13 +45,11 @@
 (load-file "~/.emacs.d/tools.el")
 ;; Better defaults
 (load-file "~/.emacs.d/defaults.el")
-;; Auto-complete (Corfu)
-(load-file "~/.emacs.d/auto-complete.el")
 ;; exwm and lemon configs (will only be load if Emacs was launched by xinit), it needs to be loaded at the end
 (load-file "~/.emacs.d/wm.el")
 ;; Key bindings (at the end for the which-key setup)
 (load-file "~/.emacs.d/key.el")
-;; LSP, etc.
+;; LSP, corfu, etc.
 (load-file "~/.emacs.d/prog.el")
 
 ;; Automatically added things
@@ -61,10 +59,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auth-source-save-behavior nil)
- '(package-selected-packages
-   '(async corfu-terminal devil doom-themes eat ef-themes elfeed exwm f
-	   google-translate lemon lsp-bridge magit markdown-mode
-	   orderless rainbow-delimiters vertico vterm yasnippet))
+ '(package-selected-packages nil)
  '(package-vc-selected-packages
    '((lsp-bridge :url "https://github.com/manateelazycat/lsp-bridge")
      (devil :url "https://github.com/fbrosda/devil" :branch "dev"))))
