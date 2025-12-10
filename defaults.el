@@ -100,3 +100,8 @@
   :defer t
   )
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;; To set $PATH (for ein and eshell)
+(let ((my-path (expand-file-name "~/.local/bin")))
+  (setenv "PATH" (concat (getenv "PATH") ":" my-path))
+  (add-to-list 'exec-path my-path))
