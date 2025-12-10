@@ -9,7 +9,7 @@
   ;; Don't use keys that are usefull when repeated (for exemple ";" for comments)
   (devil-exit-key "q")
   (devil-all-keys-repeatable t)
-  (devil-highlight-repeatable t)
+  (devil-highlight-repeatable nil)
   (devil-repeatable-keys '(("%k p" "%k n" "%k b" "%k f" "%k a" "%k e")
 			   ;; repeatable keys for window and buffer management and find-file and dired
 			   ;; I went a little crazy here but since most of the time actions on buffers
@@ -31,7 +31,8 @@
   (setq devil-translations '((", , ," . "C-M-")
 			     (", ," . "M-")
 			     ("," . "C-")
-			     )))
+			     ))
+  )
 
 ;; My keybindings
 ;; Global keybindings:
