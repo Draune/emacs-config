@@ -33,7 +33,7 @@
 	(setq exwm-input-global-keys
 	      '(
 		([?\C-q] . exwm-input-send-next-key)
-		([?\s- ] . launch-app)
+		([?\s- ] . my/consult-launch-app)
 		))
 	;; To use devil when working with X windows (like ", x o")
 	(push ?, exwm-input-prefix-keys)
