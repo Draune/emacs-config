@@ -59,7 +59,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auth-source-save-behavior nil)
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(async consult corfu-terminal devil doom-themes eat ef-themes elfeed
+	   exwm f google-translate gptel gtpel ivy-posframe lemon
+	   lsp-bridge magit mini-frame mini-posframe orderless
+	   rainbow-delimiters vertico-posframe vterm yasnippet))
  '(package-vc-selected-packages
    '((lsp-bridge :url "https://github.com/manateelazycat/lsp-bridge")
      (devil :url "https://github.com/fbrosda/devil" :branch "dev"))))

@@ -111,3 +111,36 @@
 (let ((my-path (expand-file-name "~/.local/bin")))
   (setenv "PATH" (concat (getenv "PATH") ":" my-path))
   (add-to-list 'exec-path my-path))
+
+;; Use consult to get auto-completion in vertico for async-shell-command and launch-app for my EXWM config
+(use-package consult
+  :ensure t
+  :config
+  (setq completion-in-region-function #'consult-completion-in-region)
+  )
+
+;; To get an list of executables in $PATH
+(defun my/update-exec-list ()
+       (setq my/exec-list nil)
+       (dolist (dir exec-path)
+	 (when (file-directory-p dir)
+	   (let ((files (directory-files dir t)))
+	     (dolist (file files)
+               (when (file-executable-p file)
+		 (setq-local file-name (file-name-nondirectory file))
+		 (if (not (or (equal file-name ".") (equal file-name ".")))
+		 (push  file-name my/exec-list)))))))
+       )
+(my/update-exec-list)
+
+;; To get command completion in async-shell
+(defun my/consult-async-shell-command ()
+  "Run async shell command with completion on PATH executables."
+  (interactive)
+  (let ((command (consult--read
+                  my/exec-list
+                  :prompt "Async shell command: "
+                  :history 'shell-command-history
+                  :category 'command)))
+    (async-shell-command command)))
+(bind-key "M-&" 'my/consult-async-shell-command)

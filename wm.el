@@ -15,10 +15,17 @@
 		  (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
 
 	;; Lauch app
-	(defun launch-app (cmd)
-	  (interactive (list (read-shell-command "$ ")))
-	  (start-process-shell-command cmd nil cmd))
-	(bind-key "s-SPC" 'launch-app)
+	(defun my/consult-launch-app ()
+	  "Consult launch app for EXWM"
+	  (interactive)
+	  (let ((command (consult--read
+			  my/exec-list
+			  :prompt "Launch App: "
+			  :history 'shell-command-history
+			  :category 'command)))
+	    (start-process-shell-command command nil command)))
+	  
+	(bind-key "s-SPC" 'my/consult-launch-app)
 
 	(bind-key "s-r" 'exwm-reset)	
 	
