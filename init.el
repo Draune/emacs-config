@@ -51,30 +51,3 @@
 (load-file "~/.emacs.d/key.el")
 ;; LSP, corfu, etc.
 (load-file "~/.emacs.d/prog.el")
-
-;; Automatically added things
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(auth-source-save-behavior nil)
- '(package-selected-packages
-   '(async consult corfu-terminal devil doom-themes eat ef-themes elfeed
-	   exwm f google-translate gptel gtpel ivy-posframe lemon
-	   lsp-bridge magit mini-frame mini-posframe orderless
-	   rainbow-delimiters vertico-posframe vterm yasnippet))
- '(package-vc-selected-packages
-   '((lsp-bridge :url "https://github.com/manateelazycat/lsp-bridge")
-     (devil :url "https://github.com/fbrosda/devil" :branch "dev"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(lemon-battery-charging-face ((t (:foreground "#ee27eb"))))
- '(lemon-battery-full-face ((t (:foreground "#ee27eb"))))
- '(lemon-battery-low-face ((t (:background "#ee27eb"))))
- '(lemon-battery-medium-face ((t (:foreground "#ffd400"))))
- '(lemon-time-face ((t (:foreground "#bd00ff")))))
-
