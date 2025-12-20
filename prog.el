@@ -9,3 +9,7 @@
   )
 
 (use-package lsp-mode :ensure t)
+
+(use-package nix-mode
+  :ensure t
+  :mode "\\.nix\\'")
