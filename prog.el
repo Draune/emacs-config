@@ -4,7 +4,7 @@
   ;; Enable auto completion
   (setq corfu-auto        t
 	corfu-auto-delay  0 
-	corfu-auto-prefix 0)
+	corfu-auto-prefix 1)
   (global-corfu-mode)
   )
 
