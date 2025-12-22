@@ -1,8 +1,5 @@
 ;; Here is all the configs directly linked to configuring emacs defaults (and the theme)
 
-;; Disable the splash screen
-(setq inhibit-startup-screen t)
-
 ;; Disable bad GUI from Emacs
 (when (display-graphic-p)
   (menu-bar-mode -1)
@@ -30,6 +27,7 @@
        (insert (format ";; Started at: \t%s\n" (format-time-string "%T %a %d/%m/%Y")))
        (insert "\n")
        (beginning-of-buffer)
+       (kill-buffer "*GNU Emacs*")
        (display-buffer "*scratch*")
        )
 (add-hook 'after-init-hook #'my-scratch-init)
