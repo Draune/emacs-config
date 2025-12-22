@@ -10,7 +10,7 @@
 ;; Enable global-visual-line-mode (words aren't cut in half at the end of line)
 (global-visual-line-mode)
 
-(defun my-scratch-init () (interactive)
+(defun my/scratch-init () (interactive)
        (switch-to-buffer "*scratch*")
        (end-of-buffer)
        (if (f-exists? "~/.emacs-config/banner.txt")
@@ -30,7 +30,7 @@
        (kill-buffer "*GNU Emacs*")
        (display-buffer "*scratch*")
        )
-(add-hook 'after-init-hook #'my-scratch-init)
+(add-hook 'after-init-hook #'my/scratch-init)
 
 ;; Highlight the cursor line
 (global-hl-line-mode)

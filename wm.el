@@ -1,9 +1,9 @@
 ;; Install exwm (just if Emacs was called by a display manager/custom script/or xinit)
 (if (or
-     (equal (emacs-parent-name) "sddm-helper")
-     (equal (emacs-parent-name) "ly-dm")
-     (equal (emacs-parent-name) "xinit")
-     (equal (emacs-parent-name) "xephyr-exwm")
+     (equal (my/emacs-parent-name) "sddm-helper")
+     (equal (my/emacs-parent-name) "ly-dm")
+     (equal (my/emacs-parent-name) "xinit")
+     (equal (my/emacs-parent-name) "xephyr-exwm")
      )
     (progn
       (use-package exwm
@@ -60,7 +60,7 @@
 		([?\;] . [?,])))
 
 	;; Utilities (if it is launched as a standalone WM,i.e. not launched with Xephyr)
-	(if (not (equal (emacs-parent-name) "xephyr-exwm"))
+	(if (not (equal (my/emacs-parent-name) "xephyr-exwm"))
 	    (progn
 	      (load-file "~/.emacs.d/wm_util.el")
 	      (nconc exwm-input-global-keys

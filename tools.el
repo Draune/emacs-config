@@ -25,7 +25,7 @@
   :ensure t
   :defer t
   :config
-  (defun get-ollama-models ()
+  (defun my/get-ollama-models ()
   "Fetch the list of installed Ollama models."
   (let* ((output (shell-command-to-string "ollama list"))
          (lines (split-string output "\n" t))
@@ -34,19 +34,19 @@
       (when (string-match "^\\([^[:space:]]+\\)" line)
         (push (match-string 1 line) models)))
     (nreverse models)))
-  (defun update-ollama ()
+  (defun my/update-ollama ()
     (interactive)
     (gptel-make-ollama "Ollama"             ;Any name of your choosing
     :host "localhost:11434"               ;Where it's running
     :stream t                             ;Stream responses
-    :models (get-ollama-models))          ;List of models
+    :models (my/get-ollama-models))          ;List of models
     )
   (setq
    gptel-model (intern (car (get-ollama-models)))
    gptel-backend (gptel-make-ollama "Ollama"
                    :host "localhost:11434"
                    :stream t
-                   :models (get-ollama-models))
+                   :models (my/get-ollama-models))
    )
   :init
   (bind-key "C-c g m" #'gptel-menu)
