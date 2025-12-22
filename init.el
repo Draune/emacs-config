@@ -39,15 +39,17 @@
 
 ;; Load configs
 
+(use-package load-relative :ensure t)
+
 ;; Utilities functions
-(load-file "~/.emacs.d/util.el")
+(load-relative "./util.el")
 ;; Tools
-(load-file "~/.emacs.d/tools.el")
+(load-relative "./tools.el")
 ;; Better defaults
-(load-file "~/.emacs.d/defaults.el")
+(load-relative "./defaults.el")
 ;; exwm and lemon configs (will only be load if Emacs was launched by xinit), it needs to be loaded at the end
-(load-file "~/.emacs.d/wm.el")
+(load-relative "./wm.el")
 ;; Key bindings (at the end for the which-key setup)
-(load-file "~/.emacs.d/key.el")
+(load-relative "./key.el")
 ;; LSP, corfu, etc.
-(load-file "~/.emacs.d/prog.el")
+(load-relative "./prog.el")
