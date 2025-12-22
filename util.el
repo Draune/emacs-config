@@ -8,7 +8,7 @@
   "Retourne le nom du processus parent d’Emacs (Linux uniquement)."
   (string-trim
    (shell-command-to-string
-    (format "ps -o comm= -p %s" (emacs-ppid)))))
+    (format "ps -o comm= -p %s" (my/emacs-ppid)))))
 
 ;; Install f (file library, used for the banner)
 (use-package f :ensure t)

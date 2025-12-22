@@ -23,7 +23,7 @@
        (insert (format ";; %s\n" (emacs-version)))
        (insert (format ";; Init time: \t%s\n" (emacs-init-time)))
        (if (eq system-type 'gnu/linux)
-	   (insert (format ";; Started by: \t%s\n" (emacs-parent-name))))
+	   (insert (format ";; Started by: \t%s\n" (my/emacs-parent-name))))
        (insert (format ";; Started at: \t%s\n" (format-time-string "%T %a %d/%m/%Y")))
        (insert "\n")
        (beginning-of-buffer)
