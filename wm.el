@@ -79,7 +79,7 @@
       
       ;; Install lemon (system monitor in echo area)
       (use-package lemon
-	:demand t
+	:ensure t
 	:config
 	(setq lemon-delay 0.2)
 	(setq lemon-update-interval 2)
