@@ -80,6 +80,7 @@
       ;; Install lemon (system monitor in echo area)
       (use-package lemon
 	:ensure t
+	:vc (:url "https://codeberg.org/emacs-weirdware/lemon")
 	:config
 	(setq lemon-delay 0.2)
 	(setq lemon-update-interval 2)
