@@ -65,6 +65,11 @@
 (bind-key "M-p" 'previous-line-or-history-element minibuffer-local-shell-command-map)
 (bind-key "M-n" 'next-line-or-history-element minibuffer-local-shell-command-map)
 
+;; Because I don't have ">" and "<" on my keyboard
+(bind-key "C-c i i" (lambda () (interactive) (insert "<")))
+(bind-key "C-c i s" (lambda () (interactive) (insert ">")))
+(which-key-add-key-based-replacements "C-c i" "insert")
+
 ;; Setup which-key (key cheatsheet that is displayed during key sequences)
 (use-package which-key
   :ensure t
@@ -72,3 +77,4 @@
   (which-key-mode)
   (which-key-setup-minibuffer)
   )
+
