@@ -25,9 +25,9 @@
 			  :category 'command)))
 	    (start-process-shell-command command nil command)))
 	  
-	(bind-key "s-SPC" 'my/consult-launch-app)
+	(bind-key "C-c SPC" 'my/consult-launch-app)
 
-	(bind-key "s-r" 'exwm-reset)	
+	(bind-key "C-c r" 'exwm-reset)	
 	
 	;; Special EXWM bindings
 	(setq exwm-input-global-keys
