@@ -69,6 +69,8 @@
 (bind-key "C-c i i" (lambda () (interactive) (insert "<")))
 (bind-key "C-c i s" (lambda () (interactive) (insert ">")))
 (which-key-add-key-based-replacements "C-c i" "insert")
+(which-key-add-key-based-replacements "C-c i i" "<")
+(which-key-add-key-based-replacements "C-c i s" ">")
 
 ;; Setup which-key (key cheatsheet that is displayed during key sequences)
 (use-package which-key
