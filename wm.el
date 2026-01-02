@@ -25,9 +25,9 @@
 			  :category 'command)))
 	    (start-process-shell-command command nil command)))
 	  
-	(bind-key "C-c SPC" 'my/consult-launch-app)
+	(bind-key "s-SPC" 'my/consult-launch-app)
 
-	(bind-key "C-c r" 'exwm-reset)	
+	(bind-key "s-r" 'exwm-reset)	
 	
 	;; Special EXWM bindings
 	(setq exwm-input-global-keys
@@ -62,7 +62,7 @@
 	;; Utilities (if it is launched as a standalone WM,i.e. not launched with Xephyr)
 	(if (not (equal (my/emacs-parent-name) "xephyr-exwm"))
 	    (progn
-	      (load-file "~/.emacs.d/wm_util.el")
+	      (load-relative "./wm_util.el")
 	      (nconc exwm-input-global-keys
 		     '(
 		       ([XF86MonBrightnessDown] . brightness_dec)
