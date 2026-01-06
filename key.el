@@ -40,6 +40,7 @@
 (bind-key "C-c v" 'vterm)
 (bind-key "C-c w" 'eww)
 (bind-key "C-c t" 'google-translate-buffer)
+(bind-key "C-x g" 'magit)
 
 ;; + devil repeatable keys
 (bind-key "C-c k" 'kill-current-buffer)
