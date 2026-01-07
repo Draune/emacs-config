@@ -68,7 +68,7 @@
 		       ([XF86MonBrightnessDown] . brightness_dec)
 		       ([XF86MonBrightnessUp] . brightness_inc)
 		       ([XF86AudioLowerVolume] . sound_volume_dec)
-		       ([XF86AudioRaiseVolume] . sound_volume_dec)
+		       ([XF86AudioRaiseVolume] . sound_volume_inc)
 		       ([XF86AudioMute] . sound_mute_toggle)
 		       ([print] . screenshot)
 		       ))
