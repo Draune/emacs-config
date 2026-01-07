@@ -62,7 +62,7 @@
 	;; Utilities (if it is launched as a standalone WM,i.e. not launched with Xephyr)
 	(if (not (equal (my/emacs-parent-name) "xephyr-exwm"))
 	    (progn
-	      (load-file "~/.emacs.d/wm_util.el")
+	      (load-relative "./wm_util.el")
 	      (nconc exwm-input-global-keys
 		     '(
 		       ([XF86MonBrightnessDown] . brightness_dec)
