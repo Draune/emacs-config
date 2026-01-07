@@ -34,31 +34,29 @@
       (bind-key "<XF86MonBrightnessDown>" 'brightness_dec)
       (bind-key "<XF86MonBrightnessUp>" 'brightness_inc)
       ))
-(if (executable-find "xtrlock")
+
+(if (and (executable-find "i3lock") (executable-find "maim"))
     (progn
-      (require 'zone)
-      (setq zone-programs [zone-pgm-whack-chars])  
       (defun lock-screen ()
-	"Lock screen using (zone) and xtrlock
- calls M-x zone on all frames and runs xtrlock"
 	(interactive)
-	(shell-command "xtrlock")
+	(shell-command "maim /tmp/screenlock.png")
+	(shell-command "i3lock -i /tmp/screenlock.png")
 	)
       (bind-key "s-l" 'lock-screen)
       ))
 
 ;; Volume Control (pulseaudio)
-(if (executable-find "pactl")
+(if (executable-find "wpctl")
     (progn
       (setq sound_volume 0)
-      (shell-command "pactl set-sink-volume @DEFAULT_SINK@ 0%")
+      (shell-command "wpctl set-volume @DEFAULT_SINK@ 0%")
       (setq sound_mute nil)
-      (shell-command "pactl set-sink-mute @DEFAULT_SINK@ false")
+      (shell-command "wpctl set-mute @DEFAULT_SINK@ 0")
       (defun sound_volume_add (to_add)
 	(setq final_sound_volume (+ sound_volume to_add))
 	(if (and (<= final_sound_volume 100) (>= final_sound_volume 0))
             (progn
-              (shell-command (format "pactl set-sink-volume @DEFAULT_SINK@ %d%%" final_sound_volume))
+              (shell-command (format "wpctl set-volume @DEFAULT_SINK@ %d%%" final_sound_volume))
               (setq sound_volume final_sound_volume)
               ))
 	(message "Volume: %d%%" sound_volume)
@@ -68,12 +66,12 @@
 	(if sound_mute
 	    (progn
 	      (setq sound_mute nil)
-	      (shell-command "pactl set-sink-mute @DEFAULT_SINK@ false")
+	      (shell-command "wpctl set-mute @DEFAULT_SINK@ 0")
 	      (message "Volume: on")
 	      )
 	  (progn
 	    (setq sound_mute t)
-	    (shell-command "pactl set-sink-mute @DEFAULT_SINK@ true")
+	    (shell-command "wpctl set-mute @DEFAULT_SINK@ 1")
 	    (message "Volume: mute")
 	    )
 	  )
