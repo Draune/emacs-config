@@ -95,14 +95,21 @@
 ;; Deactivate the bell sounds
 (setq ring-bell-function 'ignore)
 
-(use-package doom-themes
+;; Install and use ef-themes
+(use-package ef-themes
   :ensure t
-  :config
-  (load-theme 'doom-outrun-electric t)
-  ;; chang hline color for something brighter because I don't see it otherwise
-  (set-face-background 'hl-line "#612559")
-  (set-face-background 'mode-line-active "#612559")
+  :defer t
   )
+(add-hook 'after-init-hook (lambda () (load-theme 'ef-melissa-light t)))
+
+;; (use-package doom-themes
+;;   :ensure t
+;;   :config
+;;   (load-theme 'doom-outrun-electric t)
+;;   ;; chang hline color for something brighter because I don't see it otherwise
+;;   (set-face-background 'hl-line "#612559")
+;;   (set-face-background 'mode-line-active "#612559")
+;;   )
 
 ;; Install rainbow-limeters 
 (use-package rainbow-delimiters
