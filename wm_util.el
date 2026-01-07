@@ -4,7 +4,13 @@
 (if (executable-find "maim")
     (progn
       (defun screenshot () (interactive)
-	     (shell-command (format-time-string "maim -s '/home/louis/Pictures/%F_%X.png'")))
+	     (setq my/screenshot-path (concat (getenv "HOME") (format-time-string "/Pictures/%F_%X.png")))
+	     (shell-command (concat "maim -s '" my/screenshot-path "'"))
+	     (if (file-exists-p my/screenshot-path)
+		 (message (concat "Saved in " my/screenshot-path))
+	       (message "No screenshot was saved")
+	       )
+	     )
       (bind-key "<print>" 'screenshot)
       ))
 
