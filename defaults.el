@@ -95,13 +95,16 @@
 ;; Deactivate the bell sounds
 (setq ring-bell-function 'ignore)
 
-;; Install and use ef-themes
-(use-package ef-themes
-  :ensure t
-  :defer t
+(if (not (file-exists-p "~/.emacs-config/theme.el"))
+    (progn
+      ;; Install and use ef-themes
+      (use-package ef-themes
+	:ensure t
+	:defer t
+	)
+      (add-hook 'after-init-hook (lambda () (load-theme 'ef-melissa-light t)))
+      )
   )
-(add-hook 'after-init-hook (lambda () (load-theme 'ef-melissa-light t)))
-
 ;; (use-package doom-themes
 ;;   :ensure t
 ;;   :config
