@@ -54,6 +54,3 @@
 ;; LSP, corfu, etc.
 (load-relative "./prog.el")
 
-(if (file-exists-p "~/.emacs-config/theme.el")
-    (load-relative "./theme.el)
-)
