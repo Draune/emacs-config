@@ -53,3 +53,7 @@
 (load-relative "./key.el")
 ;; LSP, corfu, etc.
 (load-relative "./prog.el")
+
+(if (file-exists-p "./theme.el")
+    (load-relative "./theme.el)
+)
