@@ -86,10 +86,10 @@
       ))
 
 (if (and (executable-find "feh") (file-exists-p "~/.wallpaper.jpg"))
-    (async-shell-command "feh --bg-fill ~/.wallpaper.jpg")
+    (shell-command "feh --bg-fill ~/.wallpaper.jpg")
   )
 
 (if (executable-find "picom")
-    (async-shell-command "picom -b &")
+    (shell-command "picom -b &")
   )
 
