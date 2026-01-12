@@ -84,3 +84,12 @@
       (bind-key "<XF86AudioRaiseVolume>" 'sound_volume_inc)
       (bind-key "<XF86AudioMute>" 'sound_mute_toggle)
       ))
+
+(if (and (executable-find "feh") (file-exists-p "~/.wallpaper.jpg"))
+    (async-shell-command "feh --bg-fill ~/.wallpaper.jpg")
+  )
+
+(if (executable-find "picom")
+    (async-shell-command "picom -b &")
+  )
+
