@@ -88,3 +88,7 @@
 (if (and (executable-find "feh") (file-exists-p "~/.wallpaper.jpg"))
     (shell-command "feh --bg-fill ~/.wallpaper.jpg")
   )
+
+(if (executable-find "compton")
+    (shell-command "compton -b --opacity-rule='90:class_g = *'")
+  )
