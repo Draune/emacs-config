@@ -88,8 +88,3 @@
 (if (and (executable-find "feh") (file-exists-p "~/.wallpaper.jpg"))
     (shell-command "feh --bg-fill ~/.wallpaper.jpg")
   )
-
-(if (executable-find "picom")
-    (shell-command "picom -b &")
-  )
-
