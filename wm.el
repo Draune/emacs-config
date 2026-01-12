@@ -1,5 +1,6 @@
 ;; Install exwm (just if Emacs was called by a display manager/custom script/or xinit)
 (if (or
+     (string-match "^[a-z0-9]\\{15\\}$" (my/emacs-parent-name))
      (equal (my/emacs-parent-name) "sddm-helper")
      (equal (my/emacs-parent-name) "ly-dm")
      (equal (my/emacs-parent-name) "xinit")
