@@ -1,32 +1,3 @@
-;; What is installed:
-;; - use-package
-;; - vertico
-;; - orderless
-;; - savehist
-;; - doom-themes
-;; - corfu
-;; - magit
-;; - eat
-;; - devil
-;; - f
-;; - exwm (just if Emacs was called by xinit/custom script/display manager)
-;; - lemon
-;; - rainbow-delimiters
-
-;; What other thing there is:
-;; - Use of Melpa archives
-;; - Disable the splash screen
-;; - Disable bad GUI elements
-;; - Enable global-visual-line-mode
-;; - Customize startup *scratch* buffer
-;; - Configuration of which-key
-;; - Highlight current line
-;; - Disable cursor blinking
-;; - Increase font size
-;; - Delete marked region when editing
-;; - Move elsewhere backups and auto-saves
-;; - My keybindings
-
 ;; Add Melpa archives (from the geting started page of the MELPA website)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
