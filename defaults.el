@@ -10,6 +10,7 @@
 ;; Enable global-visual-line-mode (words aren't cut in half at the end of line)
 (global-visual-line-mode)
 
+(global-display-line-numbers-mode)
 
 (use-package topspace
     :ensure t
