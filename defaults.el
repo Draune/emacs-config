@@ -18,12 +18,9 @@
     (global-topspace-mode t)
     )
 
-(use-package centered-cursor-mode
-  :ensure t
-  :config
-  (setq ccm-recenter-at-end-of-file t)
-  (global-centered-cursor-mode 1)
-  )
+;; Alternative to centered-cursor-mode and I find it less buggy
+(run-at-time 0 0.02 #'recenter)
+
 ;; Always keep the cursor in the midle of the screen
 ;; (setq scroll-preserve-screen-position t
 ;;       scroll-conservatively 0
