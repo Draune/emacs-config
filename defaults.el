@@ -45,6 +45,7 @@
        (insert "\n")
        (kill-buffer "*GNU Emacs*")
        (switch-to-buffer "*scratch*")
+       (emacs-lisp-mode 1)
        )
 (add-hook 'after-init-hook #'my/scratch-init)
 
