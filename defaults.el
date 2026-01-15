@@ -10,6 +10,12 @@
 ;; Enable global-visual-line-mode (words aren't cut in half at the end of line)
 (global-visual-line-mode)
 
+;; Always keep the cursor in the midle of the screen
+(setq scroll-preserve-screen-position t
+      scroll-conservatively 0
+      maximum-scroll-margin 0.5
+      scroll-margin 99999)
+
 (defun my/scratch-init () (interactive)
        (switch-to-buffer "*scratch*")
        (end-of-buffer)
