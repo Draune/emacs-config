@@ -19,7 +19,12 @@
     )
 
 ;; Alternative to centered-cursor-mode and I find it less buggy
-(run-at-time 0 0.02 #'recenter)
+(defun my/recenter () (interactive)
+       (if (not (bound-and-true-p exwm-class-name))
+	   (recenter)
+	 )
+       )
+(run-at-time 0 0.02 #'my/recenter)
 
 ;; Always keep the cursor in the midle of the screen
 ;; (setq scroll-preserve-screen-position t
