@@ -24,7 +24,24 @@
 	   (recenter)
 	 )
        )
-(run-at-time 0 0.02 #'my/recenter)
+(setq my/recenter-mode-p nil)
+(defun my/recenter-mode (&optional mode) (interactive)
+       (if (eq mode nil)
+	     (setq my/recenter-mode-p (not my/recenter-mode-p))
+	 (if (eq mode 0)
+	       (setq my/recenter-mode-p nil)
+	     (setq my/recenter-mode-p t)
+	     )
+	 )
+       (if my/recenter-mode-p
+	   (progn
+	     (cancel-function-timers #'my/recenter)
+	     (run-at-time 0 0.02 #'my/recenter)
+	     )
+	 (cancel-function-timers #'my/recenter)
+	 )
+       )
+(my/recenter-mode 1)
 
 ;; Always keep the cursor in the midle of the screen
 ;; (setq scroll-preserve-screen-position t
