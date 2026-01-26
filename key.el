@@ -73,6 +73,9 @@
 (which-key-add-key-based-replacements "C-c i i" "<")
 (which-key-add-key-based-replacements "C-c i s" ">")
 
+(bind-key "C-c r" 'my/recenter-mode)
+(bind-key "M-&" 'my/consult-async-shell-command)
+
 ;; Setup which-key (key cheatsheet that is displayed during key sequences)
 (use-package which-key
   :ensure t

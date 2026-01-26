@@ -173,7 +173,7 @@
   )
 
 ;; To get an list of executables in $PATH
-(defun my/update-exec-list ()
+(defun my/update-exec-list () (interactive)
        (setq my/exec-list nil)
        (dolist (dir exec-path)
 	 (when (file-directory-p dir)
@@ -196,4 +196,3 @@
                   :history 'shell-command-history
                   :category 'command)))
     (async-shell-command command)))
-(bind-key "M-&" 'my/consult-async-shell-command)
