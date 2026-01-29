@@ -12,43 +12,6 @@
 
 (global-display-line-numbers-mode)
 
-(use-package topspace
-    :ensure t
-    :config
-    (global-topspace-mode t)
-    )
-
-;; Alternative to centered-cursor-mode and I find it less buggy
-(defun my/recenter () (interactive)
-       (if (not (bound-and-true-p exwm-class-name))
-	   (recenter)
-	 )
-       )
-(setq my/recenter-mode-p nil)
-(defun my/recenter-mode (&optional mode) (interactive)
-       (if (eq mode nil)
-	     (setq my/recenter-mode-p (not my/recenter-mode-p))
-	 (if (eq mode 0)
-	       (setq my/recenter-mode-p nil)
-	     (setq my/recenter-mode-p t)
-	     )
-	 )
-       (if my/recenter-mode-p
-	   (progn
-	     (cancel-function-timers #'my/recenter)
-	     (run-at-time 0 0.02 #'my/recenter)
-	     )
-	 (cancel-function-timers #'my/recenter)
-	 )
-       )
-(my/recenter-mode 1)
-
-;; Always keep the cursor in the midle of the screen
-;; (setq scroll-preserve-screen-position t
-;;       scroll-conservatively 0
-;;       maximum-scroll-margin 0.5
-;;       scroll-margin 99999)
-
 (defun my/scratch-init () (interactive)
        (switch-to-buffer "*scratch*")
        (end-of-buffer)
