@@ -159,5 +159,3 @@
                   :history 'shell-command-history
                   :category 'command)))
     (async-shell-command command)))
-
-(use-package clipmon :ensure t)
