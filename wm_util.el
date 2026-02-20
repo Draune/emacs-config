@@ -88,3 +88,22 @@
 (if (and (executable-find "feh") (file-exists-p "~/.wallpaper.jpg"))
     (shell-command "feh --bg-fill ~/.wallpaper.jpg")
   )
+
+;; Better clipboard
+(if (executable-find "xclip")
+    (progn      
+	(defun my/exwm-kill-ring-save () (interactive)
+	       (let ((clip (shell-command-to-string "xclip -o")))
+		 (when (and clip
+			    (not (member clip kill-ring))) ;; dodge doubles
+		   (kill-new clip)
+		   )))
+
+	(defun my/kill-ring-save () (interactive)
+	       (if (derived-mode-p 'exwm-mode)
+		   (call-interactively 'my/exwm-kill-ring-save)
+		 (call-interactively 'kill-ring-save)
+		 )
+	       )
+	(bind-key "M-w" 'my/kill-ring-save)
+	))

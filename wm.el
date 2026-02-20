@@ -60,20 +60,6 @@
 		([?\M-d] . [C-delete])
 		([?\;] . [?,])))
 
-	(defun my/exwm-kill-ring-save () (interactive)
-	       (let ((clip (gui-get-selection 'CLIPBOARD)))
-		 (when (and clip
-			    (not (member clip kill-ring))) ;; dodge doubles
-		   (kill-new clip))))
-
-	(defun my/kill-ring-save () (interactive)
-	       (if (derived-mode-p 'exwm-mode)
-		   (call-interactively 'my/exwm-kill-ring-save)
-		 (call-interactively 'kill-ring-save)
-		 )
-	       )
-
-	(bind-key "M-w" 'my/kill-ring-save)
 	;; Utilities (if it is launched as a standalone WM,i.e. not launched with Xephyr)
 	(if (not (equal (my/emacs-parent-name) "xephyr-exwm"))
 	    (progn
