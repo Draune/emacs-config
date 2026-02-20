@@ -31,13 +31,10 @@
 	(bind-key "s-r" 'exwm-reset)	
 	
 	;; Special EXWM bindings
-	(defun my/exwm-kill () (interactive)
-	       (kill-new (gui-get-selection 'CLIPBOARD)))
 	(setq exwm-input-global-keys
 	      '(
 		([?\C-q] . exwm-input-send-next-key)
 		([?\s- ] . my/consult-launch-app)
-		([?\M-w] . my/exwm-kill)
 		))
 	;; To use devil when working with X windows (like ", x o")
 	(push ?, exwm-input-prefix-keys)
@@ -58,7 +55,7 @@
 		([?\C-d] . [delete])
 		([?\C-k] . [S-end delete])
 		([?\C-w] . [?\C-x])
-		;; ([?\M-w] . [?\C-c])
+		([?\M-w] . [?\C-c])
 		([?\C-y] . [?\C-v])
 		([?\M-d] . [C-delete])
 		([?\;] . [?,])))
