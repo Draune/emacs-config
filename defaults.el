@@ -159,3 +159,9 @@
                   :history 'shell-command-history
                   :category 'command)))
     (async-shell-command command)))
+
+;; clipboard options
+(setq select-enable-clipboard t)
+(setq select-enable-primary t)
+(setq save-interprogram-paste-before-kill t)
+(setq kill-do-not-save-duplicates t)
