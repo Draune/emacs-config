@@ -89,21 +89,13 @@
     (shell-command "feh --bg-fill ~/.wallpaper.jpg")
   )
 
-;; Better clipboard
-(if (executable-find "xclip")
-    (progn      
-	(defun my/exwm-kill-ring-save () (interactive)
-	       (let ((clip (shell-command-to-string "xclip -o")))
-		 (when (and clip
-			    (not (member clip kill-ring))) ;; dodge doubles
-		   (kill-new clip)
-		   )))
-
-	(defun my/kill-ring-save () (interactive)
-	       (if (derived-mode-p 'exwm-mode)
-		   (call-interactively 'my/exwm-kill-ring-save)
-		 (call-interactively 'kill-ring-save)
-		 )
-	       )
-	(bind-key "M-w" 'my/kill-ring-save)
-	))
+(nconc exwm-input-global-keys
+       '(
+	 ([XF86MonBrightnessDown] . brightness_dec)
+	 ([XF86MonBrightnessUp] . brightness_inc)
+	 ([XF86AudioLowerVolume] . sound_volume_dec)
+	 ([XF86AudioRaiseVolume] . sound_volume_inc)
+	 ([XF86AudioMute] . sound_mute_toggle)
+	 ([print] . screenshot)
+	 ([?\s-l] . lock-screen)
+	 ))

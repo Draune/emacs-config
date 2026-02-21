@@ -1,5 +1,6 @@
 ;; Install exwm (just if Emacs was called by a display manager/custom script/or xinit)
 (if (or
+     ;; this one for the NixOS EXWM launcher
      (string-match "^[a-z0-9]\\{15\\}$" (my/emacs-parent-name))
      (equal (my/emacs-parent-name) "sddm-helper")
      (equal (my/emacs-parent-name) "ly-dm")
@@ -38,46 +39,14 @@
 		))
 	;; To use devil when working with X windows (like ", x o")
 	(push ?, exwm-input-prefix-keys)
-	;; To get Emacs bindings inside X windows (don't works with devil, ie. ", n" will not work but "C-n" will)
-	(setq exwm-input-simulation-keys
-	      '(([?\C-b] . [left])
-		([?\C-f] . [right])
-		([?\C-p] . [up])
-		([?\C-n] . [down])
-		([?\M-b] . [C-left])
-		([?\M-f] . [C-right])
-		([?\M-p] . [C-up])
-		([?\M-n] . [C-down])
-		([?\C-a] . [home])
-		([?\C-e] . [end])
-		([?\M-v] . [prior])
-		([?\C-v] . [next])
-		([?\C-d] . [delete])
-		([?\C-k] . [S-end delete])
-		([?\C-w] . [?\C-x])
-		;; ([?\M-w] . [?\C-c])
-		([?\C-y] . [?\C-v])
-		([?\M-d] . [C-delete])
-		([?\;] . [?,])))
-
 	;; Utilities (if it is launched as a standalone WM,i.e. not launched with Xephyr)
 	(if (not (equal (my/emacs-parent-name) "xephyr-exwm"))
 	    (progn
 	      (load-relative "./wm_util.el")
-	      (nconc exwm-input-global-keys
-		     '(
-		       ([XF86MonBrightnessDown] . brightness_dec)
-		       ([XF86MonBrightnessUp] . brightness_inc)
-		       ([XF86AudioLowerVolume] . sound_volume_dec)
-		       ([XF86AudioRaiseVolume] . sound_volume_inc)
-		       ([XF86AudioMute] . sound_mute_toggle)
-		       ([print] . screenshot)
-		       ([?\s-l] . lock-screen)
-		       ([?\M-w] . my/kill-ring-save)
-		       ))
 	      ))
 	;; Enable EXWM
 	(exwm-wm-mode)
+	(load-relative "./wm_key.el")
 	)
       
       ;; Install lemon (system monitor in echo area)
