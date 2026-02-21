@@ -53,3 +53,6 @@
 ;; delete
 (keymap-set exwm-mode-map "C-d" (lambda () (interactive) (exwm-input--fake-key 'delete)))
 (keymap-set exwm-mode-map "M-d" (lambda () (interactive) (exwm-input--fake-key 'C-delete)))
+;; insert
+(bind-key "C-c i i" (lambda () (interactive) (exwm-input--fake-key '<)))
+(bind-key "C-c i s" (lambda () (interactive) (exwm-input--fake-key '>)))
