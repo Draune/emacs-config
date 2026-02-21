@@ -17,8 +17,6 @@
 			   ("%k c k" "%k x o" "%k x &" "%k x é" "%k x \"" "%k x à" "%k x %k f" "%k x d" "%k x b" "%k x 0" "%k x 1" "%k x 2" "%k x 3")
 			   ;; repeatable keys for movement M- keybindings
 			   ("%k %k n" "%k %k p" "%k %k f" "%k %k b")))
-  
-  (setq devil-special-keys '(("%k h %k k" . devil-describe-key) ("%k h %k l" . devil-toggle-logging)))
   :bind
   ([remap describe-key] . devil-describe-key)
   :config
@@ -30,6 +28,7 @@
 			     (", ," . "M-")
 			     ("," . "C-")
 			     ))
+  (setq devil-special-keys '(("%k h %k k" . devil-describe-key) ("%k h %k l" . devil-toggle-logging)))
   )
 
 ;; My keybindings
