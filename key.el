@@ -18,19 +18,12 @@
 			   ;; repeatable keys for movement M- keybindings
 			   ("%k %k n" "%k %k p" "%k %k f" "%k %k b")))
   
-  (setq-default devil-special-keys '(("%k h %k k" . devil-describe-key) ("%k h %k l" . devil-toggle-logging)))
+  (setq devil-special-keys '(("%k h %k k" . devil-describe-key) ("%k h %k l" . devil-toggle-logging)))
   :bind
   ([remap describe-key] . devil-describe-key)
   :config
   (global-devil-mode)
   (global-set-key (kbd "C-,") 'global-devil-mode)
-  ;; I don't really know why but if I don't do this line before calling assoc-delete-all
-  ;; it will not do it. I use asoc-delete-all to delete the devil special key "%k %k" (", ,")
-  ;; so ", ," will be translated to "M-". Plus this line is usefull to mark things
-  ;; (seq-remove (lambda (elt) (string= "%k SPC" (car elt))) devil-special-keys)
-  ;; (seq-remove (lambda (elt) (string= "%k %k" (car elt))) devil-special-keys)
-  ;; (assoc-delete-all "%k SPC" devil-special-keys)
-  ;; (assoc-delete-all "%k %k" devil-special-keys)
   (bind-key "C-SPC" (lambda () (interactive) (devil-execute-key ", SPC")))
   (bind-key "M-SPC" 'set-mark-command)
   (setq devil-translations '((", , ," . "C-M-")
