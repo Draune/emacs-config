@@ -18,7 +18,7 @@
 			   ;; repeatable keys for movement M- keybindings
 			   ("%k %k n" "%k %k p" "%k %k f" "%k %k b")))
   
-  (setq-default devil-special-keys '(("%k h %k k" . devil-describe-key) ("%k h %k l" . devil-toggle-logging))
+  (setq-default devil-special-keys '(("%k h %k k" . devil-describe-key) ("%k h %k l" . devil-toggle-logging)))
   :bind
   ([remap describe-key] . devil-describe-key)
   :config
