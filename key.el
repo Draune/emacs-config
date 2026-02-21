@@ -26,8 +26,10 @@
   ;; I don't really know why but if I don't do this line before calling assoc-delete-all
   ;; it will not do it. I use asoc-delete-all to delete the devil special key "%k %k" (", ,")
   ;; so ", ," will be translated to "M-". Plus this line is usefull to mark things
-  (add-to-list 'devil-special-keys `(", , SPC" . ,(devil-key-executor "C-SPC")))
   (assoc-delete-all "%k %k" devil-special-keys)
+  (assoc-delete-all "%k SPC" devil-special-keys)
+  (bind-key "C-SPC" (lambda () (interactive) (devil-execute-key ", SPC")))
+  (bind-key "M-SPC" 'set-mark-command)
   (setq devil-translations '((", , ," . "C-M-")
 			     (", ," . "M-")
 			     ("," . "C-")
