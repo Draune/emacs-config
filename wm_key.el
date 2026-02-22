@@ -1,14 +1,74 @@
+;; mark
+(setq my/exwm-mark nil)
+(defun my/exwm-toggle-mark () (interactive)
+       (if my/exwm-mark
+	   (setq my/exwm-mark nil)
+	 (setq my/exwm-mark t)
+	 )
+       (message (if my/exwm-mark "EXWM Mark set" "EXWM Mark off"))
+       )
+(defun my/exwm-mark-off (&rest args)
+       (if my/exwm-mark
+	   (progn
+	     (setq my/exwm-mark nil)
+	     (message "EXWM Mark off")
+	     ))
+       )
+(keymap-set exwm-mode-map "M-SPC" 'my/exwm-toggle-mark)
+(advice-add 'other-window :after #'my/exwm-mark-off)
+(advice-add 'switch-to-buffer :after #'my/exwm-mark-off)
+(advice-add 'kill-current-buffer :after #'my/exwm-mark-off)
 ;; movements
-(keymap-set exwm-mode-map "C-n" (lambda () (interactive) (exwm-input--fake-key 'down)))
-(keymap-set exwm-mode-map "C-p" (lambda () (interactive) (exwm-input--fake-key 'up)))
-(keymap-set exwm-mode-map "C-b" (lambda () (interactive) (exwm-input--fake-key 'left)))
-(keymap-set exwm-mode-map "C-f" (lambda () (interactive) (exwm-input--fake-key 'right)))
+(keymap-set exwm-mode-map "C-n" (lambda () (interactive)
+				  (if my/exwm-mark
+				      (exwm-input--fake-key 'S-down)		      
+				    (exwm-input--fake-key 'down)
+				    )
+				  ))
+(keymap-set exwm-mode-map "C-p" (lambda () (interactive)
+				  (if my/exwm-mark
+				      (exwm-input--fake-key 'S-up)		      
+				    (exwm-input--fake-key 'up)
+				    )
+				  ))
+(keymap-set exwm-mode-map "C-b" (lambda () (interactive)
+				  (if my/exwm-mark
+				      (exwm-input--fake-key 'S-left)		      
+				    (exwm-input--fake-key 'left)
+				    )
+				  ))
+(keymap-set exwm-mode-map "C-f" (lambda () (interactive)
+				  (if my/exwm-mark
+				      (exwm-input--fake-key 'S-right)		      
+				    (exwm-input--fake-key 'right)
+				    )
+				  ))
 (keymap-set exwm-mode-map "M-n" (lambda () (interactive) (exwm-input--fake-key 'C-down)))
 (keymap-set exwm-mode-map "M-p" (lambda () (interactive) (exwm-input--fake-key 'C-up)))
-(keymap-set exwm-mode-map "M-b" (lambda () (interactive) (exwm-input--fake-key 'C-left)))
-(keymap-set exwm-mode-map "M-f" (lambda () (interactive) (exwm-input--fake-key 'C-right)))
-(keymap-set exwm-mode-map "C-a" (lambda () (interactive) (exwm-input--fake-key 'home)))
-(keymap-set exwm-mode-map "C-e" (lambda () (interactive) (exwm-input--fake-key 'end)))
+(keymap-set exwm-mode-map "M-b" (lambda () (interactive)
+				  (if my/exwm-mark
+				      (exwm-input--fake-key 'C-S-left)		      
+				    (exwm-input--fake-key 'C-left)
+				    )
+				  ))
+(keymap-set exwm-mode-map "M-f" (lambda () (interactive)
+				  (if my/exwm-mark
+				      (exwm-input--fake-key 'C-S-right)		      
+				    (exwm-input--fake-key 'C-right)
+				    )
+				  ))
+(keymap-set exwm-mode-map "C-a" (lambda () (interactive)
+				  (if my/exwm-mark
+				      (exwm-input--fake-key 'S-home)		      
+				    (exwm-input--fake-key 'home)
+				    )
+				  ))
+(keymap-set exwm-mode-map "C-e" (lambda () (interactive)
+				  (if my/exwm-mark
+				      (exwm-input--fake-key 'S-end)		      
+				    (exwm-input--fake-key 'end)
+				    )
+				  ))
 (keymap-set exwm-mode-map "M-v" (lambda () (interactive) (exwm-input--fake-key 'prior)))
 (keymap-set exwm-mode-map "C-v" (lambda () (interactive) (exwm-input--fake-key 'next)))
 ;; kill-ring
@@ -28,6 +88,7 @@
 					  (exwm-input--fake-key 'delete)))
 	(keymap-set exwm-mode-map "M-w" (lambda () (interactive) (my/exwm-kill-ring-save)))
 	)
+  ;; else
       (progn      
 	(keymap-set exwm-mode-map "C-k" (lambda () (interactive) (exwm-input--fake-key 'home)
 					  (exwm-input--fake-key 'S-end)
