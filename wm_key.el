@@ -18,6 +18,7 @@
 (advice-add 'other-window :after #'my/exwm-mark-off)
 (advice-add 'switch-to-buffer :after #'my/exwm-mark-off)
 (advice-add 'kill-current-buffer :after #'my/exwm-mark-off)
+(advice-add 'keyboard-quit :before #'my/exwm-mark-off)
 ;; movements
 (keymap-set exwm-mode-map "C-n" (lambda () (interactive)
 				  (if my/exwm-mark
