@@ -72,6 +72,8 @@
 
 (bind-key "M-&" 'my/consult-async-shell-command)
 
+(bind-key "M-r" 'replace-string)
+
 ;; Setup which-key (key cheatsheet that is displayed during key sequences)
 (use-package which-key
   :ensure t

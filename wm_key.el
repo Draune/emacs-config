@@ -101,6 +101,7 @@
 (defun my/exwm-paste-string (str)
   (kill-new str)
   (exwm-input--fake-key 'C-v)
+  (pop kill-ring) ;; So it will not be added to the start of the kill ring
   )
 (defun my/exwm-yank-pop ()
   (interactive)
@@ -118,3 +119,22 @@
 ;; insert
 (bind-key "C-c i i" (lambda () (interactive) (exwm-input--fake-key '<)))
 (bind-key "C-c i s" (lambda () (interactive) (exwm-input--fake-key '>)))
+;; replace-string
+(if (executable-find "xclip")
+    (progn      
+      (defun my/exwm-replace-string () (interactive)
+	     (if my/exwm-mark
+		 (let ((from-string (read-from-minibuffer
+				     "Replace string: ")))
+		   (let ((to-string (read-from-minibuffer
+				     (format "Replace string %s with : " from-string))))
+		     (my/exwm-paste-string
+		      (string-replace from-string to-string
+				      (shell-command-to-string "xclip -o")))
+		     ))
+	       ;; else
+	       (message "No text selected...")
+	       )
+	     )
+      (keymap-set exwm-mode-map "M-r" 'my/exwm-replace-string)
+      ))
