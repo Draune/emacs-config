@@ -161,7 +161,7 @@
     (async-shell-command command)))
 
 ;; clipboard options
-(setq select-enable-clipboard t)
-(setq select-enable-primary t)
-(setq save-interprogram-paste-before-kill t)
-(setq kill-do-not-save-duplicates t)
+;; (setq select-enable-clipboard t)
+;; (setq select-enable-primary t)
+;; (setq save-interprogram-paste-before-kill t)
+;; (setq kill-do-not-save-duplicates t)
