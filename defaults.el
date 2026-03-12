@@ -107,14 +107,6 @@
     (add-hook 'after-init-hook (lambda () (load-theme 'ef-melissa-light t)))
     )
   )
-;; (use-package doom-themes
-;;   :ensure t
-;;   :config
-;;   (load-theme 'doom-outrun-electric t)
-;;   ;; chang hline color for something brighter because I don't see it otherwise
-;;   (set-face-background 'hl-line "#612559")
-;;   (set-face-background 'mode-line-active "#612559")
-;;   )
 
 ;; Install rainbow-limeters 
 (use-package rainbow-delimiters
