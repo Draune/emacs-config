@@ -9,7 +9,7 @@
   )
 
 (use-package lsp-bridge
-  :vc (:url "https://github.com/manateelazycat/lsp-bridge" :rev :newest))
+  :vc (:url "https://github.com/manateelazycat/lsp-bridge" :rev :newest)
   :ensure t
   :config
   (global-lsp-bridge-mode)
