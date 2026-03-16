@@ -1,3 +1,8 @@
+;; so Emacs will not try to write things in init.el (it's anoying when using nix because of the read-only files)
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 ;; Add Melpa archives (from the geting started page of the MELPA website)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
