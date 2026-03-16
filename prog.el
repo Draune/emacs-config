@@ -1,14 +1,19 @@
-(use-package corfu
+;; Install LSP with lsp-bridge
+;; Dependencies
+(use-package markdown-mode
+  :ensure t)
+(use-package yasnippet
   :ensure t
   :config
-  ;; Enable auto completion
-  (setq corfu-auto        t
-	corfu-auto-delay  0 
-	corfu-auto-prefix 1)
-  (global-corfu-mode)
+  (yas-global-mode 1)
   )
 
-(use-package lsp-mode :ensure t)
+(use-package lsp-bridge
+  :vc (:url "https://github.com/manateelazycat/lsp-bridge")
+  :ensure t
+  :init
+  (global-lsp-bridge-mode)
+  )
 
 (use-package nix-mode
   :ensure t
