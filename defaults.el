@@ -115,3 +115,8 @@
                   :history 'shell-command-history
                   :category 'command)))
     (async-shell-command command)))
+
+(if (file-exists-p "~/.emacs.d/theme.el")
+    (load-relative "theme.el"))
+
+(setq use-short-answers t)
