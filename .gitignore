@@ -1,5 +1,6 @@
 auto-save-list
 eln-cache
+elpa
 eshell
 ido.last
 projects
@@ -8,4 +9,3 @@ tramp
 transient
 url
 *~
-*.elc
