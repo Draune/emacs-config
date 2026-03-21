@@ -9,3 +9,4 @@ tramp
 transient
 url
 *~
+*.elc

@@ -3,20 +3,37 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-;; Add Melpa archives (from the geting started page of the MELPA website)
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; load packages
 
-;; Setup use-package from reddit https://www.reddit.com/r/emacs/g2m2rg/a_guide_to_configure_emacs (anser from magicalmurray)
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(eval-when-compile (require 'use-package))
+(add-to-list 'load-path "~/.emacs.d/packages/cond-let")
+(add-to-list 'load-path "~/.emacs.d/packages/consult")
+(add-to-list 'load-path "~/.emacs.d/packages/corfu")
+(add-to-list 'load-path "~/.emacs.d/packages/dash")
+(add-to-list 'load-path "~/.emacs.d/packages/devil")
+(add-to-list 'load-path "~/.emacs.d/packages/exwm")
+(add-to-list 'load-path "~/.emacs.d/packages/f")
+(add-to-list 'load-path "~/.emacs.d/packages/ht")
+(add-to-list 'load-path "~/.emacs.d/packages/lemon")
+(add-to-list 'load-path "~/.emacs.d/packages/llama")
+(add-to-list 'load-path "~/.emacs.d/packages/load-relative")
+(add-to-list 'load-path "~/.emacs.d/packages/lsp-mode")
+(add-to-list 'load-path "~/.emacs.d/packages/lv")
+(add-to-list 'load-path "~/.emacs.d/packages/magit")
+(add-to-list 'load-path "~/.emacs.d/packages/magit-section")
+(add-to-list 'load-path "~/.emacs.d/packages/markdown-mode")
+(add-to-list 'load-path "~/.emacs.d/packages/orderless")
+(add-to-list 'load-path "~/.emacs.d/packages/posframe")
+(add-to-list 'load-path "~/.emacs.d/packages/rainbow-delimiters")
+(add-to-list 'load-path "~/.emacs.d/packages/s")
+(add-to-list 'load-path "~/.emacs.d/packages/spinner")
+(add-to-list 'load-path "~/.emacs.d/packages/transient")
+(add-to-list 'load-path "~/.emacs.d/packages/vertico-posframe")
+(add-to-list 'load-path "~/.emacs.d/packages/vterm")
+(add-to-list 'load-path "~/.emacs.d/packages/with-editor")
+(add-to-list 'load-path "~/.emacs.d/packages/xelb")
 
-;; Load configs
-
-(use-package load-relative :ensure t)
-
+(require 'load-relative)
+;; load configs
 ;; Utilities functions
 (load-relative "./util.el")
 ;; Tools
@@ -29,4 +46,3 @@
 (load-relative "./key.el")
 ;; LSP, corfu, etc.
 (load-relative "./prog.el")
-
