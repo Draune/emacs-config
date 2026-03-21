@@ -48,6 +48,11 @@
       
       ;; Install lemon (system monitor in echo area)
       (require 'lemon)
+      (require 'lemon-time)
+      (require 'lemon-battery)
+      (require 'lemon-cpu)
+      (require 'lemon-memory)
+      (require 'lemon-network)
       (setq lemon-delay 0.2)
       (setq lemon-update-interval 2)
       ;; to display graphics
