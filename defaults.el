@@ -58,61 +58,28 @@
 (setq completion-ignore-case t)
 (context-menu-mode t)
 
-;; Install Vertico for mini-buffer vertical autocompletion
-(use-package vertico
-  :ensure t
-  ;; :custom
-  ;; (vertico-scroll-margin 0) ;; Different scroll margin
-  ;; (vertico-count 20) ;; Show more candidates
-  ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
-  ;; (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
-  :init
-  (vertico-mode))
+;; Vertico config
+(require 'vertico)
+(vertico-mode)
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
-(use-package savehist
-  :ensure t
-  :init
-  (savehist-mode))
+(savehist-mode)
 
 ;; Install orderless (config from vertico's github
-(use-package orderless
-  :ensure t
-  :custom
-  ;; Configure a custom style dispatcher (see the Consult wiki)
-  ;; (orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch))
-  ;; (orderless-component-separator #'orderless-escapable-split-on-space)
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles partial-completion))))
-  (completion-category-defaults nil) ;; Disable defaults, use our settings
-  (completion-pcm-leading-wildcard t)) ;; Emacs 31: partial-completion behaves like substring
+(require 'orderless)
+(setq completion-styles '(orderless basic))
+(setq completion-category-overrides '((file (styles partial-completion))))
+(setq completion-category-defaults nil) ;; Disable defaults, use our settings
+(setq completion-pcm-leading-wildcard t) ;; Emacs 31: partial-completion behaves like substring
 
-(use-package vertico-posframe
-  :ensure t
-  :config
-  (vertico-posframe-mode 1)
-  )
+(require 'vertico-posframe)
+(vertico-posframe-mode 1)
 
 ;; Deactivate the bell sounds
 (setq ring-bell-function 'ignore)
 
-(if (file-exists-p "~/.emacs.d/theme.el")
-    (load-relative "./theme.el") 
-  (progn
-    ;; Install and use ef-themes
-    (use-package ef-themes
-      :ensure t
-      :defer t
-      )
-    (add-hook 'after-init-hook (lambda () (load-theme 'ef-melissa-light t)))
-    )
-  )
-
 ;; Install rainbow-limeters 
-(use-package rainbow-delimiters
-  :ensure t
-  :defer t
-  )
+(require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;; To set $PATH (for ein and eshell)
@@ -121,11 +88,8 @@
   (add-to-list 'exec-path my-path))
 
 ;; Use consult to get auto-completion in vertico for async-shell-command and launch-app for my EXWM config
-(use-package consult
-  :ensure t
-  :config
-  (setq completion-in-region-function #'consult-completion-in-region)
-  )
+(require 'consult)
+(setq completion-in-region-function #'consult-completion-in-region)
 
 ;; To get an list of executables in $PATH
 (defun my/update-exec-list () (interactive)

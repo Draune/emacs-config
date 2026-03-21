@@ -1,0 +1,232 @@
+* Lemon
+  :PROPERTIES:
+  :ID:       448c271a-c9b1-4ac2-9c80-4737529d9ea7
+  :END:
+
+  Lemon is a tiny system monitor which displays system information in
+  the echo area when Emacs is has been idle for a few seconds.
+
+  This is a fork of [[https://github.com/zk-phi/symon][zk_phi’s Symon]], which has been largely rewritten.
+  It fixes a number of bugs and shortcomings and emphasizes
+  customizability and code reuse, but also drops support for non-Linux
+  platforms.  It works nicely with EXWM.
+
+
+** Screenshot
+   :PROPERTIES:
+   :ID:       7aa501aa-c646-457a-a111-969c54205e1f
+   :END:
+
+   [[file:img/screenshot.png]]
+
+
+** Installation
+   :PROPERTIES:
+   :ID:       1505f520-214d-48cc-ab18-a804a41e81b5
+   :END:
+
+   Recommended:
+
+   #+BEGIN_SRC emacs-lisp :eval never
+     (use-package lemon
+       :straight (lemon :fetcher git :url "https://codeberg.org/emacs-weirdware/lemon.git")
+       :config (lemon-mode 1))
+   #+END_SRC
+
+   If you don’t use =straight=, you can clone the repo, open it with
+   dired, and =M-x install-package-from-buffer RET=.
+
+*** What about putting it in MELPA?
+    :PROPERTIES:
+    :ID:       f6836d38-f028-4da8-a7ee-175b079aa644
+    :END:
+
+    I don’t have much interest in doing this.  While I think MELPA’s
+    goals of having only high-quality curated packages is laudable,
+    and the bar to contributing is reasonable, it’s still higher than
+    I care to clear.
+
+
+** Configuration
+   :PROPERTIES:
+   :ID:       71529d50-a063-43d6-b5a2-bc9f9bbc7e6a
+   :END:
+
+*** Global options
+    :PROPERTIES:
+    :ID:       b0864da4-e91a-494c-b87e-f563330b1bb1
+    :END:
+
+    - =lemon-monitors= :: List of list of monitors.
+
+    Each outer list is a page.  Lemon rotates through pages as it refreshes
+    (every =lemon-refresh-rate= seconds).
+
+    Each inner list is a list of monitors.  Members of that list may
+    be the symbol of a monitor; a direct monitor value; or an
+    expression which evaluates to one of those things.
+
+    - =lemon-delay= :: Delay in seconds until Lemon appears.
+
+    - =lemon-refresh-rate= :: How often to obtain new values from the
+         monitors.
+
+
+** Standard monitors
+   :PROPERTIES:
+   :ID:       64dcaa69-ec9a-46f9-989c-c8c10b127039
+   :END:
+
+   - [[file:lemon-battery.el][=lemon-battery=]] :: Displays battery and charging status.
+   - [[file:lemon-cpu.el][=lemon-cpu=]] :: Monitors CPU load.
+   - [[file:lemon-cpufreq.el][=lemon-cpufreq=]] :: Monitors CPU frequency.
+   - [[file:lemon-fan.el][=lemon-fan=]] :: Monitors fan speed.
+   - [[file:lemon-memory.el][=lemon-memory=]] :: Displays memory usage.
+   - [[file:lemon-swap.el][=lemon-swap=]] :: Displays swap usage.
+   - [[file:lemon-temp.el][=lemon-temp=]] :: Monitors temperatures.
+   - [[file:lemon-time.el][=lemon-time=]] :: Display a clock in Lemon.
+
+
+** Creating new monitors
+   :PROPERTIES:
+   :ID:       cd1b28e3-3d40-47f6-82e9-1a6eb1f5b658
+   :END:
+
+   Lemon uses EIEIO classes to implement monitors, and provides two
+   base classes to build on:
+
+   - =lemon-monitor= :: This is the base class, suitable for monitors
+        that display a single value.
+
+   - =lemon-monitor-history= :: This class keeps a history of values,
+        and can create mini graphs of them.
+
+*** Defining the class
+    :PROPERTIES:
+    :ID:       674fab64-0c0c-4ff8-8a89-47c4b2afcfa6
+    :END:
+
+    The simplest monitor is:
+
+    #+BEGIN_SRC emacs-lisp :eval never
+      (defclass lemon-hello (lemon-monitor))
+    #+END_SRC
+
+    If your monitor needs to hold state or user configuration options,
+    those are stored in slots of the object.  This separates the code
+    which does the monitoring from the thing being monitored — for
+    example, if you write a disk space monitor, you can specify the
+    mountpoint in the constructor, which lets you monitor multiple
+    disks with the same code.
+
+    #+BEGIN_SRC emacs-lisp :eval never
+      (defclass lemon-hello (lemon-monitor)
+        ((greeting :initform "Hello"          ; Default value
+                   :initarg :greeting)))      ; Keyword for customizing.
+    #+END_SRC
+
+
+*** Fetching values
+    :PROPERTIES:
+    :ID:       b96fa238-ba27-4c6b-9087-8584221ef318
+    :END:
+
+    The =lemon-monitor-fetch= generic function evaluates to the
+    current value of the monitor.  Fetching and displaying are
+    orthogonal, asynchronous operations.  The fetch function should
+    /only/ obtain and return the value — it shouldn’t concern itself
+    with display or periodic refresh at all.
+
+    #+BEGIN_SRC emacs-lisp :eval never
+      (cl-defmethod lemon-monitor-fetch ((this lemon-hello))
+        user-login-name)
+    #+END_SRC
+
+
+*** Displaying the value
+    :PROPERTIES:
+    :ID:       452faf00-b00b-4f11-8788-ea79e8b021ff
+    :END:
+
+    The =lemon-monitor-display= generic function formats the value
+    returned from the fetch function into something pleasing for a
+    human to look at.  This might include embedding it in a format
+    string, or setting text properties like the display face.
+
+    If this method evaluates to a falsey value (=nil= or =""= (the
+    empty string)), the monitor won’t be displayed.  This is useful
+    for conditional display of monitors, such as a media player
+    monitor that hides when nothing is playing, a swap monitor that
+    hides when no swap is used, etc.
+
+    #+BEGIN_SRC emacs-lisp :eval never
+      (cl-defmethod lemon-monitor-display ((this lemon-custom-monitor))
+        (with-slots (greeting) this
+          (propertize
+           (format "%s, %s" greeting (lemon-monitor-value this))
+           'face 'compilation-info)))
+    #+END_SRC
+
+   The default implementation of =lemon-monitor-display= is generic
+   and suitable for many monitors — you may not need your own method
+   at all.
+
+
+**** Display options & defaults
+     :PROPERTIES:
+     :ID:       4c2c35bf-9d16-4401-a226-ce8419c85c0e
+     :END:
+
+     Default options should be stored as a plist in the monitor’s
+     =default-display-opts= slot.  Users may set the =display-opts=
+     plist per instance; the base class will merge the two.  This
+     allows users to specify only the changes they want, instead of
+     repeating the defaults.
+
+     The following options are supported by the default
+     =lemon-monitor-display= method:
+
+     - =:index=.  A string, which is prepended to the current monitor value.
+     - =:unit=.  A string representing the unit the monitor is
+       measuring, which is appended to the current monitor value.
+
+**** Sparklines
+     :PROPERTIES:
+     :ID:       8aeddb05-e40d-4fb6-b735-add92d41e086
+     :END:
+
+      For monitors based on =lemon-monitor-history=, a small graph
+      (sparkline) can be displayed.  It offers additional options,
+      specified with the =:sparkline= keyword in =:display-opts=.
+
+      #+BEGIN_SRC emacs-lisp
+        (lemon-monitor-class-symbol
+         :display-opts '(:sparkline (:type gridded :lower-bound 0 :upper-bound 1000)))
+      #+END_SRC
+
+      The sparkline options are passed directly to the
+      =lemon-sparkline= constructor; see its documentation for a more
+      information.
+
+
+*** Constructing the monitor
+    :PROPERTIES:
+    :ID:       f44e3392-4292-4fce-ac87-1ba0d44d82d9
+    :END:
+
+    Defining the monitor controls /how it works/; an instance
+    determines /what it monitors/.
+
+    #+BEGIN_SRC emacs-lisp :eval never
+      (setq my/hello-monitor (lemon-hello :greeting "Hi"))
+    #+END_SRC
+
+
+** Contributors
+   :PROPERTIES:
+   :ID:       839e2264-f266-4a62-96b4-51fa63cb9f2e
+   :END:
+
+   - zk_phi is the original author of Lemon.
+   - [[https://github.com/pierre-lecocq][Pierre Lecocq]] added Darwin support.
+   - Ian Eure substantially rewrote and extended Lemon.

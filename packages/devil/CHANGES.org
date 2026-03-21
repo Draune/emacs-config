@@ -1,0 +1,208 @@
+#+options: num:nil
+
+* Changelog
+
+** Version 0.7.0 (2023-08-12)
+:PROPERTIES:
+:CUSTOM_ID: 0.7.0
+:END:
+
+*** Added
+
+- Repeatable key sequence =, m e=.
+- Repeatable key sequence =, x u=.
+- Repeatable key sequence group for =, m @= and =, m h=.
+- Repeatable key sequence group for =, x [= and =, x ]=.
+- Repeatable key sequence group for =, x ^= and =, x {= and =, x }=.
+- Repeatable key sequences =, a= and =, e= added to group for =, p=.
+- Repeatable key sequences =, m a= and =, m e= added to group for =, m b=.
+- Customisable variable =devil-global-sets-buffer-default= that, when
+  set to =t=, makes enabling =global-devil-mode= also enable Devil in
+  all new buffers.
+
+*** Changed
+
+- Support for repeatable key groups.  When a Devil key sequence in a
+  repeatable group is typed, then that key sequence or any another key
+  sequence in the same group can be executed and repeated merely by
+  typing the last character of that key sequence.
+- Repeatable key groups defined in =devil-repeatable-keys= is not
+  ignored anymore when =devil-all-keys-repeatable= is set to non-nil.
+- Devil key sequences =, p= and =, n= and =, b= and =, f= have been
+  grouped together into a repeatable key group.
+- Devil key sequences =, m f= and =, m b= have been grouped together
+  into a repeatable key group.
+
+*** Fixed
+
+- Prevent special key sequences from being repeatable.
+
+** Version 0.6.0 (2023-07-30)
+:PROPERTIES:
+:CUSTOM_ID: 0.6.0
+:END:
+
+*** Changed
+
+- Devil key sequence =, m= now translates to =M-= instead of =C-M-=.
+- Devil key sequence =, m z= now translates to =M-= instead of =C-M-=.
+- Devil key sequence =, m ,= now translates to =M-,= instead of =C-M-,=.
+- Devil key sequence =, m m= now translates to =C-M-= instead of =M-=.
+- Repeatable key sequence =, m m f= changed to =, m f=.
+- Repeatable key sequence =, m m b= changed to =, m b=.
+- Repeatable key sequence =, m m y= changed to =, m y=.
+- Repeatable key sequence =, m m ^= changed to =, m ^=.
+
+*** Removed
+
+- Devil key translation from =m z= to =M-=.
+- Devil key translation from =m m= to =m=.
+- Devil key translation from =m= to =M-=.
+
+** Version 0.5.0 (2023-06-15)
+:PROPERTIES:
+:CUSTOM_ID: 0.5.0
+:END:
+
+*** Added
+
+- Function =devil-set-key= to set a new Devil key and update the
+  mode's keymap.
+- Reinstate variable =devil-version= since it is useful in determining
+  the source version conveniently.  It helps during troubleshooting
+  the package when installed from MELPA which sets the package version
+  to a version derived from the current date and time.
+- Command =devil-describe-key= to describe Devil key sequences.
+- Command =devil-toggle-logging= to toggle logging.
+- Special key =, h , k= to execute =devil-describe-key=.
+- Special key =, h , l= to execute =devil-toggle-logging=.
+
+*** Changed
+
+- Customising =devil-key= also updates the mode's keymap.
+- When no binding exists for the translated key sequence, convert the
+  key sequence to a fallback key sequence for terminal Emacs according
+  to =local-function-key-map= and execute any command bound to the
+  fallback key sequence.  For example, when the Devil key sequence =,
+  x <tab>= is converted to =C-x <tab>=, since no command is bound to
+  this key sequence, it is further translated to =C-x TAB= and the
+  command =indent-rigidly= bound to it is executed.
+- Format control sequence to show the Devil key sequence read by Devil
+  has changed from =%k= to =%r=.
+- The default special key sequences no longer merely insert literal
+  characters into the buffer.  That behaviour was problematic in
+  =isearch-mode= because typing special keys like =, ,= and =, SPC= in
+  =isearch-mode= inserted the literal characters in the buffer as
+  opposed to appending these characters to the search pattern.  The
+  default special key sequences now invoke =devil-execute-key= instead
+  which carefully look up the current binding for the current special
+  key and executes it.  This produces the correct behaviour of special
+  keys even in =isearch-mode=.
+
+*** Fixed
+
+- Fix special key sequence =, <return>= which was broken by the
+  previous release of version 0.4.0.
+- Fix special key =, ,= in =isearch-mode=.
+
+** Version 0.4.0 (2023-05-27)
+:PROPERTIES:
+:CUSTOM_ID: 0.4.0
+:END:
+
+*** Added
+
+- Customisable variable =devil-all-keys-repeatable= that makes all
+  Devil key sequences repeatable when set to =t=.
+- Key =, s= to the default list of repeatable keys.
+- Key =, d= to the default list of repeatable keys.
+- Key =, m m ^= to the default list of repeatable keys.
+- Translate =m m= to =m= to support typing key sequences like =C-c m=.
+- Translate =m z= to =M-= to support typing key sequences like =C-c
+  M-m= and =C-M-m=.
+
+*** Changed
+
+- When a Devil key sequence translates to an Emacs key sequence with
+  both the control key and an uppercase letter, the uppercase letter
+  is further translated to its shifted form, e.g., =C-M-V= is
+  translated to =C-M-S-v=.
+
+*** Fixed
+
+- Fix key translation when the Devil key is a key vector, e.g., =(kbd
+  "<left>")=
+- Fix key translation of key sequences involving function keys, e.g.,
+  =, <tab>=, =, <backspace>=, etc.  For example, earlier =, <tab>=
+  translated to =C-TAB= and caused "undefined" error even if there was
+  a command bound to =C-<tab>=.  With this fix, =, <tab>= is now
+  translated to =C-<tab>= and invokes the command bound to it, if any.
+
+
+** Version 0.3.0 (2023-05-11)
+:PROPERTIES:
+:CUSTOM_ID: 0.3.0
+:END:
+
+*** Added
+
+- Add customisation group =devil=.
+
+*** Changed
+
+- Move tests out to a separate file.
+
+*** Fixed
+
+- Fix spacing in documentation strings.
+- Remove =devil-version= and =devil-show-version=.
+
+
+** Version 0.2.0 (2023-05-09)
+:PROPERTIES:
+:CUSTOM_ID: 0.2.0
+:END:
+
+*** Added
+
+- Key =, k= to the default list of repeatable keys.
+- Key =, /= to the default list of repeatable keys.
+- Key =, m m y= to the default list of repeatable keys.
+- Command =devil-show-version= to display Devil version.
+
+*** Changed
+
+- Automatically detect the activation key and accumulate it in order to
+  support =devil-mode-map= with multiple activation keys.
+
+*** Fixed
+
+- Remove a stray =message= call.
+- Make the function =dev--tests= non-interactive.
+- Translation issue that caused invalid Emacs key sequences on mapping
+  =-=.  For example, mapping =-= to =C-x= and typing =- C-f= produced
+  =C-x CC-xf=.  This has been fixed so that =- C-f= is now translated
+  to =C-x C-f=.
+
+
+** Version 0.1.0 (2023-05-07)
+:PROPERTIES:
+:CUSTOM_ID: 0.1.0
+:END:
+
+*** Added
+
+- Devil global and local minor modes.
+- Default Devil key set to the comma (=,=).
+- Special key =, ,= to type a literal comma.
+- Special key =, SPC= to type a comma followed by a space.
+- Special key =, RET= to type a comma followed by return.
+- Translation rules that translate =,= and =, z= to =C-=.
+- Translation rules that translate =m= and =, m m= to =M-=.
+- Translation rule that translates =, ,= to =,=.
+- Repeatable key sequences for =, p=, =, n=, =, f=, =, b=, =, m m f=,
+  =, m m b=, and =, m x o=.
+- Key binding for =isearch-mode-map= to support Devil key sequences in
+  incremental search.
+- Key binding for =universal-argument-map= to support repeating the
+  universal argument with =u=.

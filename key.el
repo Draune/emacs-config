@@ -1,35 +1,25 @@
 ;; Install devil (translate "," to "C-"; and use support of which-key from fbrosda)
-(use-package devil
-  :vc (:url "https://github.com/fbrosda/devil"
-	    :branch "dev"
-	    :rev :newest)
-  :ensure t
-  :demand t
-  :custom
-  ;; Don't use keys that are usefull when repeated (for exemple ";" for comments)
-  (devil-exit-key "q")
-  (devil-all-keys-repeatable t)
-  (devil-highlight-repeatable nil)
-  (devil-repeatable-keys '(("%k p" "%k n" "%k b" "%k f" "%k a" "%k e")
-			   ;; repeatable keys for window and buffer management and find-file and dired
-			   ;; I went a little crazy here but since most of the time actions on buffers
-			   ;; and windows are followed by other commands like "C-n" I believe it's ok
-			   ("%k c k" "%k x o" "%k x &" "%k x é" "%k x \"" "%k x à" "%k x %k f" "%k x d" "%k x b" "%k x 0" "%k x 1" "%k x 2" "%k x 3")
-			   ;; repeatable keys for movement M- keybindings
+(require 'devil)
+(setq devil-exit-key "q")
+(setq devil-all-keys-repeatable t)
+(setq devil-highlight-repeatable nil)
+(setq devil-repeatable-keys '(("%k p" "%k n" "%k b" "%k f" "%k a" "%k e")
+			      ;; repeatable keys for window and buffer management and find-file and dired
+			      ;; I went a little crazy here but since most of the time actions on buffers
+			      ;; and windows are followed by other commands like "C-n" I believe it's ok
+			      ("%k c k" "%k x o" "%k x &" "%k x é" "%k x \"" "%k x à" "%k x %k f" "%k x d" "%k x b" "%k x 0" "%k x 1" "%k x 2" "%k x 3")
+			      ;; repeatable keys for movement M- keybindings
 			   ("%k %k n" "%k %k p" "%k %k f" "%k %k b")))
-  :bind
-  ([remap describe-key] . devil-describe-key)
-  :config
-  (global-devil-mode)
-  (global-set-key (kbd "C-,") 'global-devil-mode)
-  (bind-key "C-SPC" (lambda () (interactive) (devil-execute-key ", SPC")))
-  (bind-key "M-SPC" 'set-mark-command)
-  (setq devil-translations '((", , ," . "C-M-")
-			     (", ," . "M-")
-			     ("," . "C-")
-			     ))
-  (setq devil-special-keys '(("%k h %k k" . devil-describe-key) ("%k h %k l" . devil-toggle-logging)))
-  )
+(bind-key "C-h k" 'devil-describe-key)
+(global-devil-mode)
+(global-set-key (kbd "C-,") 'global-devil-mode)
+(bind-key "C-SPC" (lambda () (interactive) (devil-execute-key ", SPC")))
+(bind-key "M-SPC" 'set-mark-command)
+(setq devil-translations '((", , ," . "C-M-")
+			   (", ," . "M-")
+			   ("," . "C-")
+			   ))
+(setq devil-special-keys '(("%k h %k k" . devil-describe-key) ("%k h %k l" . devil-toggle-logging)))
 
 ;; My keybindings
 ;; Global keybindings:
@@ -75,10 +65,6 @@
 (bind-key "M-r" 'replace-string)
 
 ;; Setup which-key (key cheatsheet that is displayed during key sequences)
-(use-package which-key
-  :ensure t
-  :config
-  (which-key-mode)
-  (which-key-setup-minibuffer)
-  )
+(which-key-mode)
+(which-key-setup-minibuffer)
 
