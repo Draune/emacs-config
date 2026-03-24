@@ -101,6 +101,7 @@
 		    (keymap-set exwm-mode-map "M-w" (lambda () (interactive) (my/exwm-kill-ring-save)
 						      (my/exwm-mark-off)
 						      ))
+		    )
 	)
   ;; else
       (progn      
