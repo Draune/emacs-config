@@ -11,6 +11,7 @@
 (global-visual-line-mode)
 
 (global-display-line-numbers-mode)
+(setq display-line-numbers 'relative)
 
 (defun my/scratch-init () (interactive)
        (switch-to-buffer "*scratch*")
