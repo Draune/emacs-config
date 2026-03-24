@@ -21,6 +21,7 @@
 (add-to-list 'load-path "~/.emacs.d/packages/magit")
 (add-to-list 'load-path "~/.emacs.d/packages/magit-section")
 (add-to-list 'load-path "~/.emacs.d/packages/markdown-mode")
+(add-to-list 'load-path "~/.emacs.d/packages/markdown-toc")
 (add-to-list 'load-path "~/.emacs.d/packages/orderless")
 (add-to-list 'load-path "~/.emacs.d/packages/posframe")
 (add-to-list 'load-path "~/.emacs.d/packages/rainbow-delimiters")

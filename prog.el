@@ -5,3 +5,14 @@
 (global-corfu-mode)
 
 (require 'lsp-mode)
+
+(require 'markdown-mode)
+(require 'markdown-toc)
+
+(setq markdown-toc-preset 'pandoc)
+(setq markdown-command "pandoc --from markdown_github -t html5 --mathjax --highlight-style pygments --standalone")
+(setq markdown-toc-header-toc-title "**Sommaire**")
+
+;; Autogenerate and refresh TOC when saving a markdown file
+(add-hook 'markdown-mode-hook (lambda ()
+				(add-hook 'before-save-hook #'markdown-toc-generate-or-refresh-toc nil t)))
