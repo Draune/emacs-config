@@ -1,23 +1,26 @@
 ;; mark
 (setq my/exwm-mark nil)
-(defun my/exwm-toggle-mark () (interactive)
-       (if my/exwm-mark
-	   (setq my/exwm-mark nil)
-	 (setq my/exwm-mark t)
-	 )
-       (message (if my/exwm-mark "EXWM Mark set" "EXWM Mark off"))
-       )
 (defun my/exwm-mark-off (&rest args)
        (if my/exwm-mark
 	   (progn
 	     (setq my/exwm-mark nil)
+	     (exwm-input--fake-key 'left)
+	     (exwm-input--fake-key 'left)
+	     (exwm-input--fake-key 'right)
 	     (message "EXWM Mark off")
 	     ))
        )
+(defun my/exwm-toggle-mark () (interactive)
+       (if my/exwm-mark
+	   (my/exwm-mark-off)
+	 (setq my/exwm-mark t)
+	 )
+       (message (if my/exwm-mark "EXWM Mark set" "EXWM Mark off"))
+       )
 (keymap-set exwm-mode-map "M-SPC" 'my/exwm-toggle-mark)
-(advice-add 'other-window :after #'my/exwm-mark-off)
-(advice-add 'switch-to-buffer :after #'my/exwm-mark-off)
-(advice-add 'kill-current-buffer :after #'my/exwm-mark-off)
+(advice-add 'other-window :before #'my/exwm-mark-off)
+(advice-add 'switch-to-buffer :before #'my/exwm-mark-off)
+(advice-add 'kill-current-buffer :before #'my/exwm-mark-off)
 (advice-add 'keyboard-quit :before #'my/exwm-mark-off)
 ;; movements
 (keymap-set exwm-mode-map "C-n" (lambda () (interactive)
