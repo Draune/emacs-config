@@ -10,8 +10,8 @@
 ;; Enable global-visual-line-mode (words aren't cut in half at the end of line)
 (global-visual-line-mode)
 
+(setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
-(setq display-line-numbers 'relative)
 
 (defun my/scratch-init () (interactive)
        (switch-to-buffer "*scratch*")
