@@ -5,6 +5,7 @@
 
 ;; load packages
 
+(add-to-list 'load-path "~/.emacs.d/packages/centered-cursor-mode")
 (add-to-list 'load-path "~/.emacs.d/packages/cond-let")
 (add-to-list 'load-path "~/.emacs.d/packages/consult")
 (add-to-list 'load-path "~/.emacs.d/packages/corfu")
@@ -27,6 +28,7 @@
 (add-to-list 'load-path "~/.emacs.d/packages/rainbow-delimiters")
 (add-to-list 'load-path "~/.emacs.d/packages/s")
 (add-to-list 'load-path "~/.emacs.d/packages/spinner")
+(add-to-list 'load-path "~/.emacs.d/packages/topspace")
 (add-to-list 'load-path "~/.emacs.d/packages/transient")
 (add-to-list 'load-path "~/.emacs.d/packages/vertico")
 (add-to-list 'load-path "~/.emacs.d/packages/vertico-posframe")
