@@ -102,7 +102,6 @@
 					  (my/exwm-mark-off)
 					  ))
 		    )
-	)
   ;; else
       (progn      
 	(keymap-set exwm-mode-map "C-k" (lambda () (interactive) (exwm-input--fake-key 'home)
