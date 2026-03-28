@@ -128,11 +128,3 @@
 (require 'centered-cursor-mode)
 (global-centered-cursor-mode)
 (setq ccm-recenter-at-end-of-file t)
-(add-hook 'vterm-mode-hook
-	  (lambda ()
-            (centered-cursor-mode -1)))
-(add-hook 'vterm-copy-mode-hook
-          (lambda ()
-            (if vterm-copy-mode
-                (centered-cursor-mode 1)   
-              (centered-cursor-mode -1))))
