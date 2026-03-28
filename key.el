@@ -64,6 +64,10 @@
 
 (bind-key "M-r" 'replace-string)
 
+(bind-key "C-c l s" 'org-store-link)
+(bind-key "C-c l i" 'org-id-store-link)
+(which-key-add-key-based-replacements "C-c l" "link")
+
 ;; Setup which-key (key cheatsheet that is displayed during key sequences)
 (which-key-mode)
 (which-key-setup-minibuffer)
