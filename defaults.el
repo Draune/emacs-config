@@ -127,6 +127,7 @@
 
 (require 'centered-cursor-mode)
 (global-centered-cursor-mode)
+(setq ccm-recenter-at-end-of-file t)
 (add-hook 'vterm-mode-hook
 	  (lambda ()
             (centered-cursor-mode -1)))
