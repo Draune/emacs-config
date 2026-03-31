@@ -27,6 +27,7 @@
 (add-to-list 'load-path "~/.emacs.d/packages/posframe")
 (add-to-list 'load-path "~/.emacs.d/packages/rainbow-delimiters")
 (add-to-list 'load-path "~/.emacs.d/packages/s")
+(add-to-list 'load-path "~/.emacs.d/packages/speed-type")
 (add-to-list 'load-path "~/.emacs.d/packages/spinner")
 (add-to-list 'load-path "~/.emacs.d/packages/topspace")
 (add-to-list 'load-path "~/.emacs.d/packages/transient")

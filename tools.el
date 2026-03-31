@@ -4,3 +4,19 @@
 (require 'magit)
 
 (require 'vterm)
+
+(require 'speed-type)
+(setq speed-type-default-lang "fr")
+(defun my/speed-type-lang-eng () (interactive)
+       (setq speed-type-default-lang nil))
+(defun my/speed-type-lang-fr () (interactive)
+       (setq speed-type-default-lang "fr"))
+(setq speed-type-randomize nil)
+(defun my/speed-type-continue (file)
+  (interactive
+   (list
+    (read-file-name
+     "Choisir un fichier : "
+     "~/.emacs.d/speed-type/ .txt ")))
+  (speed-type-continue nil file)
+  )
