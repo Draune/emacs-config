@@ -4,16 +4,6 @@
        (if my/exwm-mark
 	   (progn
 	     (setq my/exwm-mark nil)
-	     (exwm-input--fake-key 'left)
-	     (exwm-input--fake-key 'left)
-	     (exwm-input--fake-key 'right)
-	     (message "EXWM Mark off")
-	     ))
-       )
-(defun my/exwm-mark-off-without-wiggle (&rest args)
-       (if my/exwm-mark
-	   (progn
-	     (setq my/exwm-mark nil)
 	     (message "EXWM Mark off")
 	     ))
        )
@@ -97,7 +87,7 @@
 					  (exwm-input--fake-key 'delete)))
 	(keymap-set exwm-mode-map "C-w" (lambda () (interactive) (my/exwm-kill-ring-save)
 					  (exwm-input--fake-key 'delete)
-					  (my/exwm-mark-off-without-wiggle)))
+					  (my/exwm-mark-off)))
 	(keymap-set exwm-mode-map "M-w" (lambda () (interactive) (my/exwm-kill-ring-save)
 					  (my/exwm-mark-off)
 					  ))
@@ -108,7 +98,7 @@
 					  (exwm-input--fake-key 'S-end)
 					  (exwm-input--fake-key 'C-x)))
 	(keymap-set exwm-mode-map "C-w" (lambda () (interactive) (exwm-input--fake-key 'C-x)
-					  (my/exwm-mark-off-without-wiggle)
+					  (my/exwm-mark-off)
 					  ))
 	(keymap-set exwm-mode-map "M-w" (lambda () (interactive) (exwm-input--fake-key 'C-c)
 					  (my/exwm-mark-off)
