@@ -53,7 +53,7 @@
       (bind-key "s-l" 'lock-screen)
       ))
 
-;; Volume Control (pulseaudio)
+;; Volume Control
 (if (executable-find "wpctl")
     (progn
       (setq sound_volume 0)
