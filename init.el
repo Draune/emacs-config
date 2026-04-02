@@ -8,6 +8,7 @@
 (add-to-list 'load-path "~/.emacs.d/packages/centered-cursor-mode")
 (add-to-list 'load-path "~/.emacs.d/packages/cond-let")
 (add-to-list 'load-path "~/.emacs.d/packages/consult")
+(add-to-list 'load-path "~/.emacs.d/packages/compile-angel")
 (add-to-list 'load-path "~/.emacs.d/packages/corfu")
 (add-to-list 'load-path "~/.emacs.d/packages/dash")
 (add-to-list 'load-path "~/.emacs.d/packages/devil")
@@ -36,6 +37,10 @@
 (add-to-list 'load-path "~/.emacs.d/packages/vterm")
 (add-to-list 'load-path "~/.emacs.d/packages/with-editor")
 (add-to-list 'load-path "~/.emacs.d/packages/xelb")
+
+(require 'compile-angel)
+(setq load-prefer-newer t)
+(compile-angel-on-load-mode 1)
 
 (require 'load-relative)
 ;; load configs
