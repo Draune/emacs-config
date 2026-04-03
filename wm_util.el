@@ -3,7 +3,7 @@
 ;; Screenshots
 (if (executable-find "maim")
     (progn
-      (defun test-screenshot () (interactive)
+      (defun screenshot () (interactive)
 	     (let ((tmp-path (format-time-string "/tmp/%F_%X.png"))
 		   (default-path (concat (getenv "HOME") (format-time-string "/Pictures/%F_%X.png"))))
 	       (shell-command (concat "maim -s '" tmp-path "'"))
