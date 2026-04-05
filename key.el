@@ -72,3 +72,6 @@
 (which-key-mode)
 (which-key-setup-minibuffer)
 
+(bind-key "C-c f h" (lambda () (interactive) (consult-fd "~/"))) ;; home
+(bind-key "C-c f r" (lambda () (interactive) (consult-fd "/"))) ;; root
+(bind-key "C-c f c" (lambda () (interactive) (consult-fd))) ;; current

@@ -90,6 +90,7 @@
 
 ;; Use consult to get auto-completion in vertico for async-shell-command and launch-app for my EXWM config
 (require 'consult)
+(setq consult-fd-args (append consult-fd-args '("--hidden")))
 (setq completion-in-region-function #'consult-completion-in-region)
 
 ;; To get an list of executables in $PATH
