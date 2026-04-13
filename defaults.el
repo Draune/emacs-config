@@ -76,6 +76,10 @@
 
 (require 'vertico-posframe)
 (vertico-posframe-mode 1)
+(setq vertico-posframe-width 9999
+      vertico-posframe-height 7
+      vertico-posframe-poshandler #'posframe-poshandler-frame-bottom-center)
+
 
 ;; Deactivate the bell sounds
 (setq ring-bell-function 'ignore)
