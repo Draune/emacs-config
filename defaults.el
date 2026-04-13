@@ -63,8 +63,9 @@
 (require 'vertico)
 (vertico-mode)
 
-;; Persist history over Emacs restarts. Vertico sorts by history position.
-(savehist-mode)
+(require 'vertico-prescient)
+(vertico-prescient-mode)
+(prescient-persist-mode)
 
 ;; Install orderless (config from vertico's github
 (require 'orderless)
