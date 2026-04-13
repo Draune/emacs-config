@@ -77,3 +77,15 @@
 (bind-key "C-c f c" (lambda () (interactive) (consult-fd))) ;; current
 
 (bind-key "C-c a" (lambda () (interactive) (org-agenda nil "n")))
+
+(keymap-set vterm-mode-map "C-b" 'vterm-send-left)
+(keymap-set vterm-mode-map "C-f" 'vterm-send-right)
+(keymap-set vterm-mode-map "C-p" 'vterm-send-up)
+(keymap-set vterm-mode-map "C-n" 'vterm-send-down)
+(keymap-set vterm-mode-map "C-r" 'vterm-send-C-r)
+(keymap-set vterm-mode-map "C-d" 'vterm-send-C-d)
+(keymap-set vterm-mode-map "C-a" 'vterm-send-C-a)
+(keymap-set vterm-mode-map "C-e" 'vterm-send-C-e)
+(keymap-set vterm-mode-map "C-c i s" (lambda () (interactive) (vterm-insert ">")))
+(keymap-set vterm-mode-map "C-c i i" (lambda () (interactive) (vterm-insert "<")))
+
