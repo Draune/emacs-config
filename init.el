@@ -57,3 +57,4 @@
 (load-relative "./key.el")
 ;; LSP, corfu, etc.
 (load-relative "./prog.el")
+(load-relative "./org.el")

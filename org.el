@@ -20,3 +20,7 @@
                 (org-level-8 . 1.1)))
     (set-face-attribute (car face) nil :weight 'bold :height (cdr face)))
 (set-face-attribute 'org-document-title nil :weight 'bold :height 1.8)
+
+(setq org-agenda-files '("~/org"))
+(setq org-agenda-window-setup 'current-window)
+(setq org-log-done t)

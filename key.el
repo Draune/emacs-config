@@ -75,3 +75,5 @@
 (bind-key "C-c f h" (lambda () (interactive) (consult-fd "~/"))) ;; home
 (bind-key "C-c f r" (lambda () (interactive) (consult-fd "/"))) ;; root
 (bind-key "C-c f c" (lambda () (interactive) (consult-fd))) ;; current
+
+(bind-key "C-c a" (lambda () (interactive) (org-agenda nil "n")))
