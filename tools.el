@@ -3,6 +3,10 @@
 ;; Install magit
 (require 'magit)
 
+(require 'transient-posframe)
+(transient-posframe-mode)
+(setq transient-posframe-poshandler #'posframe-poshandler-window-bottom-center)
+
 (require 'vterm)
 
 (require 'speed-type)

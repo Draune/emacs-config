@@ -89,3 +89,4 @@
 (keymap-set vterm-mode-map "C-c i s" (lambda () (interactive) (vterm-insert ">")))
 (keymap-set vterm-mode-map "C-c i i" (lambda () (interactive) (vterm-insert "<")))
 
+(keymap-set transient-map "q" 'transient-quit-all)
