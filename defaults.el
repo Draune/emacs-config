@@ -146,3 +146,5 @@
 		(centered-cursor-mode -1)
 		)
 	      )))
+
+(setq enable-recursive-minibuffers t)
