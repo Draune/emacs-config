@@ -45,11 +45,11 @@
 
 (require 'use-package)
 
-;; (use-package compile-angel
-  ;; :config
-  ;; (setq load-prefer-newer t)
-  ;; (compile-angel-on-load-mode 1)
-  ;; )
+(use-package compile-angel
+  :config
+  (setq load-prefer-newer t)
+  (compile-angel-on-load-mode 1)
+  )
 
 (use-package load-relative)
 ;; load configs
