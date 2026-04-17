@@ -26,6 +26,7 @@
 (add-to-list 'load-path "~/.emacs.d/packages/markdown-toc")
 (add-to-list 'load-path "~/.emacs.d/packages/orderless")
 (add-to-list 'load-path "~/.emacs.d/packages/org-appear")
+(add-to-list 'load-path "~/.emacs.d/packages/org-modern")
 (add-to-list 'load-path "~/.emacs.d/packages/posframe")
 (add-to-list 'load-path "~/.emacs.d/packages/prescient")
 (add-to-list 'load-path "~/.emacs.d/packages/rainbow-delimiters")
@@ -42,11 +43,15 @@
 (add-to-list 'load-path "~/.emacs.d/packages/with-editor")
 (add-to-list 'load-path "~/.emacs.d/packages/xelb")
 
-(require 'compile-angel)
-(setq load-prefer-newer t)
-(compile-angel-on-load-mode 1)
+(require 'use-package)
 
-(require 'load-relative)
+;; (use-package compile-angel
+  ;; :config
+  ;; (setq load-prefer-newer t)
+  ;; (compile-angel-on-load-mode 1)
+  ;; )
+
+(use-package load-relative)
 ;; load configs
 ;; Utilities functions
 (load-relative "./util.el")
@@ -61,3 +66,5 @@
 ;; LSP, corfu, etc.
 (load-relative "./prog.el")
 (load-relative "./org.el")
+(load-relative "./reverse.el")
+(load-relative "./completion.el")

@@ -11,4 +11,4 @@
     (format "ps -o comm= -p %s" (my/emacs-ppid)))))
 
 ;; Install f (file library, used for the banner)
-(require 'f)
+(use-package f)

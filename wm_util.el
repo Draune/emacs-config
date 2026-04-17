@@ -1,5 +1,4 @@
 ;; Util file for EXWM that will be loaded by wm.el
-
 ;; Screenshots
 (if (executable-find "maim")
     (progn

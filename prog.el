@@ -1,3 +1,12 @@
+;; Install rainbow-limeters 
+(use-package rainbow-delimiters
+  :defer t
+  :autoload
+  rainbow-delimiters-mode
+  :hook
+  ('prog-mode-hook . #'rainbow-delimiters-mode)
+  )
+
 (require 'corfu)
 (setq corfu-auto        t
       corfu-auto-delay  0 
