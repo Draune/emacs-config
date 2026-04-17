@@ -33,7 +33,6 @@
 (add-to-list 'load-path "~/.emacs.d/packages/s")
 (add-to-list 'load-path "~/.emacs.d/packages/speed-type")
 (add-to-list 'load-path "~/.emacs.d/packages/spinner")
-(add-to-list 'load-path "~/.emacs.d/packages/topspace")
 (add-to-list 'load-path "~/.emacs.d/packages/transient")
 (add-to-list 'load-path "~/.emacs.d/packages/transient-posframe")
 (add-to-list 'load-path "~/.emacs.d/packages/vertico")
