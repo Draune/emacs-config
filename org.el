@@ -21,7 +21,6 @@
 
 (use-package org-modern
   :after org
-  :load-path "~/.emacs.d/packages/org-modern"
   :config
   (global-org-modern-mode)
   )
