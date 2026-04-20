@@ -40,6 +40,8 @@
   )
 (use-package which-key-posframe
   :defer t
+  :autoload
+  which-key-posframe-mode
   :hook
   ('which-key-mode-hook . #'which-key-posframe-mode)
   :config
