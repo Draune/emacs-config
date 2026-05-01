@@ -19,7 +19,7 @@
 (use-package vterm
   :defer t
   :bind
-  (("C-c v" . 'vterm)
+  (("C-c v" . vterm)
    :map vterm-mode-map
    ("C-b" . vterm-send-left)
    ("C-f" . vterm-send-right)
@@ -30,9 +30,27 @@
    ("C-a" . vterm-send-C-a)
    ("C-e" . vterm-send-C-e)
    ("C-c i s" . (lambda () (interactive) (vterm-insert ">")))
-   ("C-c i i" . (lambda () (interactive) (vterm-insert "<"))))
+   ("C-c i i" . (lambda () (interactive) (vterm-insert "<")))
+   :map project-prefix-map
+   ("v" . project-vterm))
   :commands
   vterm
+  project-vterm
+  :config
+  (defun project-vterm ()
+  "Start Vterm in the current project's root directory.
+If a buffer already exists for running Vterm in the project's root,
+switch to it.  Otherwise, create a new Vterm buffer.
+With \\[universal-argument] prefix arg, create a new Vterm buffer even
+if one already exists."
+  (interactive)
+  (defvar vterm-buffer-name)
+  (let* ((default-directory (project-root (project-current t)))
+         (vterm-buffer-name (project-prefixed-buffer-name "vterm"))
+         (vterm-buffer (get-buffer vterm-buffer-name)))
+    (if (and vterm-buffer (not current-prefix-arg))
+        (pop-to-buffer vterm-buffer (bound-and-true-p display-comint-buffer-action))
+      (vterm current-prefix-arg))))
   )
 
 (use-package speed-type
