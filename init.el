@@ -42,7 +42,6 @@
   (add-to-list 'load-path (concat home "/.emacs.d/packages/vertico-posframe"))
   (add-to-list 'load-path (concat home "/.emacs.d/packages/vertico-prescient"))
   (add-to-list 'load-path (concat home "/.emacs.d/packages/vterm"))
-  (add-to-list 'load-path (concat home "/.emacs.d/packages/which-key-posframe"))
   (add-to-list 'load-path (concat home "/.emacs.d/packages/with-editor"))
   (add-to-list 'load-path (concat home "/.emacs.d/packages/xelb"))
   )
