@@ -26,6 +26,7 @@
   (add-to-list 'load-path (concat home "/.emacs.d/packages/magit-section"))
   (add-to-list 'load-path (concat home "/.emacs.d/packages/markdown-mode"))
   (add-to-list 'load-path (concat home "/.emacs.d/packages/markdown-toc"))
+  (add-to-list 'load-path (concat home "/.emacs.d/packages/mood-line"))
   (add-to-list 'load-path (concat home "/.emacs.d/packages/orderless"))
   (add-to-list 'load-path (concat home "/.emacs.d/packages/org-appear"))
   (add-to-list 'load-path (concat home "/.emacs.d/packages/org-modern"))

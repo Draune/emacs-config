@@ -97,6 +97,14 @@
   ("M-n" . 'next-line-or-history-element))
   )
 
+(use-package mood-line
+  :config
+  (setq mood-line-glyph-alist mood-line-glyphs-fira-code)
+  (set-face-attribute 'mode-line nil :box '(:line-width (1 . 5) :style flat-button))
+  (set-face-attribute 'mode-line-active nil :box '(:line-width (1 . 5) :style flat-button))
+  (set-face-attribute 'mode-line-inactive nil :box '(:line-width (1 . 5) :style flat-button))
+  (mood-line-mode))
+
 (use-package centered-cursor-mode
   :defer t
   :autoload
