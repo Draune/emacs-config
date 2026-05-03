@@ -105,6 +105,19 @@
   (set-face-attribute 'mode-line-inactive nil :box '(:line-width (1 . 5) :style flat-button))
   (mood-line-mode))
 
+(use-package topspace
+  :defer t
+  :autoload
+  global-topspace-mode
+  :config
+  (defun my/topspace-active-p ()
+    (not (memq major-mode '(vterm-mode org-mode))))
+  :custom
+  (topspace-active #'my/topspace-active-p)
+  :hook
+  ('after-init-hook . #'global-topspace-mode)
+  )
+
 (use-package centered-cursor-mode
   :defer t
   :autoload
@@ -118,15 +131,5 @@
 		    (lambda ()                       
 		      (centered-cursor-mode -1)
 		      ))
-  ('vterm-copy-mode-hook .
-			 (lambda ()                      
-			   (if vterm-copy-mode
-			       (progn
-				 (centered-cursor-mode 1)  
-				 )
-			     (progn
-			       (centered-cursor-mode -1)
-			       )
-			     )))
   )
 
