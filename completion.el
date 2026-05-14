@@ -45,11 +45,6 @@
 	vertico-posframe-poshandler #'my/vertico-posframe-poshandler)
   )
 
-(use-package marginalia
-  :after vertico
-  :config
-  (marginalia-mode))
-
 ;; Use consult to get auto-completion in vertico for async-shell-command and launch-app for my EXWM config
 (use-package consult
   :config
