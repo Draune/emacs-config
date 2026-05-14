@@ -65,6 +65,31 @@
   (setq use-short-answers t)
   (setq enable-recursive-minibuffers t)
 
+  (defun neg-first-or-prefix-arg (oldfun &rest args)
+    (let ((first-arg (car args)))
+      (let
+          ((arg (if first-arg
+                    (if (eq first-arg 0)
+			1
+                      (if (eq first-arg '-)
+			  -1
+			first-arg)
+                      )
+		  (if current-prefix-arg
+                      (if (eq current-prefix-arg 0)
+			  1
+			(if (eq current-prefix-arg '-)
+                            -1
+			  current-prefix-arg)
+			)
+                    1)
+		  )))
+	(apply oldfun (list (- arg))))))
+
+  (advice-add 'upcase-word :around 'neg-first-or-prefix-arg)
+  (advice-add 'downcase-word :around 'neg-first-or-prefix-arg)
+  (advice-add 'capitalize-word :around 'neg-first-or-prefix-arg)
+  
   :bind
   ;; My keybindings
   (("C-c k" . 'kill-current-buffer)
