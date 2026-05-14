@@ -92,6 +92,9 @@
   (advice-add 'capitalize-word :around 'neg-first-or-prefix-arg)
   
   (electric-pair-mode 1)
+  
+  (setq warning-minimum-level :error)
+  
   :bind
   ;; My keybindings
   (("C-c k" . 'kill-current-buffer)
