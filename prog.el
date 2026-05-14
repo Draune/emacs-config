@@ -20,7 +20,9 @@
   :commands
   lsp
   :hook
-  ('prog-mode-hook #'lsp)
+  ('prog-mode-hook . (lambda ()
+		       (when (not (derived-mode-p 'emacs-lisp-mode))
+			 (lsp))))
   :config
   (setq lsp-enable-snippet nil
 	lsp-lens-enable nil
@@ -39,6 +41,6 @@
   (setq markdown-toc-header-toc-title "**Sommaire**")
   :hook
   ;; Autogenerate and refresh TOC when saving a markdown file
-  (add-hook 'markdown-mode-hook (lambda ()
-				  (add-hook 'before-save-hook #'markdown-toc-generate-or-refresh-toc nil t)))
+  ('markdown-mode-hook . (lambda ()
+			   (add-hook 'before-save-hook #'markdown-toc-generate-or-refresh-toc nil t)))
   )
