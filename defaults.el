@@ -90,6 +90,7 @@
   (advice-add 'downcase-word :around 'neg-first-or-prefix-arg)
   (advice-add 'capitalize-word :around 'neg-first-or-prefix-arg)
   
+  (electric-pair-mode 1)
   :bind
   ;; My keybindings
   (("C-c k" . 'kill-current-buffer)
