@@ -7,30 +7,38 @@
   ('prog-mode-hook . #'rainbow-delimiters-mode)
   )
 
-(use-package corfu
+(use-package yasnippet
   :config
-  (setq corfu-auto        t
-	corfu-auto-delay  0 
-	corfu-auto-prefix 1)
-  (global-corfu-mode)
-)
+  (yas-global-mode 1))
 
-(use-package lsp-mode
-  :defer t
-  :commands
-  lsp
-  :hook
-  ('prog-mode-hook . (lambda ()
-		       (when (not (derived-mode-p 'emacs-lisp-mode))
-			 (lsp))))
+(use-package lsp-bridge
   :config
-  (setq lsp-enable-snippet nil
-	lsp-lens-enable nil
-	lsp-modeline-diagnostics-enable nil
-	lsp-modeline-code-actions-enable nil
-	lsp-modeline-workspace-status-enable nil
-	lsp-headerline-breadcrumb-enable nil)
-  )
+  (global-lsp-bridge-mode))
+
+;; (use-package corfu
+;;   :config
+;;   (setq corfu-auto        t
+;; 	corfu-auto-delay  0 
+;; 	corfu-auto-prefix 1)
+;;   (global-corfu-mode)
+;; )
+
+;; (use-package lsp-mode
+;;   :defer t
+;;   :commands
+;;   lsp
+;;   :hook
+;;   ('prog-mode-hook . (lambda ()
+;; 		       (when (not (derived-mode-p 'emacs-lisp-mode))
+;; 			 (lsp))))
+;;   :config
+;;   (setq lsp-enable-snippet nil
+;; 	lsp-lens-enable nil
+;; 	lsp-modeline-diagnostics-enable nil
+;; 	lsp-modeline-code-actions-enable nil
+;; 	lsp-modeline-workspace-status-enable nil
+;; 	lsp-headerline-breadcrumb-enable nil)
+;;   )
 
 (use-package markdown-mode)
 
