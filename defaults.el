@@ -135,6 +135,14 @@
   (set-face-attribute 'mode-line-inactive nil :box '(:line-width (1 . 5) :style flat-button))
   (mood-line-mode))
 
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+(use-package all-the-icons-dired
+  :after all-the-icons
+  :hook
+  ('dired-mode-hook . #'all-the-icons-dired-mode))
+
 (use-package topspace
   :defer t
   :autoload
