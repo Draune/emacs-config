@@ -54,14 +54,18 @@
 	;; to display graphics
 	lemon-sparkline-use-xpm 1
 	lemon-monitors
-	'(((lemon-time :display-opts '(:format "%d %b %H:%M"))
+	'(((lemon-time :display-opts '(:format " %d %b %H:%M  │ "))
 	   (lemon-battery)
-	   (lemon-cpu-linux :display-opts '(:sparkline (:type gridded)))
-	   (lemon-memory-linux :display-opts '(:sparkline (:type gridded)))
-	   (lemon-linux-network-rx :display-opts '(:sparkline (:type gridded)))
-	   (lemon-linux-network-tx :display-opts '(:sparkline (:type gridded)))
+	   (lemon-cpu-linux :display-opts '(:sparkline (:type plain :width 200) :index " │  ")
+			    )
+	   (lemon-memory-linux :display-opts '(:sparkline (:type plain :width 200) :index " │  ")
+			       )
+	   ;; (lemon-linux-network-rx :display-opts '(:sparkline (:type gridded)))
+	   ;; (lemon-linux-network-tx :display-opts '(:sparkline (:type gridded)))
 	   ))
 	)
+  (custom-set-faces
+   '(lemon-battery-low-face ((t (:inherit outline-3)))))
   (lemon-mode 1)
   )
 
