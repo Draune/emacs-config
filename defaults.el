@@ -94,6 +94,18 @@
   (electric-pair-mode 1)
   
   (setq warning-minimum-level :error)
+
+  ;; padding between windows
+  (modify-all-frames-parameters
+   '((right-divider-width . 20)
+     (internal-border-width . 20)))
+  (dolist (face '(window-divider
+                  window-divider-first-pixel
+                  window-divider-last-pixel
+		  ))
+    (face-spec-reset-face face)
+    (set-face-foreground face (face-attribute 'default :background)))
+  (set-face-background 'fringe (face-attribute 'default :background))
   
   :bind
   ;; My keybindings
