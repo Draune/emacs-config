@@ -14,6 +14,7 @@
   (setq load-prefer-newer t)
   (push "/init.el" compile-angel-excluded-files)
   (push "/lemon-battery.el" compile-angel-excluded-files)
+  (push "/lsp-bridge.el" compile-angel-excluded-files)
   (compile-angel-on-load-mode 1)
   )
 
