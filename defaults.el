@@ -145,13 +145,14 @@
   (set-face-attribute 'mode-line nil :box '(:line-width (1 . 5) :style flat-button))
   (set-face-attribute 'mode-line-active nil :box '(:line-width (1 . 5) :style flat-button))
   (set-face-attribute 'mode-line-inactive nil :box '(:line-width (1 . 5) :style flat-button))
+  ;; I place modif of header-line face here because I set it to the same as the mode-line
+  (set-face-attribute 'header-line nil :box '(:line-width (1 . 5) :style flat-button))
   (mood-line-mode))
 
 (use-package all-the-icons
   :if (display-graphic-p))
 
 (use-package all-the-icons-dired
-  :after all-the-icons
   :hook
   ('dired-mode-hook . #'all-the-icons-dired-mode))
 
