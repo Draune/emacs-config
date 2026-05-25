@@ -41,7 +41,7 @@
 	  (floor (* my/vertico-posframe-vertical-pos (plist-get info :parent-frame-height)))))
   (vertico-posframe-mode 1)
   (setq vertico-posframe-width (floor (* (frame-width) (- 1.0 (* 2.0 my/vertico-posframe-margin))))
-	vertico-posframe-height 7
+	;; vertico-posframe-height 7
 	vertico-posframe-poshandler #'my/vertico-posframe-poshandler)
   )
 
