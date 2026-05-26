@@ -65,6 +65,7 @@
 
   (setq use-short-answers t)
   (setq enable-recursive-minibuffers t)
+  (minibuffer-depth-indicate-mode 1)
 
   (defun neg-first-or-prefix-arg (oldfun &rest args)
     (let ((first-arg (car args)))
@@ -96,17 +97,20 @@
   (setq warning-minimum-level :error)
 
   ;; padding between windows
-  (modify-all-frames-parameters
-   '((right-divider-width . 20)
-     (internal-border-width . 20)))
-  (dolist (face '(window-divider
-                  window-divider-first-pixel
-                  window-divider-last-pixel
-		  ))
-    (face-spec-reset-face face)
-    (set-face-foreground face (face-attribute 'default :background)))
-  (set-face-background 'fringe (face-attribute 'default :background))
-  
+  (defun my/set-borders-and-padding ()
+    (interactive)
+    (modify-all-frames-parameters
+     '((right-divider-width . 20)
+       (internal-border-width . 20)))
+    (dolist (face '(window-divider
+                    window-divider-first-pixel
+                    window-divider-last-pixel
+		    ))
+      (face-spec-reset-face face)
+      (set-face-foreground face (face-attribute 'default :background)))
+    (set-face-background 'fringe (face-attribute 'default :background))
+    )
+  (my/set-borders-and-padding)
   :bind
   ;; My keybindings
   (("C-c k" . 'kill-current-buffer)

@@ -42,7 +42,13 @@
   (vertico-posframe-mode 1)
   (setq vertico-posframe-width (floor (* (frame-width) (- 1.0 (* 2.0 my/vertico-posframe-margin))))
 	;; vertico-posframe-height 7
+	vertico-posframe-border-width 20
 	vertico-posframe-poshandler #'my/vertico-posframe-poshandler)
+  (set-face-background 'vertico-posframe-border (face-attribute 'default :background))
+  (set-face-background 'vertico-posframe-border-2 (face-attribute 'default :background))
+  (set-face-background 'vertico-posframe-border-3 (face-attribute 'default :background))
+  (set-face-background 'vertico-posframe-border-4 (face-attribute 'default :background))
+  (set-face-background 'vertico-posframe-border-fallback (face-attribute 'default :background))
   )
 
 ;; Use consult to get auto-completion in vertico for async-shell-command and launch-app for my EXWM config
