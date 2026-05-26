@@ -37,6 +37,32 @@
   ;; Enable EXWM
   (exwm-wm-mode)
   (load-relative "./wm_key.el")
+
+  ;; support for multi-monitor (need to activate monitors with something like arandr)
+  ;; then run my/exwm-randr-update-workspaces
+  (require 'exwm-randr)
+  (exwm-randr-mode 1)
+  
+  (defun my/exwm-randr-update-workspaces ()
+    "automatically update exwm-randr-workspace-monitor-plist
+from active screens."
+    (interactive)
+    (let* ((monitors
+            (split-string
+             (shell-command-to-string
+              "xrandr --listactivemonitors | tail -n +2 | awk '{print $NF}'")
+             "\n" t))
+           (workspace 0)
+           (plist nil))
+      (dolist (monitor monitors)
+	(setq plist
+              (append plist
+                      (list workspace monitor)))
+	(setq workspace (1+ workspace)))
+      (setq exwm-randr-workspace-monitor-plist plist)
+      (message "EXWM RANDR updated : %S"
+               exwm-randr-workspace-monitor-plist)
+    (exwm-randr-refresh)))
   :hook
   ('exwm-update-class-hook . (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
   )
