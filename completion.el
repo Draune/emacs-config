@@ -51,6 +51,11 @@
   (set-face-background 'vertico-posframe-border-fallback (face-attribute 'default :background))
   )
 
+(use-package vertico-carousel
+    :after vertico
+    :config
+    (vertico-carousel-mode 1))
+
 ;; Use consult to get auto-completion in vertico for async-shell-command and launch-app for my EXWM config
 (use-package consult
   :config
