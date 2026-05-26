@@ -153,12 +153,11 @@
   (set-face-attribute 'header-line nil :box '(:line-width (1 . 5) :style flat-button))
   (mood-line-mode))
 
-(use-package all-the-icons
-  :if (display-graphic-p))
-
 (use-package all-the-icons-dired
   :hook
-  ('dired-mode-hook . #'all-the-icons-dired-mode))
+  ('dired-mode-hook . #'all-the-icons-dired-mode)
+  ('dired-mode-hook . #'dired-hide-details-mode)
+  )
 
 (use-package topspace
   :defer t
