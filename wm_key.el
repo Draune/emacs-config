@@ -159,3 +159,4 @@
 (keymap-set exwm-mode-map "C-_" (lambda () (interactive)
 				    (exwm-input--fake-key 'C-z)
 				    ))
+(keymap-set exwm-mode-map "C-x h" (lambda () (interactive) (exwm-input--fake-key 'C-a)))
