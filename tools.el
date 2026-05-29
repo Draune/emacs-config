@@ -74,3 +74,12 @@ if one already exists."
     (speed-type-continue nil file)
     )
   )
+
+(use-package multiple-cursors
+  :defer t
+  :commands
+  mc/mark-all-in-region
+  mc/edit-lines
+  :bind
+  ("C-c m m" . 'mc/mark-all-in-region)
+  ("C-c m e" . 'mc/edit-lines))
