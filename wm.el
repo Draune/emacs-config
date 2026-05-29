@@ -9,8 +9,31 @@
        (equal (my/emacs-parent-name) "startexwm")
        )
   :bind
-  ("C-c SPC" . 'my/consult-launch-app)
-  ("C-c r" . 'exwm-reset)	
+  (("C-c SPC" . 'my/consult-launch-app)
+   ("C-c r" . 'exwm-reset)	
+   ("s-&" . (lambda () (interactive) (exwm-workspace-switch-create 0)))
+   
+   ;; workspace change for french keyboard
+   ("s-é" . (lambda () (interactive) (exwm-workspace-switch-create 1)))
+   ("s-\"" . (lambda () (interactive) (exwm-workspace-switch-create 2)))
+   ("s-'" . (lambda () (interactive) (exwm-workspace-switch-create 3)))
+   ("s-(" . (lambda () (interactive) (exwm-workspace-switch-create 4)))
+   ("s--" . (lambda () (interactive) (exwm-workspace-switch-create 5)))
+   ("s-è" . (lambda () (interactive) (exwm-workspace-switch-create 6)))
+   ("s-_" . (lambda () (interactive) (exwm-workspace-switch-create 7)))
+   ("s-ç" . (lambda () (interactive) (exwm-workspace-switch-create 8)))
+   ("s-à" . (lambda () (interactive) (exwm-workspace-switch-create 9)))
+   :map exwm-mode-map
+   ("s-é" . (lambda () (interactive) (exwm-workspace-switch-create 1)))
+   ("s-\"" . (lambda () (interactive) (exwm-workspace-switch-create 2)))
+   ("s-'" . (lambda () (interactive) (exwm-workspace-switch-create 3)))
+   ("s-(" . (lambda () (interactive) (exwm-workspace-switch-create 4)))
+   ("s--" . (lambda () (interactive) (exwm-workspace-switch-create 5)))
+   ("s-è" . (lambda () (interactive) (exwm-workspace-switch-create 6)))
+   ("s-_" . (lambda () (interactive) (exwm-workspace-switch-create 7)))
+   ("s-ç" . (lambda () (interactive) (exwm-workspace-switch-create 8)))
+   ("s-à" . (lambda () (interactive) (exwm-workspace-switch-create 9)))
+   )
   :config
   (setq exwm-workspace-number 4
 	;; Special EXWM bindings
