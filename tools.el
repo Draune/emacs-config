@@ -83,3 +83,23 @@ if one already exists."
   :bind
   ("C-c m m" . 'mc/mark-all-in-region)
   ("C-c m e" . 'mc/edit-lines))
+
+(use-package languagetool
+  :defer t
+  :commands (languagetool-check
+             languagetool-clear-suggestions
+             languagetool-correct-at-point
+             languagetool-correct-buffer
+             languagetool-set-language
+             languagetool-server-mode
+             languagetool-server-start
+             languagetool-server-stop)
+  :config
+  (setq languagetool-java-arguments '("-Dfile.encoding=UTF-8")
+        languagetool-console-command "~/.languagetool/languagetool-commandline.jar"
+        languagetool-server-command "~/.languagetool/languagetool-server.jar")
+  :bind
+  ("C-c c c" . 'languagetool-check)
+  ("C-c c p" . 'languagetool-correct-at-point)
+  )
+
