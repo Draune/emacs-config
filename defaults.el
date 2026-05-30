@@ -111,6 +111,15 @@
     (set-face-background 'fringe (face-attribute 'default :background))
     )
   (my/set-borders-and-padding)
+
+  :hook
+  ((text-mode-hook
+    prog-mode-hook
+    latex-mode-hook
+    org-mode-hook
+    markdown-mode-hook)
+   . auto-fill-mode)
+  
   :bind
   ;; My keybindings
   (("C-c k" . 'kill-current-buffer)
