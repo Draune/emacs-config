@@ -154,9 +154,12 @@
   (mood-line-mode))
 
 (use-package all-the-icons-dired
+  :defer t
+  :commands
+  all-the-icons-dired-mode
   :hook
-  ('dired-mode-hook . #'all-the-icons-dired-mode)
-  ('dired-mode-hook . #'dired-hide-details-mode)
+  ('dired-mode . 'all-the-icons-dired-mode)
+  ('dired-mode . 'dired-hide-details-mode)
   )
 
 (use-package topspace
