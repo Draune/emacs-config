@@ -13,7 +13,13 @@
 
 (use-package lsp-bridge
   :config
-  (global-lsp-bridge-mode))
+  (global-lsp-bridge-mode)
+  (defun my/lsp-bridge-format-on-save ()
+    "This function add a local hook to lsp-bridge-code-format on before-save-hook"
+    (add-hook 'before-save-hook 'lsp-bridge-code-format 0 t))
+  :hook
+  ('lsp-bridge-mode-hook . 'my/lsp-bridge-format-on-save)
+  )
 
 ;; (use-package corfu
 ;;   :config
