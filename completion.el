@@ -62,6 +62,14 @@
   (marginalia-mode)
   )
 
+(use-package all-the-icons-completion
+  :after marginalia
+  :config
+  (all-the-icons-completion-mode)
+  (add-hook 'marginalia-mode-hook
+	    #'all-the-icons-completion-marginalia-setup)
+  )
+
 ;; Use consult to get auto-completion in vertico for async-shell-command and launch-app for my EXWM config
 (use-package consult
   :config
