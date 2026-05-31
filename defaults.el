@@ -111,6 +111,14 @@
     (set-face-background 'fringe (face-attribute 'default :background))
     )
   (my/set-borders-and-padding)
+  
+  (setq project-switch-commands
+      '((?f "Find file" project-find-file)
+        (?d "Dired" project-dired)
+        (?g "Grep" project-find-regexp)
+        (?b "Switch buffer" project-switch-to-buffer)
+	(?v "Vterm" project-vterm))
+      )
 
   :hook
   ((text-mode-hook
