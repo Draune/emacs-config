@@ -21,31 +21,6 @@
   ('lsp-bridge-mode-hook . 'my/lsp-bridge-format-on-save)
   )
 
-;; (use-package corfu
-;;   :config
-;;   (setq corfu-auto        t
-;; 	corfu-auto-delay  0 
-;; 	corfu-auto-prefix 1)
-;;   (global-corfu-mode)
-;; )
-
-;; (use-package lsp-mode
-;;   :defer t
-;;   :commands
-;;   lsp
-;;   :hook
-;;   ('prog-mode-hook . (lambda ()
-;; 		       (when (not (derived-mode-p 'emacs-lisp-mode))
-;; 			 (lsp))))
-;;   :config
-;;   (setq lsp-enable-snippet nil
-;; 	lsp-lens-enable nil
-;; 	lsp-modeline-diagnostics-enable nil
-;; 	lsp-modeline-code-actions-enable nil
-;; 	lsp-modeline-workspace-status-enable nil
-;; 	lsp-headerline-breadcrumb-enable nil)
-;;   )
-
 (use-package markdown-mode)
 
 (use-package markdown-toc
