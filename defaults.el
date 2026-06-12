@@ -122,7 +122,10 @@
 
   ;; so the kmacro repeats correctly when taping "e"
   (setq kmacro-call-repeat-key 101)
-
+  
+  ;; better pdf-resolution
+  (setq doc-view-resolution 300)
+  
   :hook
   ((text-mode-hook
     prog-mode-hook
