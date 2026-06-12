@@ -87,7 +87,13 @@ from active screens."
                exwm-randr-workspace-monitor-plist)
     (exwm-randr-refresh)))
   :hook
-  ('exwm-update-class-hook . (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
+  ('exwm-update-class-hook . (lambda () (exwm-workspace-rename-buffer
+					 exwm-class-name)))
+  ('exwxm-update-title-hook . (lambda ()
+				(when (not exwm-instance-name)
+				  (exwm-workspace-rename-buffer exwm-title))
+				))
+  ('my/exwm-randr-update-workspaces . my/set-borders-and-padding)
   )
       
 ;; Install lemon (system monitor in echo area)
