@@ -142,9 +142,10 @@
   ("M-n" . (lambda () (interactive) (next-line 10)))
   ("M-p" . (lambda () (interactive) (previous-line 10)))
   ("C-o" . (lambda () (interactive)
-		    (call-interactively 'move-beginning-of-line)
-		    (call-interactively 'open-line)
-		    (call-interactively 'indent-for-tab-command)))
+	     (call-interactively 'previous-line)
+	     (call-interactively 'move-end-of-line)
+	     (call-interactively 'newline)
+	     (call-interactively 'indent-for-tab-command)))
   ("M-a" . 'beginning-of-buffer)
   ("M-e" . 'end-of-buffer)
 
