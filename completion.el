@@ -6,7 +6,6 @@
   :hook
   ('after-init-hook . 'vertico-mode)
   :config
-  (setq vertico-count 6)
   )
 
 (use-package vertico-prescient
@@ -29,10 +28,6 @@
 (use-package vertico-posframe
   :after vertico
   :if (display-graphic-p)
-  ;; :hook
-  ;; ('window-size-change-functions
-  ;; . (lambda () () (setq vertico-posframe-width (floor (* (frame-width) (- 1.0 (* 2.0 my/vertico-posframe-margin))))))
-  ;; )
   :config
   (defcustom my/vertico-posframe-margin 0.01 "Percentage of the frame size, margin on the left and right of my vertico-posframe")
   (defcustom my/vertico-posframe-vertical-pos 0.55 "Relative position in the screen")
@@ -41,7 +36,6 @@
 	  (floor (* my/vertico-posframe-vertical-pos (plist-get info :parent-frame-height)))))
   (vertico-posframe-mode 1)
   (setq vertico-posframe-width (floor (* (frame-width) (- 1.0 (* 2.0 my/vertico-posframe-margin))))
-	;; vertico-posframe-height 7
 	vertico-posframe-border-width 20
 	vertico-posframe-poshandler #'my/vertico-posframe-poshandler)
   (set-face-background 'vertico-posframe-border (face-attribute 'default :background))
@@ -50,11 +44,6 @@
   (set-face-background 'vertico-posframe-border-4 (face-attribute 'default :background))
   (set-face-background 'vertico-posframe-border-fallback (face-attribute 'default :background))
   )
-
-(use-package vertico-carousel
-  :after vertico
-  :config
-  (vertico-carousel-mode 1))
 
 (use-package marginalia
   :after vertico
