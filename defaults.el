@@ -120,6 +120,9 @@
 	(?v "Vterm" project-vterm))
       )
 
+  ;; so the kmacro repeats correctly when taping "e"
+  (setq kmacro-call-repeat-key 101)
+
   :hook
   ((text-mode-hook
     prog-mode-hook
