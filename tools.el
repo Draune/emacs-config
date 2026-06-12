@@ -31,6 +31,9 @@
    ("C-e" . vterm-send-C-e)
    ("C-c i s" . (lambda () (interactive) (vterm-insert ">")))
    ("C-c i i" . (lambda () (interactive) (vterm-insert "<")))
+   ("C-SPC" . (lambda () (interactive) (vterm-insert ", ")))
+   ("C-c C-c" . (lambda () (interactive) (vterm-send "C-c")))
+   ("C-k" . (lambda () (interactive) (vterm-send "C-a") (vterm-send "C-k")))
    :map project-prefix-map
    ("v" . project-vterm))
   :commands
