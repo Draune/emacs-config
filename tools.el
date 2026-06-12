@@ -106,3 +106,9 @@ if one already exists."
   ("C-c c p" . 'languagetool-correct-at-point)
   )
 
+(use-package avy
+  :defer t
+  :commands
+  avy-goto-char
+  :bind
+  ("C-:" . avy-goto-char))
