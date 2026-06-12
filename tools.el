@@ -112,3 +112,13 @@ if one already exists."
   avy-goto-char
   :bind
   ("C-:" . avy-goto-char))
+
+(use-package ace-window
+  :defer t
+  :commands
+  ace-window
+  :bind
+  ("M-o" . ace-window)
+  :config
+  (setq aw-keys '(?s ?d ?f ?g ?h ?j ?k ?l))
+  )
