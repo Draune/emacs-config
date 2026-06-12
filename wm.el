@@ -121,6 +121,8 @@ from active screens."
 	)
   (custom-set-faces
    '(lemon-battery-low-face ((t (:inherit outline-3)))))
+  (set-face-foreground 'lemon-time-face nil) ; so it will be like
+					; default
   (lemon-mode 1)
   )
 
