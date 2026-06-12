@@ -178,32 +178,3 @@
   ('dired-mode . 'all-the-icons-dired-mode)
   ('dired-mode . 'dired-hide-details-mode)
   )
-
-(use-package topspace
-  :defer t
-  :autoload
-  global-topspace-mode
-  :config
-  (defun my/topspace-active-p ()
-    (not (memq major-mode '(vterm-mode org-mode))))
-  :custom
-  (topspace-active #'my/topspace-active-p)
-  :hook
-  ('after-init-hook . #'global-topspace-mode)
-  )
-
-(use-package centered-cursor-mode
-  :defer t
-  :autoload
-  global-centered-cursor-mode
-  :hook
-  ('after-init-hook . #'global-centered-cursor-mode)
-  :config
-  (setq ccm-recenter-at-end-of-file t)
-  :hook
-  ('vterm-mode-hook .
-		    (lambda ()                       
-		      (centered-cursor-mode -1)
-		      ))
-  )
-
