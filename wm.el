@@ -104,13 +104,32 @@ from active screens."
   (require 'lemon-cpu)
   (require 'lemon-memory)
   (require 'lemon-network)
-  (setq lemon-delay 0.2
-	lemon-update-interval 2
+  
+(defclass my/lemon-workspace-monitor (lemon-monitor)
+  ((index :initform "WS "
+	   :initarg :index)))
+
+(cl-defmethod lemon-monitor-fetch ((this my/lemon-workspace-monitor))
+  (format "[%d]" (+ 1 exwm-workspace-current-index)))
+
+(cl-defmethod lemon-monitor-display ((this my/lemon-workspace-monitor))
+  "Default display method for Lemon monitors."
+  (with-slots (display-opts) this
+    (let ((val (lemon-monitor-value this))
+          (index (or (plist-get display-opts :index) ""))
+          (unit (or (plist-get display-opts :unit) "")))
+      (concat index
+              (if (not (stringp val)) "N/A"
+                (format "%s%s" val unit))))))
+
+(setq lemon-delay 0.2
+      lemon-refresh-rate 1
 	;; to display graphics
 	lemon-sparkline-use-xpm 1
 	lemon-monitors
 	'(((lemon-time :display-opts '(:format " %d %b %H:%M  │ "))
 	   (lemon-battery)
+	   (my/lemon-workspace-monitor :display-opts '(:index " |  "))
 	   (lemon-cpu-linux :display-opts '(:sparkline (:type plain :width 200) :index " │  ")
 			    )
 	   (lemon-memory-linux :display-opts '(:sparkline (:type plain :width 200) :index " │  ")
