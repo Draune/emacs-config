@@ -9,6 +9,8 @@
 (dolist (path (file-expand-wildcards "~/.emacs.d/packages/*" t))
   (add-to-list 'load-path path))
 
+(delete-file "~/.emacs.d/wm.elc")
+
 (use-package compile-angel
   :config
   (setq load-prefer-newer t)
