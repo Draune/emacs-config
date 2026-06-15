@@ -38,3 +38,9 @@
   (which-key-add-key-based-replacements "C-c i i" "<")
   (which-key-add-key-based-replacements "C-c i s" ">")
   )
+
+(use-package which-key-posframe
+  :after which-key
+  :config
+  (setq which-key-posframe-poshandler 'posframe-poshandler-frame-bottom-center)
+  (which-key-posframe-mode))
