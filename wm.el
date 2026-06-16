@@ -93,7 +93,6 @@ from active screens."
 				(when (not exwm-instance-name)
 				  (exwm-workspace-rename-buffer exwm-title))
 				))
-  ('my/exwm-randr-update-workspaces . 'my/set-borders-and-padding)
   )
       
 ;; Install lemon (system monitor in echo area)

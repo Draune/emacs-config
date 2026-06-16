@@ -131,7 +131,7 @@
     org-mode-hook
     markdown-mode-hook)
    . auto-fill-mode)
-  
+  (after-init-hook . my/set-borders-and-padding)
   :bind
   ;; My keybindings
   (("C-c k" . 'kill-current-buffer)
