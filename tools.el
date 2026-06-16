@@ -121,4 +121,9 @@ if one already exists."
   ("M-o" . ace-window)
   :config
   (setq aw-keys '(?s ?d ?f ?g ?h ?j ?k ?l))
+  ;; to get it to be visible with EXWM buffers
+  (advice-add 'ace-window :before (lambda (&rest args)
+				    (ace-window-display-mode 1)))
+  (advice-add 'ace-window :after (lambda (&rest args)
+				    (ace-window-display-mode -1)))
   )
