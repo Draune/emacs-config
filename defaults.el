@@ -94,8 +94,6 @@
   
   (electric-pair-mode 1)
   
-  (setq warning-minimum-level :error)
-
   ;; padding between windows
   (defun my/set-borders-and-padding ()
     (interactive)

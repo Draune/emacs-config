@@ -93,7 +93,7 @@ from active screens."
 				(when (not exwm-instance-name)
 				  (exwm-workspace-rename-buffer exwm-title))
 				))
-  ('my/exwm-randr-update-workspaces . my/set-borders-and-padding)
+  ('my/exwm-randr-update-workspaces . 'my/set-borders-and-padding)
   )
       
 ;; Install lemon (system monitor in echo area)
@@ -110,8 +110,9 @@ from active screens."
 	   :initarg :index)))
 
 (cl-defmethod lemon-monitor-fetch ((this my/lemon-workspace-monitor))
-  (format "[%d]" (+ 1 exwm-workspace-current-index)))
-
+  (if (boundp 'exwm-workspace-current-index)
+      (format "[%d]" (1+ exwm-workspace-current-index))
+    "[?]"))
 (cl-defmethod lemon-monitor-display ((this my/lemon-workspace-monitor))
   "Default display method for Lemon monitors."
   (with-slots (display-opts) this
@@ -144,5 +145,6 @@ from active screens."
 					; default
   (lemon-mode 1)
   )
+
 
 
