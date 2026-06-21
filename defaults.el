@@ -13,27 +13,6 @@
   (setq display-line-numbers-type 'relative)
   ;; (global-display-line-numbers-mode)
 
-  (defun my/scratch-init () (interactive)
-	 (switch-to-buffer "*scratch*")
-	 (end-of-buffer)
-	 (if (f-exists? "~/.emacs-config/banner.txt")
-	     (insert (f-read "~/.emacs-config/banner.txt"))
-	   (if (f-exists? "~/.emacs.d/banner.txt")
-	       (insert (f-read "~/.emacs.d/banner.txt"))
-	     )
-	   )
-	 (insert "\n")
-	 (dolist (line (split-string (emacs-version) "\n" t " "))
-	   (insert (format ";; %s\n" line)))
-	 (insert (format ";; Init time: \t%s\n" (emacs-init-time)))
-	 (if (eq system-type 'gnu/linux)
-	     (insert (format ";; Started by: \t%s\n" (my/emacs-parent-name))))
-	 (insert (format ";; Started at: \t%s\n" (format-time-string "%T %a %d/%m/%Y")))
-	 (insert "\n")
-	 ;; (emacs-lisp-mode 1)
-	 )
-  (setq inhibit-startup-screen t)
-  (add-hook 'after-init-hook #'my/scratch-init)
   ;; Highlight the cursor line
   (global-hl-line-mode)
   ;; Disable cursor blinking
@@ -183,3 +162,10 @@
   ('dired-mode . 'all-the-icons-dired-mode)
   ('dired-mode . 'dired-hide-details-mode)
   )
+
+(use-package dashboard
+  :config
+  (setq dashboard-icon-type 'all-the-icons)
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (dashboard-setup-startup-hook))
