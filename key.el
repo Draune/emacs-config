@@ -8,7 +8,7 @@
 			      ;; repeatable keys for window and buffer management and find-file and dired
 			      ;; I went a little crazy here but since most of the time actions on buffers
 			      ;; and windows are followed by other commands like "C-n" I believe it's ok
-			      ;; ("%k c k" "%k x o" "%k x &" "%k x é" "%k x \"" "%k x à" "%k x %k f" "%k x d" "%k x b" "%k x 0" "%k x 1" "%k x 2" "%k x 3")
+			      ("%k c k" "%k x o" "%k x &" "%k x é" "%k x \"" "%k x à" "%k x %k f" "%k x d" "%k x b")
 			      ;; repeatable keys for movement M- keybindings
 			      ("%k %k n" "%k %k p" "%k %k f" "%k %k b"))
 	devil-translations '((", , ," . "C-M-")
