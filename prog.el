@@ -23,17 +23,6 @@
 
 (use-package markdown-mode)
 
-(use-package markdown-toc
-  :config 
-  (setq markdown-toc-preset 'pandoc)
-  (setq markdown-command "pandoc --from markdown_github -t html5 --mathjax --highlight-style pygments --standalone")
-  (setq markdown-toc-header-toc-title "**Sommaire**")
-  :hook
-  ;; Autogenerate and refresh TOC when saving a markdown file
-  ('markdown-mode-hook . (lambda ()
-			   (add-hook 'before-save-hook #'markdown-toc-generate-or-refresh-toc nil t)))
-  )
-
 (use-package git-gutter
   :hook (prog-mode . git-gutter-mode)
   :config

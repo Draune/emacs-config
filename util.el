@@ -9,6 +9,3 @@
   (string-trim
    (shell-command-to-string
     (format "ps -o comm= -p %s" (my/emacs-ppid)))))
-
-;; Install f (file library, used for the banner)
-(use-package f)
