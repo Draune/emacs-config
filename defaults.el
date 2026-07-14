@@ -137,6 +137,9 @@
                             digit))))
   (universal-argument--mode))
   
+  (defun my/interactive-kill-new (text) (interactive "s")
+	 (kill-new text))
+  
   :hook
   ((text-mode-hook
     prog-mode-hook
@@ -169,6 +172,8 @@
   ("C-c i i" . (lambda () (interactive) (insert "<")))
   ("C-c i s" . (lambda () (interactive) (insert ">")))
   ("C-c r" . 'replace-string)
+  
+  ("M-k" . 'my/interactive-kill-new)
   
   ("C-&" . 'my/french-digit-argument)
   ("C-é" . 'my/french-digit-argument)
