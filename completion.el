@@ -1,23 +1,8 @@
-;; Vertico config
-(use-package vertico
-  :defer t
-  :autoload
-  vertico-mode
-  :hook
-  ('after-init-hook . 'vertico-mode)
-  :config
-  )
-
-(use-package vertico-prescient
-  :after vertico
-  :config
-  (vertico-prescient-mode)
-  (prescient-persist-mode)
-  )
+(fido-vertical-mode 1)
+(bind-key "TAB" 'icomplete-fido-ret 'icomplete-fido-mode-map)
 
 ;; Install orderless (config from vertico's github
 (use-package orderless
-  :after vertico
   :config
   (setq completion-styles '(orderless basic)
 	completion-category-overrides '((file (styles partial-completion)))
@@ -25,38 +10,9 @@
 	completion-pcm-leading-wildcard t) ;; Emacs 31: partial-completion behaves like substring
   )
 
-(use-package vertico-posframe
-  :after vertico
-  :if (display-graphic-p)
-  :config
-  (defcustom my/vertico-posframe-margin 0.01 "Percentage of the frame size, margin on the left and right of my vertico-posframe")
-  (defcustom my/vertico-posframe-vertical-pos 0.55 "Relative position in the screen")
-  (defun my/vertico-posframe-poshandler (info)
-    (cons (floor (* my/vertico-posframe-margin (plist-get info :parent-frame-width)))
-	  (floor (* my/vertico-posframe-vertical-pos (plist-get info :parent-frame-height)))))
-  (vertico-posframe-mode 1)
-  (setq vertico-posframe-width (floor (* (frame-width) (- 1.0 (* 2.0 my/vertico-posframe-margin))))
-	vertico-posframe-border-width 20
-	vertico-posframe-poshandler #'my/vertico-posframe-poshandler)
-  (set-face-background 'vertico-posframe-border (face-attribute 'default :background))
-  (set-face-background 'vertico-posframe-border-2 (face-attribute 'default :background))
-  (set-face-background 'vertico-posframe-border-3 (face-attribute 'default :background))
-  (set-face-background 'vertico-posframe-border-4 (face-attribute 'default :background))
-  (set-face-background 'vertico-posframe-border-fallback (face-attribute 'default :background))
-  )
-
 (use-package marginalia
-  :after vertico
   :config
   (marginalia-mode)
-  )
-
-(use-package all-the-icons-completion
-  :after marginalia
-  :config
-  (all-the-icons-completion-mode)
-  (add-hook 'marginalia-mode-hook
-	    #'all-the-icons-completion-marginalia-setup)
   )
 
 ;; Use consult to get auto-completion in vertico for async-shell-command and launch-app for my EXWM config

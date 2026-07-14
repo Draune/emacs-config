@@ -11,9 +11,9 @@
   :bind
   (("C-c SPC" . 'my/consult-launch-app)
    ("C-c r" . 'exwm-reset)	
-   ("s-&" . (lambda () (interactive) (exwm-workspace-switch-create 0)))
    
    ;; workspace change for french keyboard
+   ("s-&" . (lambda () (interactive) (exwm-workspace-switch-create 0)))
    ("s-é" . (lambda () (interactive) (exwm-workspace-switch-create 1)))
    ("s-\"" . (lambda () (interactive) (exwm-workspace-switch-create 2)))
    ("s-'" . (lambda () (interactive) (exwm-workspace-switch-create 3)))
@@ -24,6 +24,7 @@
    ("s-ç" . (lambda () (interactive) (exwm-workspace-switch-create 8)))
    ("s-à" . (lambda () (interactive) (exwm-workspace-switch-create 9)))
    :map exwm-mode-map
+   ("s-&" . (lambda () (interactive) (exwm-workspace-switch-create 0)))
    ("s-é" . (lambda () (interactive) (exwm-workspace-switch-create 1)))
    ("s-\"" . (lambda () (interactive) (exwm-workspace-switch-create 2)))
    ("s-'" . (lambda () (interactive) (exwm-workspace-switch-create 3)))
@@ -129,7 +130,7 @@ from active screens."
 	lemon-monitors
 	'(((lemon-time :display-opts '(:format " %d %b %H:%M  │ "))
 	   (lemon-battery)
-	   (my/lemon-workspace-monitor :display-opts '(:index " |  "))
+	   (my/lemon-workspace-monitor :display-opts '(:index " │  "))
 	   (lemon-cpu-linux :display-opts '(:sparkline (:type plain :width 200) :index " │  ")
 			    )
 	   (lemon-memory-linux :display-opts '(:sparkline (:type plain :width 200) :index " │  ")

@@ -9,3 +9,8 @@ tramp
 url
 *~
 *.elc
+.*
+auto-saves
+image-dired
+var
+history

@@ -72,38 +72,17 @@
 				  ))
 (keymap-set exwm-mode-map "M-v" (lambda () (interactive) (exwm-input--fake-key 'prior)))
 (keymap-set exwm-mode-map "C-v" (lambda () (interactive) (exwm-input--fake-key 'next)))
-;; kill-ring
-(if (executable-find "xclip")
-    (progn      
-	(defun my/exwm-kill-ring-save () (interactive)
-	       (let ((clip (shell-command-to-string "xclip -o")))
-		 (when (and clip
-			    (not (member clip kill-ring))) ;; dodge doubles
-		   (kill-new clip)
-		   )))
-	(keymap-set exwm-mode-map "C-k" (lambda () (interactive) (exwm-input--fake-key 'home)
-					  (exwm-input--fake-key 'S-end)
-					  (my/exwm-kill-ring-save)
-					  (exwm-input--fake-key 'delete)))
-	(keymap-set exwm-mode-map "C-w" (lambda () (interactive) (my/exwm-kill-ring-save)
-					  (exwm-input--fake-key 'delete)
-					  (my/exwm-mark-off)))
-	(keymap-set exwm-mode-map "M-w" (lambda () (interactive) (my/exwm-kill-ring-save)
-					  (my/exwm-mark-off)
-					  ))
-		    )
-  ;; else
-      (progn      
-	(keymap-set exwm-mode-map "C-k" (lambda () (interactive) (exwm-input--fake-key 'home)
-					  (exwm-input--fake-key 'S-end)
-					  (exwm-input--fake-key 'C-x)))
-	(keymap-set exwm-mode-map "C-w" (lambda () (interactive) (exwm-input--fake-key 'C-x)
-					  (my/exwm-mark-off)
-					  ))
-	(keymap-set exwm-mode-map "M-w" (lambda () (interactive) (exwm-input--fake-key 'C-c)
-					  (my/exwm-mark-off)
-					  ))
-	))
+
+(keymap-set exwm-mode-map "C-k" (lambda () (interactive) (exwm-input--fake-key 'home)
+				  (exwm-input--fake-key 'S-end)
+				  (exwm-input--fake-key 'C-x)))
+(keymap-set exwm-mode-map "C-w" (lambda () (interactive) (exwm-input--fake-key 'C-x)
+				  (my/exwm-mark-off)
+				  ))
+(keymap-set exwm-mode-map "M-w" (lambda () (interactive) (exwm-input--fake-key 'C-c)
+				  (my/exwm-mark-off)
+				  ))
+
 (keymap-set exwm-mode-map "C-y" (lambda () (interactive) (exwm-input--fake-key 'C-v)))
 (defun my/exwm-paste-string (str)
   (kill-new str)
@@ -126,25 +105,6 @@
 ;; insert
 (keymap-set exwm-mode-map "C-c i i" (lambda () (interactive) (exwm-input--fake-key '<)))
 (keymap-set exwm-mode-map "C-c i s" (lambda () (interactive) (exwm-input--fake-key '>)))
-;; replace-string
-(if (executable-find "xclip")
-    (progn      
-      (defun my/exwm-replace-string () (interactive)
-	     (if my/exwm-mark
-		 (let ((from-string (read-from-minibuffer
-				     "Replace string: ")))
-		   (let ((to-string (read-from-minibuffer
-				     (format "Replace string %s with : " from-string))))
-		     (my/exwm-paste-string
-		      (string-replace from-string to-string
-				      (shell-command-to-string "xclip -o")))
-		     ))
-	       ;; else
-	       (message "No text selected...")
-	       )
-	     )
-      (keymap-set exwm-mode-map "M-r" 'my/exwm-replace-string)
-      ))
 
 (keymap-set exwm-mode-map "C-SPC" (lambda () (interactive)
 				    (exwm-input--fake-key '\,)		      
@@ -156,7 +116,7 @@
 (keymap-set exwm-mode-map "C-x C-s" (lambda () (interactive)
 				    (exwm-input--fake-key 'C-s)
 				    ))
-(keymap-set exwm-mode-map "C-_" (lambda () (interactive)
+(keymap-set exwm-mode-map "C-x u" (lambda () (interactive)
 				    (exwm-input--fake-key 'C-z)
 				    ))
 (keymap-set exwm-mode-map "C-x h" (lambda () (interactive) (exwm-input--fake-key 'C-a)))

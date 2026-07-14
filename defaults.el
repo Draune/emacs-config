@@ -7,10 +7,9 @@
     (scroll-bar-mode -1)
     (tool-bar-mode -1)
     )
-  ;; Enable global-visual-line-mode (words aren't cut in half at the end of line)
-  (global-visual-line-mode)
 
-  (setq display-line-numbers-type 'relative)
+  (setq inhibit-startup-screen 1)
+  
   ;; (global-display-line-numbers-mode)
 
   ;; Highlight the cursor line
@@ -77,8 +76,9 @@
   (defun my/set-borders-and-padding ()
     (interactive)
     (modify-all-frames-parameters
-     '((right-divider-width . 20)
-       (internal-border-width . 20)))
+     '((right-divider-width . 1)
+       ;; (internal-border-width . 20)
+       ))
     (dolist (face '(window-divider
                     window-divider-first-pixel
                     window-divider-last-pixel
@@ -102,6 +102,40 @@
   
   ;; better pdf-resolution
   (setq doc-view-resolution 300)
+
+  (setopt display-fill-column-indicator-character ?'
+	fill-column 80)
+  (global-display-fill-column-indicator-mode 1)
+
+  (defun my/french-digit-argument (arg)
+  "Part of the numeric argument for the next command.
+\\[universal-argument] following digits or minus sign ends the argument."
+  (interactive "P")
+  (prefix-command-preserve-state)
+  (let* ((char (if (integerp last-command-event)
+		   last-command-event
+		 (get last-command-event 'ascii-character)))
+	 (digit (pcase char
+		  (?à 0)
+		  (?& 1)
+		  (?é 2)
+		  (?\" 3)
+		  (?\' 4)
+		  (?\( 5)
+		  (?- 6)
+		  (?è 7)
+		  (?_ 8)
+		  (?ç 9)
+		  )))
+    (setq prefix-arg (cond ((integerp arg)
+                            (+ (* arg 10)
+			       (if (< arg 0) (- digit) digit)))
+                           ((eq arg '-)
+                            ;; Treat -0 as just -, so that -01 will work.
+                            (if (zerop digit) '- (- digit)))
+                           (t
+                            digit))))
+  (universal-argument--mode))
   
   :hook
   ((text-mode-hook
@@ -110,7 +144,6 @@
     org-mode-hook
     markdown-mode-hook)
    . auto-fill-mode)
-  (after-init-hook . my/set-borders-and-padding)
   :bind
   ;; My keybindings
   (("C-c k" . 'kill-current-buffer)
@@ -136,36 +169,34 @@
   ("C-c i i" . (lambda () (interactive) (insert "<")))
   ("C-c i s" . (lambda () (interactive) (insert ">")))
   ("C-c r" . 'replace-string)
+  
+  ("C-&" . 'my/french-digit-argument)
+  ("C-é" . 'my/french-digit-argument)
+  ("C-\"" . 'my/french-digit-argument)
+  ("C-'" . 'my/french-digit-argument)
+  ("C-(" . 'my/french-digit-argument)
+  ("C--" . 'my/french-digit-argument)
+  ("C-è" . 'my/french-digit-argument)
+  ("C-_" . 'my/french-digit-argument)
+  ("C-ç" . 'my/french-digit-argument)
+  ("C-à" . 'my/french-digit-argument)
+  :map universal-argument-map
+  ("&" . 'my/french-digit-argument)
+  ("é" . 'my/french-digit-argument)
+  ("\"" . 'my/french-digit-argument)
+  ("'" . 'my/french-digit-argument)
+  ("(" . 'my/french-digit-argument)
+  ("-" . 'my/french-digit-argument)
+  ("è" . 'my/french-digit-argument)
+  ("_" . 'my/french-digit-argument)
+  ("ç" . 'my/french-digit-argument)
+  ("à" . 'my/french-digit-argument)
+
   ;; Use M-p and M-n for the command history when using M-&
   ;; Already binded but (I don't really know why) if I don't declare it
   ;; there is a bug when repeated
   :map minibuffer-local-shell-command-map
   ("M-p" . 'previous-line-or-history-element)
   ("M-n" . 'next-line-or-history-element))
+  ("C-x C-b" . 'ibuffer)
   )
-
-(use-package mood-line
-  :config
-  (setq mood-line-glyph-alist mood-line-glyphs-fira-code)
-  (set-face-attribute 'mode-line nil :box '(:line-width (1 . 5) :style flat-button))
-  (set-face-attribute 'mode-line-active nil :box '(:line-width (1 . 5) :style flat-button))
-  (set-face-attribute 'mode-line-inactive nil :box '(:line-width (1 . 5) :style flat-button))
-  ;; I place modif of header-line face here because I set it to the same as the mode-line
-  (set-face-attribute 'header-line nil :box '(:line-width (1 . 5) :style flat-button))
-  (mood-line-mode))
-
-(use-package all-the-icons-dired
-  :defer t
-  :commands
-  all-the-icons-dired-mode
-  :hook
-  ('dired-mode . 'all-the-icons-dired-mode)
-  ('dired-mode . 'dired-hide-details-mode)
-  )
-
-(use-package dashboard
-  :config
-  (setq dashboard-icon-type 'all-the-icons)
-  (setq dashboard-set-heading-icons t)
-  (setq dashboard-set-file-icons t)
-  (dashboard-setup-startup-hook))

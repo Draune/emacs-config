@@ -9,15 +9,6 @@
 (dolist (path (file-expand-wildcards "~/.emacs.d/packages/*" t))
   (add-to-list 'load-path path))
 
-(use-package compile-angel
-  :config
-  (setq load-prefer-newer t)
-  (push "/init.el" compile-angel-excluded-files)
-  (push "/lemon-battery.el" compile-angel-excluded-files)
-  (push "/lsp-bridge.el" compile-angel-excluded-files)
-  (compile-angel-on-load-mode 1)
-  )
-
 (use-package load-relative)
 ;; load configs
 ;; Utilities functions
