@@ -14,3 +14,6 @@ auto-saves
 image-dired
 var
 history
+*.gz
+custom.el
+theme.el
