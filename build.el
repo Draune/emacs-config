@@ -28,7 +28,7 @@
   (delete-directory "~/.emacs.d/config-build/.git" t)
   (delete-file "~/.emacs.d/config-build/.gitignore")
   
-  (shell-command "tar -czf config-build.tar.gz ~/.emacs.d/config-build/")
+  (shell-command "tar -C ~/.emacs.d/ -czf config-build.tar.gz config-build/")
   
   (kill-emacs)
   )

@@ -1,0 +1,72 @@
+* Intro
+
+This is my first configuration from scratch. I wanted to understand how to do
+Elisp and get something that I can modify to my likings. 
+
+I want to keep my configuration the simpliest as I can, I don't search to
+optimize it, just to keep an sane amount of packages (the fact to see over 150
+packages in Centaur or Doom was a little overwhelming). 
+
+* Install
+
+This config needs to be placed in =~/.emacs.d= and does not require an online
+connection if you download the release. 
+
+EXWM will be used automatically when Emacs is launched by one of these programs:
+
+- =sddm= and =ly= (using the desktop file from =startexwm=)
+- =xinit= (when using =.xinit= file with the =startx= command)
+- =xephyr-exwm= and =startexwm= (from my repositories with the same name)
+- the EXWM launcher from the NixOS configuration
+
+* Build offline configuration
+
+Running the following command will produce the config archive with everything in
+it (=config-build.tar.gz=):
+
+#+begin_src shell
+export EMACS_BUILD_CONFIG=1 && emacs
+#+end_src
+
+* Looks
+
+I will not place screenshots since my layout is pretty much just Emacs with the
+lemon system monitor and without the ugly GUI elements from
+default Emacs. To load a theme I place a =theme.el= file that will be
+automatically loaded when present.
+
+* French keyboard bindings
+
+In this configuration I use keybindings like "C-x é" because I use a french
+keyboard and to enter number keys I need to hold shift so to split the windows I
+would need to do "C-x S-é" that send "C-x 2". I use them mostly for window
+management and universal arguments.
+
+* Devil to save pinkies
+
+I use Devil key bindings that I find very fun to use, and had replaced ", m" by
+", ," for "M-" because I think it is simplier to double tap the coma than to
+reach the "m" key or than to use a different key for Meta (like using
+";"). Devil works great for me since on a french keyboard the coma is below the
+index resting place when touchtyping.
+
+* Additional programs for full experience
+
+The configuration will work perfectly fine even without these programs.
+
+** For EXWM configuration
+
+- =maim=: screenshot utility (taping on =<print>= will make a cursor appear and
+  you will be prompted for destination after the selection)
+- =xrandr=: to manage brightness (should be present if you have =x11=)
+- =i3lock=: to lock the screen (will lock with a screenshot of the screen)
+- =wpctl=: sound volume control (should be present with =pipewire=)
+- =feh=: if you want a background with transparency (wallpaper in
+  =~/.wallpaper.jpg= and you will need a compositor like =picom=)
+
+** Other
+
+- =languagetool=: for spell checking (needs to be installed in
+  =~/.languagetool/=)
+- LSP servers compatible with =eglot=, I run it with the command and I use
+  =fido-vertical-mode= for the completion at point

@@ -15,5 +15,6 @@ image-dired
 var
 history
 *.gz
+config-build
 custom.el
 theme.el
