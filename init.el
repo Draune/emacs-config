@@ -5,24 +5,21 @@
 
 (require 'use-package)
 
-;; load packages
-(dolist (path (file-expand-wildcards "~/.emacs.d/packages/*" t))
-  (add-to-list 'load-path path))
-
-(use-package load-relative)
 ;; load configs
+;; To create offline config
+(load "~/.emacs.d/build.el")
 ;; Utilities functions
-(load-relative "./util.el")
+(load "~/.emacs.d/util.el")
 ;; Tools
-(load-relative "./tools.el")
+(load "~/.emacs.d/tools.el")
 ;; Better defaults
-(load-relative "./defaults.el")
+(load "~/.emacs.d/defaults.el")
 ;; exwm and lemon configs (will only be load if Emacs was launched by xinit), it needs to be loaded at the end
-(load-relative "./wm.el")
+(load "~/.emacs.d/wm.el")
 ;; Key bindings (at the end for the which-key setup)
-(load-relative "./key.el")
+(load "~/.emacs.d/key.el")
 ;; LSP, corfu, etc.
-(load-relative "./prog.el")
-(load-relative "./org.el")
-(load-relative "./reverse.el")
-(load-relative "./completion.el")
+(load "~/.emacs.d/prog.el")
+(load "~/.emacs.d/org.el")
+(load "~/.emacs.d/reverse.el")
+(load "~/.emacs.d/completion.el")

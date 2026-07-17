@@ -1,8 +1,0 @@
-{
-  "name": "dexter",
-  "languageId": "elixir",
-  "command": ["dexter", "lsp"],
-  "support-single-file": false,
-  "projectFiles": ["mix.exs"],
-  "settings": {}
-}

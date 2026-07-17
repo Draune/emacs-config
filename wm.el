@@ -59,10 +59,10 @@
       ;; To use devil when working with X windows (like ", x o")
   (push ?, exwm-input-prefix-keys)
   ;; Utilities
-  (load-relative "./wm_util.el")
+  (load "~/.emacs.d/wm_util.el")
   ;; Enable EXWM
   (exwm-wm-mode)
-  (load-relative "./wm_key.el")
+  (load "~/.emacs.d/wm_key.el")
 
   ;; support for multi-monitor (need to activate monitors with something like arandr)
   ;; then run my/exwm-randr-update-workspaces

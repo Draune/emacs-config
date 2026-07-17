@@ -1,21 +1,15 @@
 (fido-vertical-mode 1)
-(bind-key "TAB" 'icomplete-fido-ret 'icomplete-fido-mode-map)
+(bind-key [tab] 'icomplete-fido-ret 'icomplete-fido-mode-map)
 
-;; Install orderless (config from vertico's github
-(use-package orderless
-  :config
-  (setq completion-styles '(orderless basic)
-	completion-category-overrides '((file (styles partial-completion)))
-	completion-category-defaults nil ;; Disable defaults, use our settings
-	completion-pcm-leading-wildcard t) ;; Emacs 31: partial-completion behaves like substring
-  )
+(setq completion-styles '(basic substring flex))
 
 (use-package marginalia
   :config
   (marginalia-mode)
   )
 
-;; Use consult to get auto-completion in vertico for async-shell-command and launch-app for my EXWM config
+;; Use consult to get auto-completion in vertico for async-shell-command and
+;; launch-app for my EXWM config
 (use-package consult
   :config
   (setq consult-fd-args (append consult-fd-args '("--hidden"))

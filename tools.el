@@ -22,15 +22,6 @@
     )
   )
 
-(use-package multiple-cursors
-  :defer t
-  :commands
-  mc/mark-all-in-region
-  mc/edit-lines
-  :bind
-  ("C-c m m" . 'mc/mark-all-in-region)
-  ("C-c m e" . 'mc/edit-lines))
-
 (use-package languagetool
   :defer t
   :commands (languagetool-check
@@ -48,26 +39,4 @@
   :bind
   ("C-c c c" . 'languagetool-check)
   ("C-c c p" . 'languagetool-correct-at-point)
-  )
-
-(use-package avy
-  :defer t
-  :commands
-  avy-goto-char
-  :bind
-  ("C-:" . avy-goto-char))
-
-(use-package ace-window
-  :defer t
-  :commands
-  ace-window
-  :bind
-  ("M-o" . ace-window)
-  :config
-  (setq aw-keys '(?s ?d ?f ?g ?h ?j ?k ?l))
-  ;; to get it to be visible with EXWM buffers
-  (advice-add 'ace-window :before (lambda (&rest args)
-				    (ace-window-display-mode 1)))
-  (advice-add 'ace-window :after (lambda (&rest args)
-				    (ace-window-display-mode -1)))
   )

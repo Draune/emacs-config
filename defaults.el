@@ -1,4 +1,5 @@
-;; Here is all the configs directly linked to configuring emacs defaults (and the theme)
+;; Here is all the configs directly linked to configuring emacs defaults (and
+;; the theme)
 (use-package emacs
   :init
   ;; Disable bad GUI from Emacs
@@ -39,7 +40,7 @@
     (add-to-list 'exec-path my-path))
 
   (if (file-exists-p "~/.emacs.d/theme.el")
-      (load-relative "theme.el"))
+      (load "~/.emacs.d/theme.el"))
 
   (setq use-short-answers t)
   (setq enable-recursive-minibuffers t)
@@ -89,14 +90,6 @@
     )
   (my/set-borders-and-padding)
   
-  (setq project-switch-commands
-      '((?f "Find file" project-find-file)
-        (?d "Dired" project-dired)
-        (?g "Grep" project-find-regexp)
-        (?b "Switch buffer" project-switch-to-buffer)
-	(?v "Vterm" project-vterm))
-      )
-
   ;; so the kmacro repeats correctly when taping "e"
   (setq kmacro-call-repeat-key 101)
   
@@ -139,6 +132,14 @@
   
   (defun my/interactive-kill-new (text) (interactive "s")
 	 (kill-new text))
+
+  ;; to get human-readable size in dired
+  (setq dired-listing-switches "-alFh")
+  
+  ;; trick so TAB and C-i can have different keybindings
+  (define-key function-key-map [tab] nil)
+  (bind-key "C-i" 'completion-at-point)
+  (global-set-key [tab] 'indent-for-tab-command)
   
   :hook
   ((text-mode-hook
@@ -161,9 +162,8 @@
   ("M-n" . (lambda () (interactive) (next-line 10)))
   ("M-p" . (lambda () (interactive) (previous-line 10)))
   ("C-o" . (lambda () (interactive)
-	     (call-interactively 'previous-line)
-	     (call-interactively 'move-end-of-line)
-	     (call-interactively 'newline)
+	     (call-interactively 'move-beginning-of-line)
+	     (call-interactively 'open-line)
 	     (call-interactively 'indent-for-tab-command)))
   ("M-a" . 'beginning-of-buffer)
   ("M-e" . 'end-of-buffer)
@@ -185,6 +185,9 @@
   ("C-_" . 'my/french-digit-argument)
   ("C-ç" . 'my/french-digit-argument)
   ("C-à" . 'my/french-digit-argument)
+  
+  ("C-x C-b" . 'ibuffer)
+  
   :map universal-argument-map
   ("&" . 'my/french-digit-argument)
   ("é" . 'my/french-digit-argument)
