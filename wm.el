@@ -89,13 +89,6 @@ from active screens."
       (message "EXWM RANDR updated : %S"
                exwm-randr-workspace-monitor-plist)
     (exwm-randr-refresh)))
-  :hook
-  ('exwm-update-class-hook . (lambda () (exwm-workspace-rename-buffer
-					 exwm-class-name)))
-  ('exwxm-update-title-hook . (lambda ()
-				(when (not exwm-instance-name)
-				  (exwm-workspace-rename-buffer exwm-title))
-				))
   )
       
 ;; Install lemon (system monitor in echo area)
