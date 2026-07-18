@@ -91,11 +91,7 @@
   )
 (defun my/exwm-yank-pop ()
   (interactive)
-  (let ((str (consult--read
-                kill-ring
-                :prompt "Yank from kill-ring: "
-                :sort nil
-                :require-match t)))
+  (let ((str (read-from-kill-ring "Yank from kill-ring: ")))
     (my/exwm-paste-string str)
     ))
 (keymap-set exwm-mode-map "M-y" (lambda () (interactive) (my/exwm-yank-pop)))

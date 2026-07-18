@@ -9,7 +9,7 @@
        (equal (my/emacs-parent-name) "startexwm")
        )
   :bind
-  (("C-c SPC" . 'my/consult-launch-app)
+  (("C-c SPC" . 'my/launch-app)
    ("C-c r" . 'exwm-reset)	
    
    ;; workspace change for french keyboard
@@ -40,23 +40,35 @@
 	;; Special EXWM bindings
 	exwm-input-global-keys	'(
 				  ([?\C-q] . exwm-input-send-next-key)
-				  ([?\s- ] . my/consult-launch-app)
+				  ([?\s- ] . my/launch-app)
 				  )
 	)
   ;; Make class name the buffer name.
   (add-hook 'exwm-update-class-hook
 	    (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
+  
+  ;; to get completion list when launching a program
+  (defun my/update-exec-list () (interactive)
+	 (setq my/exec-list nil)
+	 (dolist (dir exec-path)
+	   (when (file-directory-p dir)
+	     (let ((files (directory-files dir t)))
+	       (dolist (file files)
+		 (when (file-executable-p file)
+		   (setq-local file-name (file-name-nondirectory file))
+		   (if (not (or (equal file-name ".") (equal file-name ".")))
+		       (push  file-name my/exec-list)))))))
+	 )
+  (my/update-exec-list)
+
   ;; Lauch app
-  (defun my/consult-launch-app ()
-    "Consult launch app for EXWM"
+  (defun my/launch-app ()
+    "Launch app for EXWM"
     (interactive)
-    (let ((command (consult--read
-		    my/exec-list
-		    :prompt "Launch App: "
-		    :history 'shell-command-history
-		    :category 'command)))
-      (start-process-shell-command command nil command)))
-      ;; To use devil when working with X windows (like ", x o")
+    (let ((cmd (completing-read "Launch: " my/exec-list)))
+      (start-process-shell-command cmd nil cmd)))
+
+  ;; To use devil when working with X windows (like ", x o")
   (push ?, exwm-input-prefix-keys)
   ;; Utilities
   (load "~/.emacs.d/wm_util.el")

@@ -12,7 +12,6 @@
   (dolist (pkg-info
 	   '((compat nil) 		; to install compat-31 because of
 					; problems with exwm and marginalia
-	     (consult nil)
 	     ("https://github.com/fbrosda/devil.git" "which-key-support")
 	     (exwm nil)
 	     (git-gutter-fringe nil)
