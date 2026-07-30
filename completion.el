@@ -27,6 +27,11 @@
   consult-completion-in-region
   :config
   (setq completion-in-region-function #'consult-completion-in-region)
+  ;; line to get completion-at-point and indentation when pressing TAB or C-i
+  (advice-add 'indent-for-tab-command
+	      :after
+	      (lambda (&rest args)
+		(call-interactively 'completion-at-point)))
   )
 
 (use-package marginalia

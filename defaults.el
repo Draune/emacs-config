@@ -136,11 +136,6 @@
   ;; to get human-readable size in dired
   (setq dired-listing-switches "-alFh")
   
-  ;; trick so TAB and C-i can have different keybindings
-  ;; (define-key function-key-map [tab] nil)
-  ;; (bind-key "C-i" 'completion-at-point)
-  ;; (global-set-key [tab] 'indent-for-tab-command)
-  
   :hook
   ((text-mode-hook
     prog-mode-hook
