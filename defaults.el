@@ -136,6 +136,8 @@
   ;; to get human-readable size in dired
   (setq dired-listing-switches "-alFh")
   
+  (setq project-vc-extra-root-markers '(".project" ".project.el" ".projectile"))
+  
   :hook
   ((text-mode-hook
     prog-mode-hook
