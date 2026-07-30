@@ -137,9 +137,9 @@
   (setq dired-listing-switches "-alFh")
   
   ;; trick so TAB and C-i can have different keybindings
-  (define-key function-key-map [tab] nil)
-  (bind-key "C-i" 'completion-at-point)
-  (global-set-key [tab] 'indent-for-tab-command)
+  ;; (define-key function-key-map [tab] nil)
+  ;; (bind-key "C-i" 'completion-at-point)
+  ;; (global-set-key [tab] 'indent-for-tab-command)
   
   :hook
   ((text-mode-hook
