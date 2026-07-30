@@ -23,7 +23,13 @@
   ;; Make the document title a bit bigger
   (set-face-attribute 'org-document-title nil :weight
 		      'bold :height 1.8)
+  (setq org-agenda-start-on-weekday nil)
 
+  (setq org-todo-keywords
+	'((sequence "TODO(t)" "FEEDBACK(f)" "|" "DONE(d)" "DELEGATED(z)")
+	  (sequence "UNKNOWN(u)" "MAYBE(m)" "|" "VERIFIED(v)")
+	  (sequence "|" "CANCELED(c)")))
+  
   :bind
   ("C-c a" . (lambda () (interactive) (org-agenda nil "n")))
   ("C-c l s" . 'org-store-link)
