@@ -79,3 +79,9 @@ if one already exists."
         (pop-to-buffer vterm-buffer (bound-and-true-p display-comint-buffer-action))
       (vterm current-prefix-arg))))
   )
+
+(use-package pdftotext
+  :defer
+  :commands
+  pdftotext-mode
+  )
