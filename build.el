@@ -21,6 +21,7 @@
 	     ("https://codeberg.org/emacs-weirdware/lemon.git" nil)
 	     (marginalia nil)
 	     (speed-type nil))
+	     (vterm nil))
 	   )
     (package-vc-install (pop pkg-info) (pop pkg-info))
     )
