@@ -78,6 +78,7 @@ if one already exists."
     (if (and vterm-buffer (not current-prefix-arg))
         (pop-to-buffer vterm-buffer (bound-and-true-p display-comint-buffer-action))
       (vterm current-prefix-arg))))
+  (add-to-list 'project-switch-commands '(project-vterm "Vterm"))
   )
 
 (use-package pdftotext
