@@ -48,6 +48,7 @@
 	       (setq default-directory my/org-default-note-dir) 
 	       )
 
+  (require 'project)
   (defun project-org-agenda ()
     "Start org-agenda with the project directory as org-agenda-files."
     (interactive)
@@ -92,6 +93,7 @@
    :map project-prefix-map
    ("n" . project-denote))
   :config
+  (setq denote-known-keywords '())
   (setq denote-directory (expand-file-name my/org-default-note-dir))
 
   (defun default-denote ()
@@ -100,6 +102,7 @@
     (setq denote-directory (expand-file-name
 			    my/org-default-note-dir)))
   
+  (require 'project)
   (defun project-denote ()
     "Change denote-directory to the project directory."
     (interactive)

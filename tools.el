@@ -64,6 +64,7 @@
   vterm
   project-vterm
   :config
+  (require 'project)
   (defun project-vterm ()
   "Start Vterm in the current project's root directory.
 If a buffer already exists for running Vterm in the project's root,
