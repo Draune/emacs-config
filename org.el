@@ -38,7 +38,7 @@
   (setq org-agenda-start-on-weekday nil)
 
   (setq org-todo-keywords
-	'((sequence "TODO(t)" "FEEDBACK(f)" "DELEGATED(z)" "|" "DONE(d)")
+	'((sequence "TODO(t)" "PLANNED(p)" "FEEDBACK(f)" "DELEGATED(z)" "|" "DONE(d)")
 	  (sequence "UNKNOWN(u)" "MAYBE(m)" "|" "VERIFIED(v)")
 	  (sequence "|" "CANCELED(c)")))
   
