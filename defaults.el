@@ -135,9 +135,10 @@
 
   ;; to get human-readable size in dired
   (setq dired-listing-switches "-alFh")
-  
+
+  (require 'project)
   (setq project-vc-extra-root-markers '(".project" ".project.el" ".projectile"))
-  
+  (setq project-buffers-viewer 'project-list-buffers-ibuffer)
   :hook
   ((text-mode-hook
     prog-mode-hook
