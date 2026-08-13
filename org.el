@@ -52,20 +52,22 @@
   (defun project-org-agenda ()
     "Start org-agenda with the project directory as org-agenda-files."
     (interactive)
-    (let ((project-agenda-file (concat (project-root (project-current t))
-				       project-org-agenda-file)))
-      (setq org-agenda-files (list project-agenda-file))
-      (if (file-exists-p project-agenda-file)
-	  (progn
+    (let ((project-directory (project-root (project-current t))))
+      (let ((project-agenda-file (concat project-directory
+					 project-org-agenda-file)))
+	(setq org-agenda-files (list project-agenda-file))
+	(if (file-exists-p project-agenda-file)
+	    (progn
+	      (org-agenda nil "n")
+	      (setq default-directory (concat project-directory
+					      project-org-default-note-dir)) 
+	      )
+	  (when (yes-or-no-p (concat "Create file " project-agenda-file "?"))
+	    (make-empty-file project-agenda-file t)
 	    (org-agenda nil "n")
-	    (setq default-directory (concat (project-root (project-current t))
+	    (setq default-directory (concat project-directory
 					    project-org-default-note-dir)) 
 	    )
-	(when (yes-or-no-p (concat "Create file " project-agenda-file "?"))
-	  (make-empty-file project-agenda-file t)
-	  (org-agenda nil "n")
-	    (setq default-directory (concat (project-root (project-current t))
-					    project-org-default-note-dir)) 
 	  )
 	)
       )
