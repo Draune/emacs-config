@@ -8,6 +8,7 @@
        (equal (my/emacs-parent-name) "xephyr-exwm")
        (equal (my/emacs-parent-name) "startexwm")
        )
+  :ensure t
   :bind
   (("C-c SPC" . 'my/launch-app)
    ("C-c r" . 'exwm-reset)	
@@ -105,6 +106,11 @@ from active screens."
       
 ;; Install lemon (system monitor in echo area)
 (use-package lemon
+  :ensure t
+  :vc (:url "https://codeberg.org/emacs-weirdware/lemon")
+  :init
+  ;; because lemon doesn't seem to install it using use-package
+  (use-package s :ensure t)
   :config
   (require 'lemon-time)
   (require 'lemon-battery)

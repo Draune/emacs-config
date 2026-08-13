@@ -1,5 +1,9 @@
 ;; Install devil (translate "," to "C-"; and use support of which-key from fbrosda)
 (use-package devil
+  :ensure t
+  :vc (:url "https://github.com/fbrosda/devil"
+	    :branch "dev"
+	    :rev :newest)
   :config
   (setq devil-exit-key "q"
 	devil-all-keys-repeatable t
@@ -15,7 +19,7 @@
 			     (", ," . "M-")
 			     ("," . "C-")
 			     )
-	devil-special-keys '(("%k h %k k" . devil-describe-key)
+	devil-special-keys '(("%k h k" . devil-describe-key)
 			     ("%k h %k l" . devil-toggle-logging))
 	)
   (global-devil-mode)

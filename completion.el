@@ -1,5 +1,6 @@
 ;; Vertico config
 (use-package vertico
+  :ensure t
   :defer t
   :autoload
   vertico-mode
@@ -12,6 +13,7 @@
 
 ;; Install orderless (config from vertico's github
 (use-package orderless
+  :ensure t
   :after vertico
   :config
   (setq completion-styles '(orderless basic)
@@ -22,6 +24,7 @@
   )
 
 (use-package consult
+  :ensure t
   :config
   (setq completion-in-region-function #'consult-completion-in-region)
   ;; line to get completion-at-point and indentation when pressing TAB or C-i
@@ -32,6 +35,7 @@
   )
 
 (use-package marginalia
+  :ensure t
   :config
   (marginalia-mode)
   )

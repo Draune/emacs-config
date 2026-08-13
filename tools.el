@@ -1,6 +1,7 @@
 ;; All independant tools (that need to be called to do something)
 
 (use-package speed-type
+  :ensure t
   :defer t
   :bind
   ("C-c s" . 'my/speed-type-continue)
@@ -23,6 +24,7 @@
   )
 
 (use-package languagetool
+  :ensure t
   :defer t
   :commands (languagetool-check
              languagetool-clear-suggestions
@@ -42,6 +44,8 @@
   )
 
 (use-package vterm  :defer t
+  :ensure t
+  :defer t
   :bind
   (("C-c t" . vterm)
    :map vterm-mode-map
@@ -83,7 +87,9 @@ if one already exists."
   )
 
 (use-package pdftotext
-  :defer
+  :ensure t
+  :vc (:url "https://github.com/tecosaur/pdftotext.el")
+  :defer t
   :commands
   pdftotext-mode
   )
