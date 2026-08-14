@@ -1,9 +1,11 @@
 (use-package git-gutter
+  :ensure t
   :hook (prog-mode . git-gutter-mode)
   :config
   (setq git-gutter:update-interval 0.02))
 
 (use-package git-gutter-fringe
+  :ensure t
   :config
   (fringe-helper-define 'git-gutter-fr:added '(center repeated)
     "XXX....."
