@@ -1,6 +1,6 @@
-(defcustom my/org-default-note-dir "~/Documents/notes/"
+(defcustom org-default-note-dir "~/Documents/notes/"
   "Default note dir for agenda and denote between everything else")
-(defcustom my/org-agenda-files (list (concat my/org-default-note-dir
+(defcustom org-agenda-files (list (concat org-default-note-dir
 					     "agenda.org"))
   "Path to the default org-agenda files to reset it after using
     project-org-agenda.")
@@ -43,9 +43,9 @@
 	  (sequence "|" "CANCELED(c)")))
   
   (defun default-org-agenda () (interactive)
-	       (setq org-agenda-files my/org-agenda-files)
+	       (setq org-agenda-files org-agenda-files)
 	       (org-agenda nil "n")
-	       (setq default-directory my/org-default-note-dir) 
+	       (setq default-directory org-default-note-dir) 
 	       )
 
   (require 'project)
@@ -96,13 +96,13 @@
    ("n" . project-denote))
   :config
   (setq denote-known-keywords '())
-  (setq denote-directory (expand-file-name my/org-default-note-dir))
+  (setq denote-directory (expand-file-name org-default-note-dir))
 
   (defun default-denote ()
-    "Reset denote dir to my/org-default-note-dir"
+    "Reset denote dir to org-default-note-dir"
     (interactive)
     (setq denote-directory (expand-file-name
-			    my/org-default-note-dir)))
+			    org-default-note-dir)))
   
   (require 'project)
   (defun project-denote ()
