@@ -261,7 +261,7 @@ directory concatenated with project-org-default-note-dir."
     "Menu made with char-choice menu to be used in project-switch-commands and
 to bind to project-prefix-map."
     (interactive)
-    (char-choice-menu project-denote-char-choice-list))
+    (char-choice-menu project-denote-char-choice-list "Denote menu: "))
   
   (add-to-list 'project-switch-commands '(project-denote-menu "Denote menu"))
   

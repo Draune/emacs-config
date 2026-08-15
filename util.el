@@ -10,7 +10,7 @@
    (shell-command-to-string
     (format "ps -o comm= -p %s" (my/emacs-ppid)))))
 
-(defun char-choice-menu (choice-list)
+(defun char-choice-menu (choice-list &optional menu-prompt)
   "Allow to create a choice menu from a list of choices, a choice is of the
 form: '(KEY PROMPT-NAME FUNCTION)
 
@@ -20,7 +20,7 @@ For exemple the list of choice:
 Will prompt : \"Choose: Exit(e) Reboot(r)\"
 Pressing \"e\" will result of the execution of (lambda () (message \"Exit\"))"
   (let ((prompt
-	 (concat "Choose: "
+	 (concat (if (stringp menu-prompt) menu-prompt "Choose: ")
 		 (let (res)
 		   (dolist (choice choice-list res)
 		     (setq res
