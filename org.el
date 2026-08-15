@@ -1,6 +1,6 @@
 (defcustom org-default-note-dir "~/Documents/notes/"
   "Default note dir for agenda and denote between everything else")
-(defcustom org-agenda-files (list (concat org-default-note-dir
+(defcustom org-default-agenda-files (list (concat org-default-note-dir
 					     "agenda.org"))
   "Path to the default org-agenda files to reset it after using
     project-org-agenda.")
@@ -10,6 +10,39 @@
 (defcustom project-org-agenda-file (concat project-org-default-note-dir
 					   "agenda.org")
   "Directory where notes for project-org-agenda will be stored.")
+
+(defun project-get-all-note-directories ()
+  "Allow to get all note directories inside projects according
+project-org-default-note-dir (return only existing directories)."
+  (map-filter
+   (lambda (key val) (file-exists-p key))
+    (mapcar
+     (lambda (dir) (list (concat (car dir) project-org-default-note-dir)))
+     project--list)))
+
+(defun project-get-all-agenda-files ()
+  "Get all existing agenda files stocked in project directories according to
+project-org-agenda-file"
+  (map-filter
+   (lambda (key val) (file-exists-p key))
+    (mapcar
+     (lambda (dir) (list (concat (car dir) project-org-agenda-file)))
+     project--list)))
+
+(defun get-all-note-directories ()
+  "Get all note directories: directories in projects according to
+project-org-default-note-dir and default note directory (org-default-note-dir)"
+  (if (file-exists-p org-default-note-dir)
+      (cons (list org-default-note-dir)
+	    (project-get-all-note-directories))
+    (project-get-all-note-directories)))
+
+(defun get-all-agenda-files ()
+  "Return a flatten list of all agenda files: files in projects according to
+project-org-agenda-file and default agenda files (org-default-agenda-files)"
+  (flatten-tree
+   (cons org-default-agenda-files
+	 (project-get-all-agenda-files))))
   
 (use-package org
   :defer t 
@@ -43,7 +76,7 @@
 	  (sequence "|" "CANCELED(c)")))
   
   (defun default-org-agenda () (interactive)
-	       (setq org-agenda-files org-agenda-files)
+	       (setq org-agenda-files org-default-agenda-files)
 	       (org-agenda nil "n")
 	       (setq default-directory org-default-note-dir) 
 	       )
@@ -72,11 +105,19 @@
 	)
       )
     )
+
+  (defun global-org-agenda ()
+    (interactive)
+    (setq org-agenda-files (get-all-agenda-files))
+    (org-agenda nil "n")
+    (setq default-directory org-default-note-dir))
+  
   (add-to-list 'project-switch-commands '(project-org-agenda "Agenda"))
   :bind
-  (("C-c a" . default-org-agenda)
+  (("C-c a" . 'default-org-agenda)
   ("C-c l s" . 'org-store-link)
   ("C-c l i" . 'org-id-store-link)
+  ("C-c g a" . 'global-org-agenda)
   :map project-prefix-map
   ("a" . project-org-agenda))
   )
