@@ -122,33 +122,85 @@ project-org-agenda-file and default agenda files (org-default-agenda-files)"
   ("a" . project-org-agenda))
   )
 
+(defvar-keymap default-denote-map
+  :doc "Keymap for the default denote commands (that act on the
+  org-default-note-dir or are directory agnostic)")
+(keymap-set global-map "C-c n" default-denote-map)
+
 (use-package denote
   :ensure t
+  :defer t
+  :commands
+  denote            
+  denote-link       
+  denote-backlinks  
+  denote-dired      
+  denote-grep       
+  default-denote
+  default-denote-link       
+  default-denote-backlinks  
+  default-denote-dired      
+  default-denote-grep       
+  denote-rename-file
+  project-denote-menu
+  project-denote
+  project-denote-link       
+  project-denote-backlinks  
+  project-denote-dired      
+  project-denote-grep       
   :hook (dired-mode . denote-dired-mode)
   :bind
-  (("C-c n n" . denote)
-   ("C-c n r" . denote-rename-file)
-   ("C-c n l" . denote-link)
-   ("C-c n b" . denote-backlinks)
-   ("C-c n d" . denote-dired)
-   ("C-c n g" . denote-grep)
-   ("C-c n r" . default-denote)
+  (:map default-denote-map
+   ("n" . default-denote)
+   ("l" . default-denote-link)
+   ("b" . default-denote-backlinks)
+   ("d" . default-denote-dired)
+   ("g" . default-denote-grep)
+   ;; do not need default or project, works everywhere
+   ("r" . denote-rename-file)
    :map project-prefix-map
-   ("n" . project-denote))
+   ("n" . project-denote-menu))
   :config
   (setq denote-known-keywords '())
   (setq denote-directory (expand-file-name org-default-note-dir))
 
-  (defun default-denote ()
-    "Reset denote dir to org-default-note-dir"
-    (interactive)
+  (defun default-denote-dir ()
+    "Reset denote dir to org-default-note-dir."
     (setq denote-directory (expand-file-name
 			    org-default-note-dir)))
+  (defun default-denote ()
+    "Call denote after resetting denote-directory to org-default-note-dir."
+    (interactive)
+    (default-denote-dir)
+    (call-interactively 'denote))
+
+  (defun default-denote-link ()
+    "Call denote-link after resetting denote-directory to org-default-note-dir."
+    (interactive)
+    (default-denote-dir)
+    (call-interactively 'denote-link))
+
+  (defun default-denote-backlinks ()
+    "Call denote-backlinks after resetting denote-directory to org-default-note-dir."
+    (interactive)
+    (default-denote-dir)
+    (call-interactively 'denote-backlinks))
+
+  (defun default-denote-dired ()
+    "Call denote-dired after resetting denote-directory to org-default-note-dir."
+    (interactive)
+    (default-denote-dir)
+    (call-interactively 'denote-dired))
+
+  (defun default-denote-grep ()
+    "Call denote-grep after resetting denote-directory to org-default-note-dir."
+    (interactive)
+    (default-denote-dir)
+    (call-interactively 'denote-grep))
   
   (require 'project)
-  (defun project-denote ()
+  (defun project-denote-dir ()
     "Change denote-directory to the project directory."
-    (interactive)
     (let ((project-denote-dir (concat (project-root (project-current t))
 				       project-org-default-note-dir)))
       (if (file-exists-p project-denote-dir)
@@ -160,7 +212,58 @@ project-org-agenda-file and default agenda files (org-default-agenda-files)"
 	)
       )
     )
-  (add-to-list 'project-switch-commands '(project-denote "Change denote dir"))
+  
+  (defun project-denote ()
+    "Call denote after setting denote-directory to the wanted project directory
+concatenated with project-org-default-note-dir." 
+    (interactive)
+    (project-denote-dir)
+    (call-interactively 'denote))
+
+  (defun project-denote-link ()
+    "Call denote-link after setting denote-directory to the wanted project
+directory concatenated with project-org-default-note-dir." 
+    (interactive)
+    (project-denote-dir)
+    (call-interactively 'denote-link))
+
+  (defun project-denote-backlinks ()
+    "Call denote-backlinks after setting denote-directory to the wanted project
+directory concatenated with project-org-default-note-dir." 
+    (interactive)
+    (project-denote-dir)
+    (call-interactively 'denote-backlinks))
+
+  (defun project-denote-dired ()
+    "Call denote-dired after setting denote-directory to the wanted project
+directory concatenated with project-org-default-note-dir." 
+    (interactive)
+    (project-denote-dir)
+    (call-interactively 'denote-dired))
+
+  (defun project-denote-grep ()
+    "Call denote-grep after setting denote-directory to the wanted project
+directory concatenated with project-org-default-note-dir." 
+    (interactive)
+    (project-denote-dir)
+    (call-interactively 'denote-grep))
+  
+  (defcustom project-denote-char-choice-list
+    '(("n" "denote" project-denote)           
+      ("l" "link" project-denote-link)      
+      ("b" "backlinks" project-denote-backlinks) 
+      ("d" "dired" project-denote-dired)     
+      ("g" "grep" project-denote-grep))     
+    "List of choice used by project-denote-menu, which uses char-choice-menu"
+    )
+  
+  (defun project-denote-menu ()
+    "Menu made with char-choice menu to be used in project-switch-commands and
+to bind to project-prefix-map."
+    (interactive)
+    (char-choice-menu project-denote-char-choice-list))
+  
+  (add-to-list 'project-switch-commands '(project-denote-menu "Denote menu"))
   
   ;; Automatically rename Denote buffers when opening them so that
   ;; instead of their long file name they have, for example, a literal
