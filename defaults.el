@@ -139,6 +139,12 @@
   (require 'project)
   (setq project-vc-extra-root-markers '(".project" ".project.el" ".projectile"))
   (setq project-buffers-viewer 'project-list-buffers-ibuffer)
+  
+  (defvar-keymap global-command-map
+    :doc "Keymap for the global commands (generally acts on defaults and project
+    directories)")
+  (keymap-set global-map "C-c g" global-command-map)
+
   :hook
   ((text-mode-hook
     prog-mode-hook
