@@ -1,3 +1,6 @@
+(require 'project)
+(project--ensure-read-project-list)
+
 (defcustom org-default-note-dir "~/Documents/notes/"
   "Default note dir for agenda and denote between everything else")
 (defcustom org-default-agenda-files (list (concat org-default-note-dir
@@ -83,7 +86,6 @@ project-org-agenda-file and default agenda files (org-default-agenda-files)"
 	       (setq default-directory org-default-note-dir) 
 	       )
 
-  (require 'project)
   (defun project-org-agenda ()
     "Start org-agenda with the project directory as org-agenda-files."
     (interactive)
@@ -120,7 +122,7 @@ project-org-agenda-file and default agenda files (org-default-agenda-files)"
   ("C-c l s" . 'org-store-link)
   ("C-c l i" . 'org-id-store-link)
   :map global-command-map
-  ("a" . 'global-org-agenda)
+  ("a" . global-org-agenda)
   :map project-prefix-map
   ("a" . project-org-agenda))
   )
@@ -245,7 +247,6 @@ org-default-note-dir."
     (default-denote-dir)
     (call-interactively 'denote-grep))
   
-  (require 'project)
   (defun project-denote-dir ()
     "Change denote-directory to the project directory."
     (let ((project-denote-dir (concat (project-root (project-current t))
