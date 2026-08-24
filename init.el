@@ -8,6 +8,8 @@
 
 (require 'use-package)
 
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
 (use-package compat :ensure t)
 
 ;; load configs
@@ -25,5 +27,6 @@
 ;; LSP, corfu, etc.
 (load "~/.emacs.d/prog.el")
 (load "~/.emacs.d/org.el")
+(load "~/.emacs.d/notifications.el")
 (load "~/.emacs.d/reverse.el")
 (load "~/.emacs.d/completion.el")
