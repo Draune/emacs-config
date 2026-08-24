@@ -2,34 +2,6 @@
 ;; to test notifications:
 ;; (alert "alert" :title "alert test")
 
-(use-package popper
-  :ensure t
-  :bind
-  ("C-c p p" . 'popper-toggle)
-  ("C-c p c" . 'popper-cycle)
-  ("C-c p t" . 'popper-toggle-type)
-  :config
-  (setq popper-echo-dispatch-keys '(?s ?d ?f ?g ?h ?j ?k ?l ?m)
-	popper-reference-buffers '("\\*Messages\\*"
-				   "Output\\*$"
-				   "\\*Warnings\\*"
-				   "\\*Backtrace\\*"
-				   help-mode
-				   shortdoc-mode
-				   compilation-mode
-				   ;; like that I can create popper buffers
-				   ;; without modifying this variable
-				   "popper"))
-  (defun popper-buffer-buried-p (BUFF-OR-NAME)
-    "Return non-nil if BUFF-OR-NAME is either buried or does not exist."
-    (map-every-p (lambda (key value)
-		   (not (eq value (get-buffer
-				   BUFF-OR-NAME))))
-		 popper-open-popup-alist))
-  (popper-mode +1)
-  (popper-echo-mode +1)
-  )
-
 (use-package ednc
   :ensure t
   :bind
