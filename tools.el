@@ -4,7 +4,8 @@
   :ensure t
   :defer t
   :bind
-  ("C-c s" . 'my/speed-type-continue)
+  ("C-c s f" . 'speed-type-file-continue)
+  ("C-c s p" . 'speed-type-continue-at-point)
   :commands
   (my/speed-type-continue
    speed-type-text
@@ -13,14 +14,36 @@
   (setq speed-type-default-lang "fr"
 	speed-type-randomize nil)
   :init
-  (defun my/speed-type-continue (file)
+  (defcustom speed-type-file-continue--default-entry
+    "~/.emacs.d/speed-type/ .txt "
+    "Default entry when searching for a speed-type file, I use this one because
+I use orderless.")
+  (defun speed-type-file-continue (file)
+    "Interactive function that will prompt the user for a file to use with
+speed-type (use `speed-type-file-continue--default-entry' to change the
+default value entered)"
     (interactive
-     (list
-      (read-file-name
-       "Choisir un fichier : "
-       "~/.emacs.d/speed-type/ .txt ")))
-    (speed-type-continue nil file)
-    )
+     (list (read-file-name
+	    "Find speed-type file: "
+	    speed-type-file-continue--default-entry)))
+    (speed-type-continue nil file))
+  (defun speed-type-continue-at-point--point (filename &rest r)
+    "Function used in `speed-type-continue-at-point' to replace the
+`speed-type--find-last-continue-at-point-in-stats' function."
+    (with-current-buffer (get-file-buffer filename)
+      (point)))
+  (defun speed-type-continue-at-point ()
+    "Will try to run `speed-type-continue' in the current buffer but will start at
+current point instead of the last saved position for this file."
+    (interactive)
+    (let ((file (buffer-file-name)))
+      (when (file-exists-p file)
+	(advice-add 'speed-type--find-last-continue-at-point-in-stats
+		    :override
+		    'speed-type-continue-at-point--point)
+	(speed-type-file-continue file)
+	(advice-remove 'speed-type--find-last-continue-at-point-in-stats
+		       'speed-type-continue-at-point--point))))
   )
 
 (use-package languagetool
