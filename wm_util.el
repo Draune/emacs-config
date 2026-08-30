@@ -145,5 +145,5 @@
     (interactive)
     (char-choice-menu system-exit-char-choice-list))
 
-  (bind-key "C-c e" 'system-exit-menu)
+  (bind-key "C-x C-c" 'system-exit-menu)
   )
