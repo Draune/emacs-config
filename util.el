@@ -49,6 +49,7 @@ Pressing \"e\" will result of the execution of (lambda () (message \"Exit\"))"
 	popper-reference-buffers '("\\*Messages\\*"
 				   "Output\\*$"
 				   "\\*Warnings\\*"
+				   "\\*Async Shell Command\\*"
 				   "\\*Backtrace\\*"
 				   help-mode
 				   shortdoc-mode
