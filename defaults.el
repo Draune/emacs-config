@@ -130,7 +130,7 @@
                             digit))))
   (universal-argument--mode))
   
-  (defun my/interactive-kill-new (text) (interactive "s")
+  (defun interactive-kill-new (text) (interactive "sKill text: ")
 	 (kill-new text))
 
   ;; to get human-readable size in dired
@@ -139,6 +139,44 @@
   (require 'project)
   (setq project-vc-extra-root-markers '(".project" ".project.el" ".projectile"))
   (setq project-buffers-viewer 'project-list-buffers-ibuffer)
+
+  (defun project-kill-project (&optional del-project)
+    (interactive "P")
+    (let ((pr (project-current t)))
+      (let ((pr-root (project-root pr))
+	    (pr-buffers (project--buffers-to-kill pr)))
+	;; like `project-kill-buffers' but if I use this function it call a
+	;; second time `project-current'
+	(when (and pr-buffers (yes-or-no-p (format "Kill %d buffers?"
+						   (length pr-buffers))))
+	  (mapcar 'kill-buffer pr-buffers))
+      (when del-project
+	(let ((extra-root-marker
+	       (map-some (lambda (key value) (if (file-exists-p key) key nil))
+			 (mapcar 'list
+				 (mapcar (lambda (file) (concat pr-root file))
+					 project-vc-extra-root-markers)))))
+	  (when (yes-or-no-p (if extra-root-marker
+				 (concat "Forget project and remove "
+					 extra-root-marker "?")
+			       "Forget project?"))
+	    (when extra-root-marker
+	      (delete-file extra-root-marker))
+	    (project-forget-project pr-root)))))))
+  
+  
+  (defun project-prompt-project-dir-create (dir)
+    (when (stringp dir)
+      (let ((try-vc-ret (project-try-vc--search dir)))
+	(unless try-vc-ret
+	  (let ((project-marker (car project-vc-extra-root-markers)))
+	    (when (and (stringp project-marker)
+		       (yes-or-no-p (concat "Create " dir project-marker "?")))
+	      (make-empty-file (concat dir project-marker)))))))
+    dir)
+
+  (advice-add 'project-prompt-project-dir :filter-return
+	      'project-prompt-project-dir-create)
   
   (defvar-keymap global-command-map
     :doc "Keymap for the global commands (generally acts on defaults and project
@@ -171,13 +209,14 @@
 	     (call-interactively 'indent-for-tab-command)))
   ("M-a" . 'beginning-of-buffer)
   ("M-e" . 'end-of-buffer)
-
+  ("C-x C-b" . 'ibuffer)
+  
   ;; Because I don't have ">" and "<" on my keyboard
   ("C-c i i" . (lambda () (interactive) (insert "<")))
   ("C-c i s" . (lambda () (interactive) (insert ">")))
   ("C-c r" . 'replace-string)
   
-  ("M-k" . 'my/interactive-kill-new)
+  ("M-k" . 'interactive-kill-new)
   
   ("C-&" . 'my/french-digit-argument)
   ("C-é" . 'my/french-digit-argument)
@@ -204,11 +243,13 @@
   ("ç" . 'my/french-digit-argument)
   ("à" . 'my/french-digit-argument)
 
+  :map project-prefix-map
+  ("k" . 'project-kill-project)
+  
   ;; Use M-p and M-n for the command history when using M-&
   ;; Already binded but (I don't really know why) if I don't declare it
   ;; there is a bug when repeated
   :map minibuffer-local-shell-command-map
   ("M-p" . 'previous-line-or-history-element)
   ("M-n" . 'next-line-or-history-element))
-  ("C-x C-b" . 'ibuffer)
   )
