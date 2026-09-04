@@ -141,6 +141,9 @@
   (setq project-buffers-viewer 'project-list-buffers-ibuffer)
 
   (defun project-kill-project (&optional del-project)
+    "Like `project-kill-buffers' but will ask if you want to forget the project
+when the prefix argument is not nil. It will also delete the extra root marker
+if present in the directory (from `project-vc-extra-root-markers')."
     (interactive "P")
     (let ((pr (project-current t)))
       (let ((pr-root (project-root pr))
@@ -166,6 +169,9 @@
   
   
   (defun project-prompt-project-dir-create (dir)
+    "Function that filter the return of `project-prompt-project-dir' to create
+an empty root marker in the directory (it will take the first from
+`project-vc-extra-root-markers')."
     (when (stringp dir)
       (let ((try-vc-ret (project-try-vc--search dir)))
 	(unless try-vc-ret
