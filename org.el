@@ -47,7 +47,13 @@ project-org-agenda-file and default agenda files (org-default-agenda-files)"
   (flatten-tree
    (cons org-default-agenda-files
 	 (project-get-all-agenda-files))))
-  
+
+(defun project-try-vc-not-default-notes (dir &rest r)
+  "This function is used in case the default note directory is under vc."
+  (not (string-equal (expand-file-name dir)
+		     (expand-file-name org-default-note-dir))))
+(advice-add 'project-try-vc :before-while 'project-try-vc-not-default-notes)
+
 (use-package org
   :defer t 
   :config
