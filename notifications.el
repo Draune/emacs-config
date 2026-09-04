@@ -74,6 +74,7 @@ TITLE will be used by the notification displayed when time is up."
 		(org-timer-set-mode-line 'off)
 		(run-hooks 'org-timer-done-hook)))))
   
+  (require 'org-timer)
   (defun org-timer-set-timer-with-title (&optional opt title)
     "Prompt for a duration in minutes or hh:mm:ss and set a timer that will
     notify the user with a chosen title.
