@@ -158,6 +158,7 @@ project-org-agenda-file and default agenda files (org-default-agenda-files)"
   default-denote-backlinks  
   default-denote-dired      
   default-denote-grep       
+  default-denote-rename-file
   denote-rename-file
   project-denote-menu
   project-denote
@@ -166,6 +167,7 @@ project-org-agenda-file and default agenda files (org-default-agenda-files)"
   project-denote-backlinks  
   project-denote-dired      
   project-denote-grep
+  project-denote-rename-file
   global-denote-find-file
   global-denote-link       
   global-denote-backlinks  
@@ -180,8 +182,7 @@ project-org-agenda-file and default agenda files (org-default-agenda-files)"
    ("b" . default-denote-backlinks)
    ("d" . default-denote-dired)
    ("g" . default-denote-grep)
-   ;; do not need default or project, works everywhere
-   ("r" . denote-rename-file)
+   ("r" . default-denote-rename-file)
    :map project-prefix-map
    ("n" . project-denote-menu)
    :map global-denote-map
@@ -189,7 +190,8 @@ project-org-agenda-file and default agenda files (org-default-agenda-files)"
    ("l" . global-denote-link)
    ("b" . global-denote-backlinks)
    ("d" . global-denote-dired)
-   ("g" . global-denote-grep))
+   ("g" . global-denote-grep)
+   ("r" . global-denote-rename-file))
   :config
   (setq denote-known-keywords '())
   (setq denote-directory (expand-file-name org-default-note-dir))
@@ -253,6 +255,13 @@ org-default-note-dir."
     (default-denote-dir)
     (call-interactively 'denote-grep))
   
+  (defun default-denote-rename-file ()
+    "Call denote-rename-file after resetting denote-directory to
+org-default-note-dir."
+    (interactive)
+    (default-denote-dir)
+    (call-interactively 'denote-rename-file))
+  
   (defun project-denote-dir ()
     "Change denote-directory to the project directory."
     (let ((project-denote-dir (concat (project-root (project-current t))
@@ -309,13 +318,21 @@ directory concatenated with project-org-default-note-dir."
     (project-denote-dir)
     (call-interactively 'denote-grep))
   
+  (defun project-denote-rename-file ()
+    "Call denote-rename-file after setting denote-directory to the wanted
+    project directory concatenated with project-org-default-note-dir." 
+    (interactive)
+    (project-denote-dir)
+    (call-interactively 'denote-rename-file))
+  
   (defcustom project-denote-char-choice-list
     '(("n" "denote" project-denote)           
       ("f" "find-file" project-denote-find-file)      
       ("l" "link" project-denote-link)      
       ("b" "backlinks" project-denote-backlinks) 
       ("d" "dired" project-denote-dired)     
-      ("g" "grep" project-denote-grep))     
+      ("g" "grep" project-denote-grep)
+      ("r" "rename-file" project-denote-rename-file))     
     "List of choice used by project-denote-menu, which uses char-choice-menu"
     )
   
@@ -364,6 +381,13 @@ directories (default and projects)."
     (interactive)
     (global-denote-dir)
     (call-interactively 'denote-grep))
+  
+  (defun global-denote-rename-file ()
+    "Call denote-rename-file after setting denote-directory to a list of all note
+directories (default and projects)." 
+    (interactive)
+    (global-denote-dir)
+    (call-interactively 'denote-rename-file))
   
   ;; Automatically rename Denote buffers when opening them so that
   ;; instead of their long file name they have, for example, a literal
