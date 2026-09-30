@@ -51,6 +51,7 @@ Pressing \"e\" will result of the execution of (lambda () (message \"Exit\"))"
 				   "\\*Warnings\\*"
 				   "\\*Async Shell Command\\*"
 				   "\\*Backtrace\\*"
+				   "\\*Calendar\\*"
 				   help-mode
 				   shortdoc-mode
 				   compilation-mode
