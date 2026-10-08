@@ -7,10 +7,12 @@
 (setq package-install-upgrade-built-in t)
 
 (require 'use-package)
-
+(require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
-(use-package compat :ensure t)
+;; to be sure to get compat-31 for packages like vertico or marginalia
+(unless (file-exists-p "~/.emacs.d/elpa/compat/compat-31.el")
+  (package-vc-install "https://github.com/emacs-compat/compat.git"))
 
 ;; load configs
 ;; Utilities functions

@@ -107,6 +107,7 @@ from active screens."
 ;; Install lemon (system monitor in echo area)
 (use-package lemon
   :ensure t
+  :if (file-readable-p "/proc/stat")
   :vc (:url "https://codeberg.org/emacs-weirdware/lemon")
   :init
   ;; because lemon doesn't seem to install it using use-package
