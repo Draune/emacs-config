@@ -10,6 +10,8 @@
     )
 
   (setq inhibit-startup-screen 1)
+  ;; so binding used for avy "C-j" is free in the scratch buffer
+  (setq initial-major-mode 'emacs-lisp-mode)
   
   ;; (global-display-line-numbers-mode)
 

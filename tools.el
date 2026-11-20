@@ -116,3 +116,11 @@ if one already exists."
   :commands
   pdftotext-mode
   )
+
+(use-package avy
+  :ensure t
+  :defer t
+  :bind
+  ("C-j" . 'avy-goto-char)
+  :config
+  (setq avy-keys '(?q ?s ?d ?f ?g ?h ?j ?k ?l)))
